@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>수리나무학원 스마트 학습 - Point Reading LEVEL 1 (Day 06)</title>
+    <title>수리나무학원 스마트 학습 - Chapter 02 (시제)</title>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
@@ -79,6 +79,7 @@
         .grammar-chunks { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
         .chunk-card { border: 2px solid #CBD5E0; border-radius: 10px; min-width: 70px; background: white; cursor: pointer; overflow: hidden; transition: 0.2s;}
         .chunk-card.active { border-color: #3182CE; box-shadow: 0 0 8px rgba(49,130,206,0.3); transform: translateY(-2px);}
+        .chunk-card.correct { border-color: var(--light-green); background: #F0FDF4; pointer-events: none;}
         .chunk-txt { padding: 8px; font-size: 15px; font-weight: bold; background: #F7FAFC; border-bottom: 1px dashed #E2E8F0; }
         .chunk-ans { padding: 6px; font-size: 13px; font-weight: 800; color: #A0AEC0; height: 18px; }
         .choice-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
@@ -116,10 +117,11 @@
 <body>
 
 <div id="app-container">
-    <div id="combo-display"></div> <div class="app-header">
+    <div id="combo-display"></div> 
+    <div class="app-header">
         <div class="logo-icon">🌳</div>
         <h1>수리나무학원</h1>
-        <p>Point Reading LEVEL 1 (Day 06)</p>
+        <p>Chapter 02 (시제 연습)</p>
     </div>
     
     <div class="nav-container">
@@ -147,7 +149,7 @@
                     <div class="progress-bg"><div class="progress-bar" id="word-evo-bar"></div></div>
                 </div>
             </div>
-            <div class="status-text" id="word-status">문제 1 / 45</div>
+            <div class="status-text" id="word-status">문제 1 / 30</div>
             <div id="word-display" class="word-box">Loading...</div>
             <div id="word-options"></div>
         </div>
@@ -156,7 +158,7 @@
             <div style="font-size: 5rem; margin-bottom: 10px;" id="result-dragon-word">🐉✨</div>
             <h2 style="color: var(--main-green);">테스트 종료!</h2>
             <div class="score-display" id="final-score-word">100점</div>
-            <div style="font-size: 1.2rem; color: #4A5568; font-weight: bold; margin-bottom: 30px;" id="final-detail-word">정답: 45 / 45</div>
+            <div style="font-size: 1.2rem; color: #4A5568; font-weight: bold; margin-bottom: 30px;" id="final-detail-word">정답: 30 / 30</div>
             <button class="start-btn" onclick="resetWordTest()">새로운 알 부화하기 🔄</button>
         </div>
     </div>
@@ -177,7 +179,7 @@
             <button onclick="jumpToSentence()">GO 🚀</button>
         </div>
         <h3 style="color: var(--main-green); margin-bottom: 5px;">듣고 뜻을 보며 단어를 터치하세요</h3>
-        <div class="status-text" id="sentence-status">문제 1 / 18</div>
+        <div class="status-text" id="sentence-status">문제 1 / 27</div>
         <div id="sentence-ko-text" class="korean-meaning">한글 뜻 로딩중...</div>
         
         <div class="drag-tip">💡 꿀팁: 단어를 잘못 넣었을 땐 <b>꾹 눌러서 스르륵 끌어다 놓기(드래그)</b>로 순서를 바꿀 수 있어요!</div>
@@ -186,7 +188,7 @@
         <div id="scrambled-words"></div>
         
         <div style="display: flex; gap: 8px; margin-top: 15px;">
-            <button id="speed-btn" class="audio-ctrl-btn" style="background: #718096; flex: 1; margin-top: 0; padding: 10px 5px;" onclick="toggleSpeechRate()">🐇 원래 속도</button>
+            <button id="speed-btn" class="audio-ctrl-btn" style="background: #718096; flex: 1; margin-top: 0; padding: 10px 5px;" onclick="toggleSpeechRate()">🐇 보통 속도</button>
             <button id="audio-toggle-btn" class="audio-ctrl-btn" style="flex: 2; margin-top: 0;" onclick="toggleAudio()">▶️ 원어민 음성 재생</button>
         </div>
     </div>
@@ -195,6 +197,7 @@
         <div id="intro-screen-gram">
             <div style="font-size: 4rem; margin-bottom: 10px;">🥚</div>
             <h2 style="color: var(--main-green);">문장 마스터 용 키우기!</h2>
+            <p style="font-weight: bold; color: #4A5568;">시제 연습을 위한 본문 핵심 15문장을 완벽히 분석해서<br>전설의 용으로 진화시켜 보세요.</p>
             <button class="start-btn" onclick="initAudioContext(); startGrammarTest();">분석 훈련 시작하기 🚀</button>
         </div>
 
@@ -210,7 +213,7 @@
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <span class="status-text" style="background:#C6F6D5; color:var(--main-green); margin:0;" id="gram-level-badge">1단계: 품사(구/절) 찾기</span>
-                <span class="status-text" style="margin:0; background:transparent;" id="gram-count">1 / 12</span>
+                <span class="status-text" style="margin:0; background:transparent;" id="gram-count">1 / 15</span>
             </div>
             
             <div class="grammar-ko" id="gram-ko">로딩 중...</div>
@@ -218,8 +221,9 @@
             <div class="choice-grid" id="gram-choices"></div>
             
             <div id="gram-step1-exp" class="info-box" style="border-color:#3182CE;">
-                <div class="info-title" style="color:#3182CE;">💡 1단계 완료!</div>
+                <div class="info-title" style="color:#3182CE;">💡 1단계 완료! 문장 속 진짜 모습은?</div>
                 <div class="info-desc" id="gram-step1-desc"></div>
+                <div style="margin-top:15px; font-weight:800; color:#E53E3E; text-align:center;">이제 이 덩어리들이 어떤 역할(성분)을 하는지 찾아볼까요?</div>
                 <button class="step-btn blue" onclick="startGrammarStep2()">2단계: 문장 성분 맞히기 ➔</button>
             </div>
 
@@ -309,60 +313,67 @@
     }
 
     // ==========================================
-    // Data Definitions (Point Reading LEVEL 1 - Day 06)
+    // Data Definitions (Chapter 02 - 시제 Tense)
     // ==========================================
     const wordList = [
-        { en: "chore", ko: "집안일" }, { en: "aged", ko: "~세의, 나이가 ~인" }, { en: "of course", ko: "물론" },
-        { en: "simplest", ko: "가장 간단한" }, { en: "pick up", ko: "줍다, 집어들다" }, { en: "put back", ko: "제자리에 갖다 놓다" },
-        { en: "basket", ko: "바구니" }, { en: "throw", ko: "던지다, 버리다" }, { en: "diaper", ko: "기저귀" },
-        { en: "garbage", ko: "쓰레기" }, { en: "assist", ko: "돕다" }, { en: "make a bed", ko: "침대를 정리하다" },
-        { en: "pull", ko: "당기다" }, { en: "sheet", ko: "침대 시트" }, { en: "set", ko: "놓다, 두다" },
-        { en: "pillow", ko: "베개" }, { en: "teenager", ko: "십대" }, { en: "stronger", ko: "더 강한" },
-        { en: "sharper", ko: "더 예리한, 더 똑똑한" }, { en: "quicker", ko: "더 빠른" }, { en: "willingly", ko: "기꺼이" },
-        { en: "follow", ko: "따르다" }, { en: "step", ko: "단계, 조치" }, { en: "understand", ko: "이해하다" },
-        { en: "importance", ko: "중요성" }, { en: "placement", ko: "배치, 놓기" }, { en: "in order", ko: "질서정연하게, 순서대로" },
-        { en: "hear of", ko: "~에 대해 듣다" }, { en: "invent", ko: "발명하다" }, { en: "mathematician", ko: "수학자" },
-        { en: "nephew", ko: "조카" }, { en: "large", ko: "큰" }, { en: "number", ko: "숫자" },
-        { en: "follow by", ko: "뒤따르다" }, { en: "zero", ko: "0" }, { en: "introduce", ko: "소개하다" },
-        { en: "term", ko: "용어" }, { en: "particular", ko: "특정한" }, { en: "meaning", ko: "의미" },
-        { en: "useful", ko: "유용한" }, { en: "compare", ko: "비교하다" }, { en: "incredibly", ko: "믿을 수 없을 정도로" },
-        { en: "quantity", ko: "양" }, { en: "chance", ko: "가능성, 기회" }, { en: "express", ko: "표현하다" }
+        { en: "post", ko: "게시하다" }, { en: "heavily", ko: "심하게, 무겁게" }, { en: "present", ko: "선물" },
+        { en: "subject", ko: "주제, 과목" }, { en: "president", ko: "대통령" }, { en: "stay", ko: "머무르다" },
+        { en: "sweatshirt", ko: "스웨트셔츠, 맨투맨" }, { en: "sure", ko: "확신하는" }, { en: "famous", ko: "유명한" },
+        { en: "usually", ko: "보통, 대개" }, { en: "grow", ko: "기르다, 재배하다" }, { en: "rose", ko: "장미" },
+        { en: "tomorrow", ko: "내일" }, { en: "weekend", ko: "주말" }, { en: "sometimes", ko: "가끔, 때때로" },
+        { en: "buy", ko: "사다" }, { en: "sleep", ko: "자다" }, { en: "call", ko: "전화하다" },
+        { en: "arrive", ko: "도착하다" }, { en: "airport", ko: "공항" }, { en: "wild", ko: "야생의" },
+        { en: "tiger", ko: "호랑이" }, { en: "already", ko: "이미, 벌써" }, { en: "ride", ko: "타다" },
+        { en: "horse", ko: "말" }, { en: "movie", ko: "영화" }, { en: "cousin", ko: "사촌" },
+        { en: "lose", ko: "잃어버리다" }, { en: "key", ko: "열쇠" }, { en: "drawer", ko: "서랍" }
     ];
 
     const sentenceList = [
-        { en: "Chores for children aged two and three?", ko: "2, 3세 아이들을 위한 집안일?" },
-        { en: "The simplest of all chores is to pick up the toys and put them back in the bag.", ko: "모든 집안일 중 가장 간단한 것은 장난감을 집어서 가방에 다시 넣는 것이다." },
-        { en: "Throwing diapers in the garbage is also an easy chore.", ko: "기저귀를 쓰레기통에 버리는 것도 쉬운 집안일이다." },
-        { en: "Another thing little ones can assist you in is making beds.", ko: "어린 아이들이 당신을 도울 수 있는 또 다른 일은 침대 정리이다." },
-        { en: "Teenagers are stronger, sharper, and quicker than younger kids.", ko: "십대들은 더 어린 아이들보다 더 강하고, 더 똑똑하고, 더 빠르다." },
-        { en: "All you have to do is to show them how it is done.", ko: "당신이 해야 할 일은 그들에게 그것이 어떻게 행해지는지 보여주는 것뿐이다." },
-        { en: "They would willingly follow your steps.", ko: "그들은 기꺼이 당신의 단계를 따를 것이다." },
-        { en: "By the age of four, children are better at understanding the importance of placement of things.", ko: "4살쯤 되면, 아이들은 물건 배치의 중요성을 더 잘 이해한다." },
-        { en: "This means that they will quickly understand where to put things in order.", ko: "이것은 그들이 물건들을 어디에 정리해 두어야 할지 빨리 이해할 것이라는 것을 의미한다." },
-        { en: "Have you heard of the word \"googol\"?", ko: "\"구골\"이라는 단어를 들어본 적이 있나요?" },
-        { en: "It was invented by a nine-year-old boy.", ko: "그것은 9살 소년에 의해 발명되었다." },
-        { en: "An American mathematician asked his nephew to give a name for a very large number.", ko: "한 미국의 수학자가 조카에게 아주 큰 숫자의 이름을 지어달라고 부탁했다." },
-        { en: "His nephew called it a googol.", ko: "그의 조카는 그것을 구골이라고 불렀다." },
-        { en: "Kasner introduced the term and what it means in his book.", ko: "카스너는 그의 책에서 그 용어와 그것이 의미하는 바를 소개했다." },
-        { en: "The googol has no particular meaning in mathematics.", ko: "구골은 수학에서 특별한 의미가 없다." },
-        { en: "But it is useful when comparing with an incredibly large quantity.", ko: "하지만 믿을 수 없을 정도로 큰 양을 비교할 때 유용하다." },
-        { en: "You could say it is about \"googol\" to one.", ko: "당신은 그것이 1대 \"구골\" 정도라고 말할 수 있다." },
-        { en: "I want to say I love you, a googol times!", ko: "나는 당신을 구골 번 사랑한다고 말하고 싶어!" }
+        { en: "She likes to post on her blog.", ko: "그녀는 그녀의 블로그에 게시하는 것을 좋아한다." },
+        { en: "It was raining heavily when I got up.", ko: "내가 일어났을 때 비가 심하게 내리고 있었다." },
+        { en: "He is giving presents to children now.", ko: "그는 지금 아이들에게 선물을 주고 있다." },
+        { en: "Dave knows about this subject very well.", ko: "데이브는 이 주제에 대해 매우 잘 안다." },
+        { en: "The president is going to stay in Washington for a week.", ko: "대통령은 일주일 동안 워싱턴에 머무를 것이다." },
+        { en: "He has many good friends.", ko: "그는 좋은 친구들이 많이 있다." },
+        { en: "Now she is wearing a black sweatshirt.", ko: "지금 그녀는 검은색 스웨트셔츠를 입고 있다." },
+        { en: "She was talking to Peter when I saw her.", ko: "내가 그녀를 보았을 때 그녀는 피터와 이야기하고 있었다." },
+        { en: "I am going to see a doctor this Friday.", ko: "나는 이번 주 금요일에 의사를 진찰하러 갈 것이다." },
+        { en: "I'm sure you will become famous in five years.", ko: "나는 네가 5년 안에 유명해질 것이라고 확신해." },
+        { en: "She usually grows roses in her garden.", ko: "그녀는 보통 그녀의 정원에 장미를 기른다." },
+        { en: "I don't think it will rain tomorrow.", ko: "나는 내일 비가 올 것이라고 생각하지 않아." },
+        { en: "My sister is not sleeping.", ko: "언니는 잠을 자고 있지 않다." },
+        { en: "She is playing games.", ko: "그녀는 게임을 하고 있다." },
+        { en: "I am going to go to my friend's house this weekend.", ko: "나는 이번 주말에 내 친구 집에 갈 것이다." },
+        { en: "Mom sometimes buys me chocolate.", ko: "엄마는 가끔 나에게 초콜릿을 사 주신다." },
+        { en: "The cat is sleeping on your bed.", ko: "고양이가 네 침대에서 자고 있어." },
+        { en: "I will call you tomorrow.", ko: "내가 내일 전화할게." },
+        { en: "I have just arrived at the airport.", ko: "나는 방금 공항에 도착했다." },
+        { en: "Has she ever seen wild tigers?", ko: "그녀는 야생 호랑이를 본 적이 있니?" },
+        { en: "She has never been to Jeju Island.", ko: "그녀는 제주도에 가본 적이 없다." },
+        { en: "Have you already eaten your lunch?", ko: "너는 이미 점심을 먹었니?" },
+        { en: "He has gone to France.", ko: "그는 프랑스로 가버렸다." },
+        { en: "I have never ridden a horse.", ko: "나는 말을 타본 적이 결코 없다." },
+        { en: "We went to the movies last Sunday.", ko: "우리는 지난 일요일에 영화를 보러 갔다." },
+        { en: "I have never met my cousins in America.", ko: "나는 미국에 있는 내 사촌들을 만난 적이 결코 없다." },
+        { en: "She has lost the key, so she can't open the drawer.", ko: "그녀는 열쇠를 잃어버려서, 그녀는 서랍을 열 수 없다." }
     ];
 
     const grammarList = [
-        ["모든 집안일 중 가장 간단한 것은 장난감을 집는 것이다.", [["The simplest of all chores", "명사구", "주어"], ["is", "동사", "서술어"], ["to pick up the toys", "to부정사구(명사적)", "보어"]]],
-        ["기저귀를 쓰레기통에 버리는 것은 쉬운 집안일이다.", [["Throwing diapers in the garbage", "동명사구", "주어"], ["is", "동사", "서술어"], ["an easy chore", "명사구", "보어"]]],
-        ["십대들은 더 어린 아이들보다 더 강하다.", [["Teenagers", "명사", "주어"], ["are", "동사", "서술어"], ["stronger", "형용사", "보어"], ["than younger kids", "전치사구", "수식어"]]],
-        ["그들은 기꺼이 당신의 단계를 따를 것이다.", [["They", "대명사", "주어"], ["would willingly follow", "동사구", "서술어"], ["your steps", "명사구", "목적어"]]],
-        ["아이들은 물건 배치의 중요성을 더 잘 이해한다.", [["Children", "명사", "주어"], ["are", "동사", "서술어"], ["better", "형용사", "보어"], ["at understanding the importance of placement of things", "전치사구", "수식어"]]],
-        ["당신은 구골이라는 단어를 들어봤다.", [["You", "대명사", "주어"], ["have heard of", "동사구", "서술어"], ["the word googol", "명사구", "목적어"]]],
-        ["그것은 9살 소년에 의해 발명되었다.", [["It", "대명사", "주어"], ["was invented", "동사", "서술어"], ["by a nine-year-old boy", "전치사구", "수식어"]]],
-        ["그의 조카는 그것을 구골이라고 불렀다.", [["His nephew", "명사구", "주어"], ["called", "동사", "서술어"], ["it", "대명사", "목적어"], ["a googol", "명사구", "보어"]]],
-        ["구골은 수학에서 특별한 의미가 없다.", [["The googol", "명사구", "주어"], ["has", "동사", "서술어"], ["no particular meaning", "명사구", "목적어"], ["in mathematics", "전치사구", "수식어"]]],
-        ["카스너는 그 용어를 소개했다.", [["Kasner", "명사", "주어"], ["introduced", "동사", "서술어"], ["the term", "명사구", "목적어"]]],
-        ["나는 당신을 구골 번 사랑한다고 말하고 싶어!", [["I", "대명사", "주어"], ["want", "동사", "서술어"], ["to say I love you", "to부정사구(명사적)", "목적어"], ["a googol times", "부사구", "수식어"]]],
-        ["그들은 그것을 빨리 이해할 것이다.", [["They", "대명사", "주어"], ["will quickly understand", "동사구", "서술어"], ["it", "대명사", "목적어"]]]
+        ["그녀는 그녀의 블로그에 게시하는 것을 좋아한다.", [["She", "대명사", "주어"], ["likes", "동사", "서술어"], ["to post", "to부정사구(명사적)", "목적어"], ["on her blog", "전치사구", "수식어"]]],
+        ["내가 일어났을 때 비가 심하게 내리고 있었다.", [["It", "대명사", "주어"], ["was raining", "동사", "서술어"], ["heavily", "부사", "수식어"], ["when I got up", "접속사절", "수식어"]]],
+        ["그는 지금 아이들에게 선물을 주고 있다.", [["He", "대명사", "주어"], ["is giving", "동사", "서술어"], ["presents", "명사", "목적어"], ["to children", "전치사구", "수식어"], ["now", "부사", "수식어"]]],
+        ["데이브는 이 주제에 대해 매우 잘 안다.", [["Dave", "명사", "주어"], ["knows", "동사", "서술어"], ["about this subject", "전치사구", "수식어"], ["very well", "부사구", "수식어"]]],
+        ["대통령은 일주일 동안 워싱턴에 머무를 것이다.", [["The president", "명사구", "주어"], ["is going to stay", "동사구", "서술어"], ["in Washington", "전치사구", "수식어"], ["for a week", "전치사구", "수식어"]]],
+        ["그는 좋은 친구들이 많이 있다.", [["He", "대명사", "주어"], ["has", "동사", "서술어"], ["many good friends", "명사구", "목적어"]]],
+        ["내가 그녀를 보았을 때 그녀는 피터와 이야기하고 있었다.", [["She", "대명사", "주어"], ["was talking", "동사", "서술어"], ["to Peter", "전치사구", "수식어"], ["when I saw her", "접속사절", "수식어"]]],
+        ["그녀는 보통 그녀의 정원에 장미를 기른다.", [["She", "대명사", "주어"], ["usually", "부사", "수식어"], ["grows", "동사", "서술어"], ["roses", "명사", "목적어"], ["in her garden", "전치사구", "수식어"]]],
+        ["나는 내일 비가 올 것이라고 생각하지 않아.", [["I", "대명사", "주어"], ["don't think", "동사", "서술어"], ["it will rain tomorrow", "명사절", "목적어"]]],
+        ["고양이가 네 침대에서 자고 있어.", [["The cat", "명사구", "주어"], ["is sleeping", "동사", "서술어"], ["on your bed", "전치사구", "수식어"]]],
+        ["나는 방금 공항에 도착했다.", [["I", "대명사", "주어"], ["have just arrived", "동사구", "서술어"], ["at the airport", "전치사구", "수식어"]]],
+        ["우리는 지난 일요일에 영화를 보러 갔다.", [["We", "대명사", "주어"], ["went", "동사", "서술어"], ["to the movies", "전치사구", "수식어"], ["last Sunday", "부사구", "수식어"]]],
+        ["나는 말을 타본 적이 결코 없다.", [["I", "대명사", "주어"], ["have never ridden", "동사구", "서술어"], ["a horse", "명사구", "목적어"]]],
+        ["그는 프랑스로 가버렸다.", [["He", "대명사", "주어"], ["has gone", "동사구", "서술어"], ["to France", "전치사구", "수식어"]]],
+        ["너는 이미 점심을 먹었니?", [["Have", "동사", "서술어"], ["you", "대명사", "주어"], ["already", "부사", "수식어"], ["eaten", "동사", "서술어"], ["your lunch", "명사구", "목적어"]]]
     ];
 
     const chunkPosList = ["명사(구/절)", "대명사", "동사", "형용사(구/절)", "부사(구/절)", "접속사(절)"];
@@ -498,12 +509,24 @@
     // ==========================================
     // 2. 영작(딕테이션)
     // ==========================================
-    let currentSentenceIdx = 0; let isLooping = false; let loopTimeout; let currentSpeechRate = 1.0; 
+    let currentSentenceIdx = 0; let isLooping = false; let loopTimeout; 
+    
+    // ⭐ 속도 3단계 설정 로직 ⭐
+    const speedRates = [0.9, 0.7, 0.5];
+    const speedLabels = ['🐇 보통 속도', '🐢 느리게', '🐌 아주 느리게'];
+    let currentSpeedIdx = 0;
+    let currentSpeechRate = speedRates[currentSpeedIdx];
 
     function toggleSpeechRate() {
-        currentSpeechRate = currentSpeechRate === 1.0 ? 0.7 : 1.0;
-        document.getElementById('speed-btn').innerHTML = currentSpeechRate === 1.0 ? '🐇 원래 속도' : '🐢 느린 속도';
-        if (isLooping) playAndLoop();
+        currentSpeedIdx = (currentSpeedIdx + 1) % speedRates.length;
+        currentSpeechRate = speedRates[currentSpeedIdx];
+        document.getElementById('speed-btn').innerHTML = speedLabels[currentSpeedIdx];
+        
+        if (isLooping) {
+            stopLooping();
+            isLooping = true;
+            playAndLoop();
+        }
     }
 
     function playAndLoop() {
@@ -559,7 +582,7 @@
         const answerArea = document.getElementById('answer-area');
         const studentSentence = Array.from(answerArea.children).map(btn => btn.innerText.trim()).join(' ');
         const targetSentence = sentenceList[currentSentenceIdx].en;
-        const normalize = (str) => str.toLowerCase().replace(/\s+/g, ' ').trim();
+        const normalize = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, ''); // 알파벳/숫자만 남겨 대소문자 특수문자 무시
 
         if (normalize(studentSentence) === normalize(targetSentence)) {
             playCorrectSFX(); handleCombo(true);
@@ -593,18 +616,9 @@
     }
 
     // ==========================================
-    // 3. 문법(문장 분석) - 컬러 코드 적용
+    // 3. 문법 분석 (시제)
     // ==========================================
     let curGramIdx = 0; let gramStage = 1; let activeChunk = 0; let gramAnswers = [];
-
-    function getColorForPos(pos) {
-        if(pos.includes('명사')) return { bg: '#EBF8FF', text: '#3182CE', border: '#90CDF4' }; 
-        if(pos.includes('동사')) return { bg: '#FFF5F5', text: '#E53E3E', border: '#FEB2B2' }; 
-        if(pos.includes('형용사')) return { bg: '#F0FFF4', text: '#38A169', border: '#9AE6B4' }; 
-        if(pos.includes('부사')) return { bg: '#FAF5FF', text: '#805AD5', border: '#D6BCFA' }; 
-        if(pos.includes('접속사')) return { bg: '#FFFAF0', text: '#DD6B20', border: '#FBD38D' }; 
-        return { bg: '#F0FDF4', text: '#2F855A', border: '#48BB78' }; 
-    }
 
     function startGrammarTest() {
         curGramIdx = 0; gramStage = 1;
@@ -667,12 +681,8 @@
         if(val === correct) {
             playCorrectSFX();
             gramAnswers[activeChunk] = val;
-            
-            // 시각적 컬러 입히기
-            const colors = getColorForPos(correct);
-            card.style.backgroundColor = colors.bg; card.style.borderColor = colors.border;
             document.getElementById(`ans-${activeChunk}`).innerText = val;
-            document.getElementById(`ans-${activeChunk}`).style.color = colors.text;
+            document.getElementById(`ans-${activeChunk}`).style.color = (gramStage===1)?'#2F855A':'#3182CE';
             card.classList.add('correct');
             
             let next = gramAnswers.indexOf(null);
