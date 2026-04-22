@@ -3,839 +3,868 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>수리나무학원 스마트 학습 - Chapter 02 (시제)</title>
+    <title>수리나무학원 - FAQs about Teenage Hair Loss</title>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        /* 🌳 수리나무학원 전용 컬러 팔레트 */
         :root {
-            --main-green: #2F855A;
-            --light-green: #48BB78;
-            --bg-color: #F0FDF4;
-            --text-dark: #2D3748;
-            --box-shadow: 0 10px 30px rgba(47, 133, 90, 0.15);
+            --main: #4a3fa0;
+            --accent: #7bc043;
+            --light: #f0eeff;
+            --bg: #f5f4ff;
+            --text: #1e1a3a;
+            --green: #27ae60;
+            --red: #e74c3c;
+            --shadow: 0 8px 32px rgba(74,63,160,0.13);
         }
+        * { box-sizing: border-box; }
+        body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: var(--bg); margin: 0; padding: 16px; color: var(--text); }
+        #app { max-width: 480px; margin: 0 auto; background: white; border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; padding-bottom: 30px; position: relative; }
 
-        body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; text-align: center; background-color: var(--bg-color); margin: 0; padding: 20px; color: var(--text-dark); }
-        
-        #app-container { max-width: 480px; margin: 0 auto; background: white; border-radius: 24px; box-shadow: var(--box-shadow); overflow: hidden; padding-bottom: 30px; position: relative;}
-        
-        /* 헤더 스타일 */
-        .app-header { background: linear-gradient(135deg, var(--main-green), #276749); color: white; padding: 35px 20px 25px; text-align: center; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(47, 133, 90, 0.4);}
-        .app-header h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: -1.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-        .app-header p { margin: 10px 0 0 0; font-size: 15px; font-weight: bold; opacity: 0.9; background: rgba(255,255,255,0.2); display: inline-block; padding: 5px 15px; border-radius: 20px;}
-        .logo-icon { font-size: 45px; margin-bottom: 5px; text-shadow: 0 4px 10px rgba(0,0,0,0.2);}
+        /* HEADER */
+        .header { background: linear-gradient(135deg, #4a3fa0 0%, #2d2470 100%); color: white; padding: 28px 20px 20px; text-align: center; }
+        .header-badge { background: var(--accent); color: #1e3a00; font-size: 11px; font-weight: 900; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; letter-spacing: 1px; }
+        .header h1 { margin: 0 0 4px; font-size: 19px; font-weight: 900; line-height: 1.3; }
+        .header p { margin: 0; font-size: 13px; opacity: 0.8; }
 
-        .nav-container { padding: 0 15px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 25px; }
-        .menu-btn { flex: 1; min-width: 60px; padding: 12px 2px; cursor: pointer; border: none; border-radius: 12px; background-color: #EDF2F7; color: #4A5568; font-weight: bold; font-size: 13px; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
-        .menu-btn:hover { background-color: #E2E8F0; transform: translateY(-2px); }
-        .menu-btn.active { background-color: var(--main-green); color: white; box-shadow: 0 4px 10px rgba(47, 133, 90, 0.3); }
-        
-        .section { display: none; padding: 0 20px; animation: fadeIn 0.4s; }
+        /* NAV */
+        .nav { display: flex; padding: 12px 12px 0; gap: 6px; }
+        .nav-btn { flex: 1; padding: 9px 2px; border: none; border-radius: 10px; background: #edf2f7; color: #4a5568; font-size: 12px; font-weight: 700; cursor: pointer; transition: .2s; }
+        .nav-btn:hover { background: #ddd8f5; }
+        .nav-btn.active { background: var(--main); color: white; }
+        .nav-btn.review-btn { background: #fde8e8; color: var(--red); }
+        .nav-btn.review-btn.active { background: var(--red); color: white; }
+
+        /* SECTIONS */
+        .section { display: none; padding: 16px 18px 0; animation: fadeIn .35s; }
         .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .status-text { font-size: 15px; color: #718096; margin-bottom: 10px; font-weight: 800; background: #EDF2F7; display: inline-block; padding: 5px 15px; border-radius: 20px;}
-        
-        /* 🐉 진화 시스템 UI */
-        .evolution-box { background: white; border-radius: 18px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid #E2E8F0; position: relative; overflow: hidden;}
-        .evo-bg-effect { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(72,187,120,0.1) 0%, rgba(255,255,255,0) 70%); z-index: 0; pointer-events: none;}
-        .evo-content { position: relative; z-index: 1; }
-        .evo-emoji { font-size: 4rem; margin-bottom: 5px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-block;}
-        .evo-text { font-size: 18px; font-weight: 900; color: var(--main-green); margin-bottom: 15px; }
-        .progress-bg { background: #EDF2F7; height: 14px; border-radius: 10px; overflow: hidden; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);}
-        .progress-bar { background: linear-gradient(90deg, #48BB78, #2F855A, #3182CE); height: 100%; width: 0%; transition: width 0.6s ease-in-out; border-radius: 10px;}
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-        /* 공통 버튼 */
-        .start-btn { background: var(--main-green); color: white; border: none; padding: 15px 30px; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 4px 10px rgba(47, 133, 90, 0.3); transition: 0.2s; margin-top: 20px;}
-        .start-btn:hover { background: var(--light-green); transform: translateY(-2px);}
-        .score-display { font-size: 3.5rem; font-weight: 900; color: #3182CE; margin: 20px 0; }
-        
-        /* 단어 테스트 스타일 */
-        .word-box { font-size: 2.2rem; font-weight: 900; color: var(--main-green); margin: 20px 0 30px; letter-spacing: -1px; word-break: keep-all; }
-        #word-options { display: grid; gap: 12px; margin-bottom: 20px;}
-        .option-btn { background: white; border: 2px solid #E2E8F0; padding: 16px; border-radius: 15px; font-size: 16px; cursor: pointer; transition: 0.2s; text-align: left; padding-left: 20px; font-weight: bold; color: var(--text-dark);}
-        .option-btn:hover { border-color: var(--light-green); background: var(--bg-color); }
-        .option-btn.correct { background-color: var(--light-green) !important; color: white !important; border-color: var(--light-green) !important; transform: scale(1.02); }
-        .option-btn.wrong { background-color: #FC8181 !important; color: white !important; border-color: #FC8181 !important; animation: shake 0.4s; }
-        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } 100% { transform: translateX(0); } }
+        /* EVO BOX */
+        .evo-box { background: var(--light); border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; border: 1.5px solid #ccc8f0; }
+        .evo-emoji { font-size: 2.8rem; display: inline-block; transition: transform .3s cubic-bezier(.17,.89,.32,1.27); }
+        .evo-name { font-size: 14px; font-weight: 900; color: var(--main); margin: 3px 0 9px; }
+        .prog-bg { background: #ddd8f5; height: 11px; border-radius: 8px; overflow: hidden; }
+        .prog-bar { background: linear-gradient(90deg, #7bc043, #4a3fa0); height: 100%; width: 0%; transition: width .5s ease; border-radius: 8px; }
 
-        /* 딕테이션 스타일 */
-        .word-block { display: inline-block; background-color: white; margin: 5px; padding: 12px 18px; border: 2px solid #CBD5E0; border-radius: 12px; cursor: pointer; font-size: 16px; font-weight: bold; color: var(--text-dark); box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: background-color 0.2s, box-shadow 0.2s, color 0.2s; touch-action: manipulation; user-select: none; }
-        .word-block:active { transform: translateY(2px); box-shadow: none; }
-        .sortable-ghost { opacity: 0.4; background-color: #EDF2F7 !important; border: 2px dashed #A0AEC0 !important; color: transparent !important; transform: scale(0.95); }
-        .sortable-drag { cursor: grabbing !important; background-color: var(--main-green) !important; color: white !important; box-shadow: 0 15px 25px rgba(47, 133, 90, 0.3) !important; transform: scale(1.05) !important; opacity: 1 !important; border: 2px solid var(--light-green) !important; }
-        #answer-area { min-height: 60px; border: 2px dashed var(--main-green); background-color: var(--bg-color); margin-bottom: 10px; padding: 15px; border-radius: 15px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; transition: all 0.3s; }
-        #scrambled-words { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; min-height: 50px;}
-        .korean-meaning { font-size: 18px; color: #C53030; font-weight: bold; margin: 15px 0 25px 0; background-color: #FFF5F5; padding: 15px; border-radius: 12px; word-break: keep-all; border-left: 5px solid #F56565; text-align: left;}
-        .setup-section { margin-bottom: 20px; padding: 15px; background: white; border: 1px solid #E2E8F0; border-radius: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;}
-        input[type="number"] { padding: 8px; font-size: 15px; border: 2px solid #E2E8F0; border-radius: 8px; width: 60px; text-align: center; outline: none;}
-        .setup-section button { padding: 8px 15px; background-color: var(--text-dark); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;}
-        .audio-ctrl-btn { width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 16px; border: none; cursor: pointer; color: white; transition: 0.3s; margin-top: 10px;}
-        .drag-tip { background: #FFFBEB; border: 1px solid #F6E05E; color: #B7791F; font-size: 13px; font-weight: bold; padding: 10px; border-radius: 8px; margin-bottom: 15px; line-height: 1.4;}
+        /* STATUS ROW */
+        .status-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .status-badge { background: #edf2f7; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: 800; color: #4a5568; }
+        .stop-btn { background: #edf2f7; border: none; padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; color: #4a5568; }
 
-        /* 문장 분석(문법) 스타일 */
-        .grammar-ko { font-size: 16px; font-weight: 800; background: #EBF8FF; padding: 15px; border-radius: 12px; border-left: 4px solid #3182CE; margin-bottom: 20px; word-break: keep-all; line-height: 1.4;}
-        .grammar-chunks { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
-        .chunk-card { border: 2px solid #CBD5E0; border-radius: 10px; min-width: 70px; background: white; cursor: pointer; overflow: hidden; transition: 0.2s;}
-        .chunk-card.active { border-color: #3182CE; box-shadow: 0 0 8px rgba(49,130,206,0.3); transform: translateY(-2px);}
-        .chunk-card.correct { border-color: var(--light-green); background: #F0FDF4; pointer-events: none;}
-        .chunk-txt { padding: 8px; font-size: 15px; font-weight: bold; background: #F7FAFC; border-bottom: 1px dashed #E2E8F0; }
-        .chunk-ans { padding: 6px; font-size: 13px; font-weight: 800; color: #A0AEC0; height: 18px; }
-        .choice-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-        .choice-btn { flex: 1 1 calc(30% - 10px); padding: 12px 5px; background: #EDF2F7; border: none; border-radius: 10px; font-size: 14px; font-weight: bold; color:#2D3748; cursor: pointer; transition: 0.2s;}
-        .choice-btn:active { background: #CBD5E0; transform: scale(0.95); }
-        .info-box { display: none; background: white; padding: 20px; border-radius: 16px; border: 3px solid var(--light-green); margin-top: 20px; text-align: left; animation: fadeIn 0.4s; box-shadow: 0 8px 20px rgba(72, 187, 120, 0.15); }
+        /* WORD TEST */
+        .word-display { font-size: 1.9rem; font-weight: 900; color: var(--main); margin: 14px 0 20px; text-align: center; word-break: keep-all; line-height: 1.3; }
+        .options-grid { display: grid; gap: 10px; margin-bottom: 14px; }
+        .opt-btn { background: white; border: 2px solid #e2dcf5; padding: 13px 16px; border-radius: 13px; font-size: 15px; font-weight: 700; cursor: pointer; text-align: left; transition: .15s; color: var(--text); }
+        .opt-btn:hover { border-color: var(--main); background: var(--light); }
+        .opt-btn.correct { background: #d4edda; border-color: var(--green); color: var(--green); transform: scale(1.02); }
+        .opt-btn.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); animation: shake .4s; }
+
+        /* DICTATION */
+        .ko-meaning { background: #f5f0ff; border-left: 4px solid var(--main); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-weight: 800; color: #2d2470; margin-bottom: 13px; word-break: keep-all; line-height: 1.6; }
+        #answer-area { min-height: 56px; border: 2px dashed var(--main); background: var(--light); padding: 11px; border-radius: 13px; display: flex; flex-wrap: wrap; gap: 7px; align-items: center; justify-content: center; margin-bottom: 10px; transition: background .3s; }
+        #scramble-area { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; min-height: 44px; margin-bottom: 13px; }
+        .word-chip { background: white; border: 2px solid #ccc8f0; padding: 8px 13px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: .15s; user-select: none; touch-action: manipulation; }
+        .word-chip:active { transform: translateY(2px); }
+        .sortable-ghost { opacity: .35; background: #edf2f7 !important; }
+        .sortable-drag { background: var(--main) !important; color: white !important; transform: scale(1.06) !important; }
+        .drag-tip { background: #fffbeb; border: 1px solid #f6c94e; color: #8a6300; font-size: 12px; font-weight: 700; padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; line-height: 1.5; }
+        .audio-row { display: flex; gap: 8px; margin-top: 10px; }
+        .audio-btn { flex: 1; padding: 11px; border: none; border-radius: 10px; font-size: 14px; font-weight: 800; cursor: pointer; color: white; transition: .2s; }
+        .speed-btn { background: #718096; }
+        .play-btn { background: var(--main); }
+        .play-btn.playing { background: var(--red); }
+
+        /* ANALYSIS */
+        .analysis-ko { background: var(--light); border-left: 4px solid var(--main); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-weight: 800; color: #2d2470; margin-bottom: 13px; word-break: keep-all; line-height: 1.6; }
+        .stage-badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; }
+        .stage1 { background: #c6f6d5; color: #276749; }
+        .stage2 { background: #e0d9ff; color: #4a3fa0; }
+        .chunks-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 13px; }
+        .chunk-card { border: 2px solid #e2dcf5; border-radius: 10px; min-width: 66px; background: white; cursor: pointer; overflow: hidden; transition: .2s; }
+        .chunk-card.active { border-color: var(--main); box-shadow: 0 0 0 3px rgba(74,63,160,.15); transform: translateY(-2px); }
+        .chunk-card.done  { border-color: var(--green); background: #f0fff4; pointer-events: none; }
+        .chunk-card.done2 { border-color: var(--main); background: var(--light); pointer-events: none; }
+        .chunk-en { padding: 7px 8px; font-size: 12px; font-weight: 800; background: #f7f5ff; border-bottom: 1px dashed #e2dcf5; text-align: center; }
+        .chunk-ans { padding: 5px 6px; font-size: 11px; font-weight: 900; color: #a0aec0; text-align: center; min-height: 22px; }
+        .choices-wrap { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-bottom: 10px; }
+        .choice-btn { flex: 1 1 calc(33% - 7px); padding: 10px 4px; background: #edf2f7; border: none; border-radius: 10px; font-size: 12px; font-weight: 800; color: var(--text); cursor: pointer; transition: .15s; line-height: 1.3; text-align: center; }
+        .choice-btn:active { background: #ccc8f0; transform: scale(.96); }
+        .info-box { display: none; background: white; border: 2.5px solid var(--accent); border-radius: 14px; padding: 16px; margin-top: 13px; animation: fadeIn .35s; }
         .info-box.show { display: block; }
-        .info-title { font-size: 18px; font-weight: 900; margin-bottom: 12px; }
-        .detail-row { background: #F7FAFC; padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #3182CE; font-size: 14px; font-weight: 600; color: #2D3748;}
-        .step-btn { width: 100%; background: var(--main-green); color: white; padding: 16px; border: none; border-radius: 12px; font-size: 17px; font-weight: 900; margin-top: 15px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(47, 133, 90, 0.3);}
-        .step-btn.blue { background: #3182CE; box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3); }
-        .pattern-alert { animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: #FFF5F5; border: 4px dashed #FC8181; padding: 25px 20px; border-radius: 16px; margin-top: 25px; box-shadow: 0 8px 20px rgba(229, 62, 62, 0.2); text-align: center; }
-        .pattern-title { font-size: 20px; color: #C53030; font-weight: 900; margin-bottom: 12px; }
-        .pattern-desc { font-size: 20px; color: #E53E3E; font-weight: 900; word-break: keep-all; line-height: 1.4;}
+        .info-title { font-size: 15px; font-weight: 900; margin-bottom: 10px; }
+        .detail-row { background: #f7f5ff; padding: 9px 12px; border-radius: 8px; margin-bottom: 7px; border-left: 3px solid var(--main); font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.6; }
+        .pattern-box { background: #f5f0ff; border: 3px dashed var(--main); border-radius: 14px; padding: 18px; text-align: center; margin-top: 13px; animation: fadeIn .4s; }
+        .pattern-title { font-size: 16px; color: #2d2470; font-weight: 900; margin-bottom: 8px; }
+        .pattern-val { font-size: 18px; color: var(--main); font-weight: 900; }
 
-        /* 기록 & 오답노트 스타일 */
-        .history-card { background: white; border: 2px solid #E2E8F0; border-radius: 12px; padding: 15px; margin-bottom: 12px; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center;}
-        .history-info { display: flex; flex-direction: column; gap: 5px; }
-        .history-date { font-size: 14px; font-weight: bold; color: #718096; }
-        .history-score { font-size: 20px; font-weight: 900; color: var(--main-green); }
-        .stamp-excellent { color: #E53E3E; font-weight: 900; font-size: 18px; transform: rotate(-10deg); border: 3px solid #E53E3E; padding: 4px 10px; border-radius: 10px; opacity: 0.9;}
-        .history-category { background: #EDF2F7; padding: 8px 12px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-bottom: 15px; margin-top: 20px; color: #2D3748; text-align: left; border-left: 4px solid #4A5568;}
-        
-        .wrong-word-item { display: flex; justify-content: space-between; align-items: center; background: #FFF5F5; padding: 12px 15px; border-radius: 10px; margin-bottom: 8px; border-left: 4px solid #FC8181; }
-        .wrong-en { font-weight: 900; font-size: 18px; color: #C53030; }
-        .wrong-ko { font-weight: 600; font-size: 14px; color: #4A5568; }
-        .delete-btn { background: #EDF2F7; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; color: #718096; font-weight: bold; font-size: 12px; }
+        /* COMMON BTNS */
+        .primary-btn { width: 100%; background: var(--main); color: white; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: 900; cursor: pointer; transition: .2s; box-shadow: 0 4px 12px rgba(74,63,160,.25); margin-top: 13px; }
+        .primary-btn:hover { background: #5c50c0; transform: translateY(-1px); }
+        .primary-btn.green { background: var(--green); box-shadow: 0 4px 12px rgba(39,174,96,.25); }
+        .primary-btn.blue  { background: #3182ce; box-shadow: 0 4px 12px rgba(49,130,206,.25); }
+        .score-big { font-size: 3.2rem; font-weight: 900; color: var(--main); margin: 14px 0 4px; }
+        .score-detail { font-size: 14px; color: #718096; font-weight: 700; margin-bottom: 18px; }
+        .result-emoji { font-size: 4rem; margin: 10px 0; }
 
-        /* 콤보 애니메이션 */
-        #combo-display { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%) scale(0.5); font-size: 3.5rem; font-weight: 900; color: #DD6B20; text-shadow: 0 4px 15px rgba(221, 107, 32, 0.4), 2px 2px 0px #FFF; opacity: 0; pointer-events: none; z-index: 100;}
-        .animate-combo { animation: popCombo 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes popCombo { 0% { opacity: 0; transform: translate(-50%, -30%) scale(0.5); } 20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); } 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); } }
+        /* INTRO */
+        .intro-wrap { text-align: center; padding: 18px 10px; }
+        .intro-wrap h2 { color: var(--main); font-size: 19px; margin: 8px 0 6px; }
+        .intro-wrap p { color: #718096; font-weight: 700; font-size: 14px; line-height: 1.6; }
+        .intro-icon { font-size: 3.8rem; }
+
+        /* HISTORY */
+        .hist-category { background: #edf2f7; padding: 8px 12px; border-radius: 8px; font-size: 14px; font-weight: 800; margin: 14px 0 10px; border-left: 4px solid var(--main); }
+        .hist-card { background: white; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; margin-bottom: 9px; display: flex; justify-content: space-between; align-items: center; }
+        .hist-date { font-size: 12px; color: #718096; font-weight: 700; }
+        .hist-score { font-size: 18px; font-weight: 900; color: var(--green); }
+        .stamp { color: var(--red); font-weight: 900; font-size: 13px; border: 2px solid var(--red); padding: 3px 7px; border-radius: 8px; transform: rotate(-8deg); display: inline-block; }
+
+        /* REVIEW */
+        .wrong-item { display: flex; justify-content: space-between; align-items: center; background: #fff5f5; padding: 11px 13px; border-radius: 10px; margin-bottom: 8px; border-left: 4px solid var(--red); }
+        .wrong-en { font-weight: 900; font-size: 16px; color: #c0392b; }
+        .wrong-ko { font-size: 13px; color: #718096; font-weight: 600; }
+        .del-btn { background: #edf2f7; border: none; padding: 5px 9px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: #718096; }
+
+        /* COMBO */
+        #combo { position: absolute; top: 28%; left: 50%; transform: translate(-50%,-50%) scale(.5); font-size: 2.8rem; font-weight: 900; color: #7bc043; text-shadow: 0 3px 10px rgba(123,192,67,.5); opacity: 0; pointer-events: none; z-index: 99; }
+        .combo-pop { animation: comboAnim 1s cubic-bezier(.17,.89,.32,1.27) forwards; }
+        @keyframes comboAnim { 0%{opacity:0;transform:translate(-50%,-30%) scale(.5)} 20%{opacity:1;transform:translate(-50%,-50%) scale(1.2)} 80%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-60%) scale(.8)} }
+        @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-5px)} 50%{transform:translateX(5px)} 75%{transform:translateX(-5px)} 100%{transform:translateX(0)} }
+
+        .setup-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 13px; background: white; border: 1.5px solid #e2dcf5; padding: 9px 13px; border-radius: 12px; }
+        .setup-row input { padding: 6px 8px; font-size: 14px; border: 1.5px solid #e2dcf5; border-radius: 8px; width: 55px; text-align: center; }
+        .setup-row button { padding: 7px 12px; background: var(--main); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
     </style>
 </head>
 <body>
-
-<div id="app-container">
-    <div id="combo-display"></div> 
-    <div class="app-header">
-        <div class="logo-icon">🌳</div>
-        <h1>수리나무학원</h1>
-        <p>Chapter 02 (시제 연습)</p>
-    </div>
-    
-    <div class="nav-container">
-        <button id="nav-word" class="menu-btn active" onclick="showSection('word-section', this)">1. 단어</button>
-        <button id="nav-dictation" class="menu-btn" onclick="showSection('dictation-section', this)">2. 영작</button>
-        <button id="nav-grammar" class="menu-btn" onclick="showSection('grammar-section', this)">3. 분석</button>
-        <button id="nav-history" class="menu-btn" onclick="showSection('history-section', this); renderHistory();">4. 기록</button>
-        <button id="nav-review" class="menu-btn" onclick="showSection('review-section', this); renderReview();" style="background:#FED7D7; color:#C53030;">5. 오답</button>
+<div id="app">
+    <div id="combo"></div>
+    <div class="header">
+        <div class="header-badge">UNIT 02 · Teens</div>
+        <h1>💇 FAQs about Teenage Hair Loss</h1>
+        <p>수리나무학원 스마트 영어 학습</p>
     </div>
 
-    <div id="word-section" class="section active">
-        <div id="intro-screen-word">
-            <div style="font-size: 4rem; margin-bottom: 10px;">🥚</div>
-            <h2 style="color: var(--main-green);">전설의 용 키우기!</h2>
-            <p style="font-weight: bold; color: #4A5568;">단어를 맞춰가며 알을 멋진 용으로 진화시켜 보세요.</p>
-            <button class="start-btn" onclick="initAudioContext(); startWordTest();">테스트 시작하기 🚀</button>
+    <div class="nav">
+        <button class="nav-btn active" onclick="showSection('word-sec',this)">1.단어</button>
+        <button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
+        <button class="nav-btn" onclick="showSection('anal-sec',this)">3.분석</button>
+        <button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
+        <button class="nav-btn review-btn" onclick="showSection('rev-sec',this);renderReview()">5.오답</button>
+    </div>
+
+    <!-- ===== 1. WORD ===== -->
+    <div id="word-sec" class="section active">
+        <div id="word-intro" class="intro-wrap">
+            <div class="intro-icon">🥚</div>
+            <h2>전설의 용 키우기!</h2>
+            <p>지문 핵심 단어를 맞히며<br>알을 멋진 용으로 진화시켜 보세요.</p>
+            <button class="primary-btn" onclick="initAudio();startWord()">테스트 시작하기 🚀</button>
         </div>
-
-        <div id="quiz-screen-word" style="display: none;">
-            <div class="evolution-box">
-                <div class="evo-bg-effect"></div>
-                <div class="evo-content">
-                    <div class="evo-emoji" id="word-evo-emoji">🥚</div>
-                    <div class="evo-text" id="word-evo-text">신비한 수리나무 알 (0%)</div>
-                    <div class="progress-bg"><div class="progress-bar" id="word-evo-bar"></div></div>
-                </div>
+        <div id="word-quiz" style="display:none">
+            <div class="status-row">
+                <span class="status-badge" id="w-status">문제 1 / 25</span>
+                <button class="stop-btn" onclick="finishWord(true)">🛑 중간 채점</button>
             </div>
-            <div class="status-text" id="word-status">문제 1 / 30</div>
-            <div id="word-display" class="word-box">Loading...</div>
-            <div id="word-options"></div>
+            <div class="evo-box">
+                <div class="evo-emoji" id="wevo-e">🥚</div>
+                <div class="evo-name" id="wevo-n">신비한 수리나무 알 (0%)</div>
+                <div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div>
+            </div>
+            <div class="word-display" id="w-en">loading...</div>
+            <div class="options-grid" id="w-opts"></div>
         </div>
-
-        <div id="result-screen-word" style="display: none;">
-            <div style="font-size: 5rem; margin-bottom: 10px;" id="result-dragon-word">🐉✨</div>
-            <h2 style="color: var(--main-green);">테스트 종료!</h2>
-            <div class="score-display" id="final-score-word">100점</div>
-            <div style="font-size: 1.2rem; color: #4A5568; font-weight: bold; margin-bottom: 30px;" id="final-detail-word">정답: 30 / 30</div>
-            <button class="start-btn" onclick="resetWordTest()">새로운 알 부화하기 🔄</button>
+        <div id="word-result" style="display:none;text-align:center">
+            <div class="result-emoji" id="w-res-e">🐉✨</div>
+            <h2 style="color:var(--main)">테스트 종료!</h2>
+            <div class="score-big" id="w-score">100점</div>
+            <div class="score-detail" id="w-detail">정답: 25 / 25</div>
+            <button class="primary-btn" onclick="resetWord()">새로운 알 부화하기 🔄</button>
         </div>
     </div>
 
-    <div id="dictation-section" class="section">
-        <div class="evolution-box">
-            <div class="evo-bg-effect"></div>
-            <div class="evo-content">
-                <div class="evo-emoji" id="dict-evo-emoji">🥚</div>
-                <div class="evo-text" id="dict-evo-text">신비한 수리나무 알 (0%)</div>
-                <div class="progress-bg"><div class="progress-bar" id="dict-evo-bar"></div></div>
-            </div>
+    <!-- ===== 2. DICTATION ===== -->
+    <div id="dict-sec" class="section">
+        <div class="evo-box" style="margin-top:0">
+            <div class="evo-emoji" id="devo-e">🥚</div>
+            <div class="evo-name" id="devo-n">신비한 수리나무 알 (0%)</div>
+            <div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div>
         </div>
-
-        <div class="setup-section">
-            <strong>문장 이동: </strong> 
-            <input type="number" id="startSenNum" value="1" min="1">
-            <button onclick="jumpToSentence()">GO 🚀</button>
+        <div class="setup-row">
+            <strong>문장 이동:</strong>
+            <input type="number" id="jumpNum" value="1" min="1">
+            <button onclick="jumpTo()">GO 🚀</button>
         </div>
-        <h3 style="color: var(--main-green); margin-bottom: 5px;">듣고 뜻을 보며 단어를 터치하세요</h3>
-        <div class="status-text" id="sentence-status">문제 1 / 27</div>
-        <div id="sentence-ko-text" class="korean-meaning">한글 뜻 로딩중...</div>
-        
-        <div class="drag-tip">💡 꿀팁: 단어를 잘못 넣었을 땐 <b>꾹 눌러서 스르륵 끌어다 놓기(드래그)</b>로 순서를 바꿀 수 있어요!</div>
-        
+        <h3 style="color:var(--main);margin:0 0 8px;font-size:15px">뜻을 보고 단어를 터치해 영어 문장을 완성하세요</h3>
+        <span class="status-badge" id="d-status" style="margin-bottom:10px;display:inline-block">문제 1 / 13</span>
+        <div class="ko-meaning" id="d-ko">로딩 중...</div>
+        <div class="drag-tip">💡 단어를 터치해 넣거나, 꾹 눌러서 <b>드래그</b>로 순서를 바꿀 수 있어요!</div>
         <div id="answer-area"></div>
-        <div id="scrambled-words"></div>
-        
-        <div style="display: flex; gap: 8px; margin-top: 15px;">
-            <button id="speed-btn" class="audio-ctrl-btn" style="background: #718096; flex: 1; margin-top: 0; padding: 10px 5px;" onclick="toggleSpeechRate()">🐇 보통 속도</button>
-            <button id="audio-toggle-btn" class="audio-ctrl-btn" style="flex: 2; margin-top: 0;" onclick="toggleAudio()">▶️ 원어민 음성 재생</button>
+        <div id="scramble-area"></div>
+        <div class="audio-row">
+            <button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🐇 보통 속도</button>
+            <button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">▶️ 원어민 음성 재생</button>
         </div>
     </div>
 
-    <div id="grammar-section" class="section">
-        <div id="intro-screen-gram">
-            <div style="font-size: 4rem; margin-bottom: 10px;">🥚</div>
-            <h2 style="color: var(--main-green);">문장 마스터 용 키우기!</h2>
-            <p style="font-weight: bold; color: #4A5568;">시제 연습을 위한 본문 핵심 15문장을 완벽히 분석해서<br>전설의 용으로 진화시켜 보세요.</p>
-            <button class="start-btn" onclick="initAudioContext(); startGrammarTest();">분석 훈련 시작하기 🚀</button>
+    <!-- ===== 3. ANALYSIS ===== -->
+    <div id="anal-sec" class="section">
+        <div id="anal-intro" class="intro-wrap">
+            <div class="intro-icon">🥚</div>
+            <h2>문장 마스터 용 키우기!</h2>
+            <p>핵심 문장을 2단계로 분석해서<br>전설의 용으로 진화시켜 보세요.</p>
+            <button class="primary-btn" onclick="initAudio();startAnal()">분석 훈련 시작하기 🚀</button>
         </div>
-
-        <div id="quiz-screen-gram" style="display: none;">
-            <div class="evolution-box">
-                <div class="evo-bg-effect"></div>
-                <div class="evo-content">
-                    <div class="evo-emoji" id="gram-evo-emoji">🥚</div>
-                    <div class="evo-text" id="gram-evo-text">신비한 수리나무 알 (0%)</div>
-                    <div class="progress-bg"><div class="progress-bar" id="gram-evo-bar"></div></div>
-                </div>
+        <div id="anal-quiz" style="display:none">
+            <div class="status-row">
+                <span class="stage-badge stage1" id="a-stage">1단계: 품사 찾기</span>
+                <button class="stop-btn" onclick="finishAnal(true)">🛑 중간 종료</button>
             </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <span class="status-text" style="background:#C6F6D5; color:var(--main-green); margin:0;" id="gram-level-badge">1단계: 품사(구/절) 찾기</span>
-                <span class="status-text" style="margin:0; background:transparent;" id="gram-count">1 / 15</span>
+            <div class="evo-box">
+                <div class="evo-emoji" id="aevo-e">🥚</div>
+                <div class="evo-name" id="aevo-n">신비한 수리나무 알 (0%)</div>
+                <div class="prog-bg"><div class="prog-bar" id="aevo-b"></div></div>
             </div>
-            
-            <div class="grammar-ko" id="gram-ko">로딩 중...</div>
-            <div class="grammar-chunks" id="gram-chunks"></div>
-            <div class="choice-grid" id="gram-choices"></div>
-            
-            <div id="gram-step1-exp" class="info-box" style="border-color:#3182CE;">
-                <div class="info-title" style="color:#3182CE;">💡 1단계 완료! 문장 속 진짜 모습은?</div>
-                <div class="info-desc" id="gram-step1-desc"></div>
-                <div style="margin-top:15px; font-weight:800; color:#E53E3E; text-align:center;">이제 이 덩어리들이 어떤 역할(성분)을 하는지 찾아볼까요?</div>
-                <button class="step-btn blue" onclick="startGrammarStep2()">2단계: 문장 성분 맞히기 ➔</button>
+            <div style="text-align:right;margin-bottom:6px">
+                <span class="status-badge" id="a-count">1 / 12</span>
             </div>
-
-            <div id="gram-result-container"></div>
+            <div class="analysis-ko" id="a-ko">로딩 중...</div>
+            <div class="chunks-wrap" id="a-chunks"></div>
+            <div class="choices-wrap" id="a-choices"></div>
+            <div class="info-box" id="a-info">
+                <div class="info-title" style="color:var(--main)">💡 1단계 완료! 더 깊이 들여다볼까요?</div>
+                <div id="a-info-desc"></div>
+                <div style="margin-top:11px;font-weight:800;color:var(--red);text-align:center">이제 각 덩어리의 문장 성분(역할)을 맞혀보세요!</div>
+                <button class="primary-btn blue" onclick="startStep2()">2단계: 문장 성분 맞히기 ➔</button>
+            </div>
+            <div id="a-result-box"></div>
         </div>
-
-        <div id="result-screen-gram" style="display: none;">
-            <div style="font-size: 5rem; margin-bottom: 10px;" id="result-dragon-gram">🐉✨</div>
-            <h2 style="color: var(--main-green);">문장 분석 훈련 종료!</h2>
-            <div class="score-display" style="font-size:2.5rem; color:#3182CE; margin-bottom:30px;">수리나무 마스터 달성!</div>
-            <button class="start-btn" onclick="resetGrammarTest()">새로운 알 부화하기 🔄</button>
+        <div id="anal-result" style="display:none;text-align:center">
+            <div class="result-emoji">🐉✨</div>
+            <h2 style="color:var(--main)">문장 분석 완료!</h2>
+            <div style="font-size:1.2rem;font-weight:900;color:#3182ce;margin-bottom:18px">수리나무 마스터 달성!</div>
+            <button class="primary-btn" onclick="resetAnal()">새로운 알 부화하기 🔄</button>
         </div>
     </div>
 
-    <div id="history-section" class="section">
-        <h3 style="color: var(--main-green); margin-top:0;">🏆 수리나무 명예의 전당</h3>
-        <div id="history-list"></div>
+    <!-- ===== 4. HISTORY ===== -->
+    <div id="hist-sec" class="section">
+        <h3 style="color:var(--main);margin-top:0">🏆 수리나무 명예의 전당</h3>
+        <div id="hist-list"></div>
     </div>
 
-    <div id="review-section" class="section">
-        <h3 style="color: #C53030; margin-top:0;">🚨 나의 약점 몬스터 도감</h3>
-        <p style="font-size:14px; color:#718096; font-weight:bold;">틀렸던 단어들을 모아뒀어요. 복습해서 내 것으로 만드세요!</p>
-        <div id="wrong-word-list" style="text-align:left; margin-bottom:20px;"></div>
-        <button class="start-btn" style="background:#E53E3E;" onclick="clearWrongWords()">도감 전체 비우기 🗑️</button>
+    <!-- ===== 5. REVIEW ===== -->
+    <div id="rev-sec" class="section">
+        <h3 style="color:var(--red);margin-top:0">🚨 나의 약점 단어 도감</h3>
+        <p style="font-size:13px;color:#718096;font-weight:700">틀렸던 단어들을 복습해서 내 것으로 만드세요!</p>
+        <div id="rev-list" style="text-align:left;margin-bottom:14px"></div>
+        <button class="primary-btn" style="background:var(--red)" onclick="clearWrong()">도감 전체 비우기 🗑️</button>
     </div>
 </div>
 
 <script>
-    // ==========================================
-    // 0. Audio & Game Effects (SFX / Combo)
-    // ==========================================
-    let audioCtx = null;
-    let comboCount = 0;
+// ============================================================
+// DATA  ─  FAQs about Teenage Hair Loss
+// ============================================================
 
-    function initAudioContext() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
+// ── 1. WORD LIST (25개) ──────────────────────────────────────
+const wordList = [
+    { en: "notice",       ko: "알아차리다, 인지하다" },
+    { en: "hair loss",    ko: "탈모" },
+    { en: "normal",       ko: "정상적인" },
+    { en: "lose",         ko: "잃다, 빠지다" },
+    { en: "teenager",     ko: "십 대" },
+    { en: "hormone",      ko: "호르몬" },
+    { en: "level",        ko: "수준, 정도" },
+    { en: "greatly",      ko: "크게, 대단히" },
+    { en: "fall out",     ko: "빠지다, 떨어지다" },
+    { en: "nutrition",    ko: "영양" },
+    { en: "affect",       ko: "영향을 미치다" },
+    { en: "leafy vegetable", ko: "잎채소" },
+    { en: "include",      ko: "포함하다" },
+    { en: "vitamin",      ko: "비타민" },
+    { en: "mineral",      ko: "미네랄" },
+    { en: "stressed",     ko: "스트레스를 받는" },
+    { en: "thin",         ko: "얇은, 가는" },
+    { en: "confidence",   ko: "자신감" },
+    { en: "main reason",  ko: "주된 이유" },
+    { en: "control",      ko: "조절하다, 통제하다" },
+    { en: "frequently",   ko: "자주, 빈번히" },
+    { en: "chemical",     ko: "화학적인" },
+    { en: "treatment",    ko: "트리트먼트, 치료" },
+    { en: "weaken",       ko: "약하게 하다" },
+    { en: "prevent",      ko: "예방하다, 막다" }
+];
+
+// ── 2. SENTENCE LIST (13개) ──────────────────────────────────
+const sentenceList = [
+    { en: "It's normal to lose hair every day.",
+      ko: "매일 머리카락이 빠지는 것은 정상이다." },
+    { en: "If so, it may be hair loss.",
+      ko: "만약 그렇다면, 그것은 탈모일 수 있다." },
+    { en: "As a teenager, your hormone levels change greatly.",
+      ko: "십 대로서, 너의 호르몬 수치는 크게 변한다." },
+    { en: "When this happens, your hair may fall out.",
+      ko: "이런 일이 발생할 때, 머리카락이 빠질 수 있다." },
+    { en: "Go and ask a doctor for help with such problems.",
+      ko: "그런 문제들에 대해 도움을 받기 위해 의사에게 가서 물어봐라." },
+    { en: "Nutrition greatly affects our hair's health.",
+      ko: "영양은 우리 머리카락의 건강에 크게 영향을 미친다." },
+    { en: "Try adding foods like fish and leafy vegetables to your meals.",
+      ko: "식사에 생선과 잎채소 같은 음식들을 추가해 보아라." },
+    { en: "When your meals don't include enough vitamins and minerals, your hair will look unhealthy.",
+      ko: "식사에 비타민과 미네랄이 충분히 포함되지 않으면, 머리카락이 건강하지 않아 보일 것이다." },
+    { en: "I know hair loss can hurt your confidence.",
+      ko: "나는 탈모가 너의 자신감을 상하게 할 수 있다는 것을 안다." },
+    { en: "But stress is one of the main reasons for hair loss.",
+      ko: "하지만 스트레스는 탈모의 주된 이유 중 하나이다." },
+    { en: "So rather than thinking about the problem, try to control your stress.",
+      ko: "그러므로 문제에 대해 생각하기보다는, 스트레스를 조절하려고 노력해라." },
+    { en: "Frequently using hair ties can weaken your hair.",
+      ko: "자주 머리 끈을 사용하는 것은 머리카락을 약하게 할 수 있다." },
+    { en: "Getting chemical hair treatments can also weaken your hair.",
+      ko: "화학적 헤어 트리트먼트를 받는 것 또한 머리카락을 약하게 할 수 있다." }
+];
+
+// ── 3. ANALYSIS LIST (12문장) ────────────────────────────────
+// pos 5종류만 사용: "명사(구/절)" | "대명사" | "형용사(구/절)" | "부사(구/절)" | "동사(구)"
+// note(4번째): 실제 구조(전치사구/to부정사/동명사/접속사절 등) 상세 해설
+const analysisList = [
+    // 1
+    ["매일 머리카락이 빠지는 것은 정상이다.",
+     [
+        ["It",                     "대명사",       "주어",
+         "⚠️ 가주어 It — 진짜 주어(진주어)는 뒤의 to부정사구입니다."],
+        ["'s",                     "동사(구)",     "서술어"],
+        ["normal",                 "형용사(구/절)","보어"],
+        ["to lose hair every day", "명사(구/절)",  "주어",
+         "✦ to부정사 명사구 (명사적 용법 — 진주어)\n'It ~ to부정사' 구문: It은 가주어(형식상 주어), to lose hair every day가 진짜 주어(진주어)입니다."]
+     ]],
+    // 2
+    ["만약 그렇다면, 그것은 탈모일 수 있다.",
+     [
+        ["If so",      "부사(구/절)", "수식어",
+         "✦ 접속사 if가 이끄는 부사절 (조건)\n주절 전체를 수식합니다."],
+        ["it",         "대명사",      "주어"],
+        ["may be",     "동사(구)",    "서술어"],
+        ["hair loss",  "명사(구/절)", "보어"]
+     ]],
+    // 3
+    ["십 대로서, 너의 호르몬 수치는 크게 변한다.",
+     [
+        ["As a teenager",       "부사(구/절)", "수식어",
+         "✦ 전치사 as가 이끄는 전치사구 (부사구)\n'~로서'의 의미로 주절 전체를 수식합니다."],
+        ["your hormone levels", "명사(구/절)", "주어"],
+        ["change",              "동사(구)",    "서술어"],
+        ["greatly",             "부사(구/절)", "수식어"]
+     ]],
+    // 4
+    ["이런 일이 발생할 때, 머리카락이 빠질 수 있다.",
+     [
+        ["When this happens", "부사(구/절)", "수식어",
+         "✦ 접속사 when이 이끄는 부사절 (시간)\n주절 전체를 수식합니다."],
+        ["your hair",         "명사(구/절)", "주어"],
+        ["may fall out",      "동사(구)",    "서술어"]
+     ]],
+    // 5
+    ["그런 문제들에 대해 도움을 받기 위해 의사에게 가서 물어봐라.",
+     [
+        ["Go and ask",         "동사(구)",    "서술어"],
+        ["a doctor",           "명사(구/절)", "목적어"],
+        ["for help",           "부사(구/절)", "수식어",
+         "✦ 전치사 for가 이끄는 전치사구 (부사구)\n동사 ask를 수식합니다."],
+        ["with such problems", "부사(구/절)", "수식어",
+         "✦ 전치사 with가 이끄는 전치사구 (부사구)\nhelp를 수식합니다."]
+     ]],
+    // 6
+    ["영양은 우리 머리카락의 건강에 크게 영향을 미친다.",
+     [
+        ["Nutrition",          "명사(구/절)", "주어"],
+        ["greatly affects",    "동사(구)",    "서술어"],
+        ["our hair's health",  "명사(구/절)", "목적어"]
+     ]],
+    // 7
+    ["식사에 생선과 잎채소 같은 음식들을 추가해 보아라.",
+     [
+        ["Try",                "동사(구)",    "서술어"],
+        ["adding foods like fish and leafy vegetables", "명사(구/절)", "목적어",
+         "✦ 동명사구 (명사구 — 명사적 용법, 목적어 역할)\ntry + 동명사: '실제로 ~해 보다'의 의미입니다."],
+        ["to your meals",      "부사(구/절)", "수식어",
+         "✦ 전치사 to가 이끄는 전치사구 (부사구)\n동명사구 adding을 수식합니다."]
+     ]],
+    // 8
+    ["스트레스를 조절하려고 노력해라.",
+     [
+        ["try",                    "동사(구)",    "서술어"],
+        ["to control your stress", "명사(구/절)", "목적어",
+         "✦ to부정사구 (명사구 — 명사적 용법, 목적어 역할)\ntry + to부정사: '~하려고 노력하다'의 의미입니다."]
+     ]],
+    // 9
+    ["나는 탈모가 너의 자신감을 상하게 할 수 있다는 것을 안다.",
+     [
+        ["I",          "대명사",      "주어"],
+        ["know",       "동사(구)",    "서술어"],
+        ["hair loss can hurt your confidence", "명사(구/절)", "목적어",
+         "✦ 접속사 that이 생략된 명사절 (목적어 역할)\nknow의 목적어로 쓰인 명사절입니다."]
+     ]],
+    // 10
+    ["하지만 스트레스는 탈모의 주된 이유 중 하나이다.",
+     [
+        ["But stress",   "명사(구/절)", "주어"],
+        ["is",           "동사(구)",    "서술어"],
+        ["one of the main reasons for hair loss", "명사(구/절)", "보어"]
+     ]],
+    // 11
+    ["문제에 대해 생각하기보다는, 스트레스를 조절하려고 노력해라.",
+     [
+        ["rather than thinking about the problem", "부사(구/절)", "수식어",
+         "✦ 전치사 than이 이끄는 전치사구 (부사구)\nthan 뒤에 동명사 thinking이 목적어로 쓰였습니다. (동명사 — 전치사의 목적어)"],
+        ["try",                    "동사(구)",    "서술어"],
+        ["to control your stress", "명사(구/절)", "목적어",
+         "✦ to부정사구 (명사구 — 명사적 용법, 목적어 역할)\ntry + to부정사: '~하려고 노력하다'"]
+     ]],
+    // 12
+    ["자주 머리 끈을 사용하는 것은 머리카락을 약하게 할 수 있다.",
+     [
+        ["Frequently using hair ties", "명사(구/절)", "주어",
+         "✦ 동명사구 (명사구 — 명사적 용법, 주어 역할)\n동명사구가 문장 전체의 주어이며 단수 취급합니다."],
+        ["can weaken",  "동사(구)",    "서술어"],
+        ["your hair",   "명사(구/절)", "목적어"]
+     ]]
+];
+
+// ============================================================
+// HELPERS
+// ============================================================
+// 1단계 품사 선택지: 5종류 고정
+const posList  = ["명사(구/절)", "대명사", "형용사(구/절)", "부사(구/절)", "동사(구)"];
+const roleList = ["주어","서술어","목적어","보어","수식어"];
+
+function relevantPos(idx) {
+    // 항상 5개 고정 반환
+    return posList;
+}
+
+let audioCtx = null, comboCount = 0;
+function initAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+function tone(f,t,d,v=0.08) {
+    if(!audioCtx) return;
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type=t; o.frequency.setValueAtTime(f,audioCtx.currentTime);
+    g.gain.setValueAtTime(v,audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.01,audioCtx.currentTime+d);
+    o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime+d);
+}
+function sfxOK()  { tone(600,'sine',.1); setTimeout(()=>tone(800,'sine',.15),100); }
+function sfxNG()  { tone(280,'sawtooth',.2,.12); }
+function sfxEvo() { [400,500,650].forEach((f,i)=>setTimeout(()=>tone(f,'square',.2,.06),i*150)); }
+function boom()   { sfxEvo(); confetti({particleCount:140,spread:75,origin:{y:.6},colors:['#4a3fa0','#7bc043','#e74c3c','#f5a623']}); }
+
+function shuffle(a) {
+    let arr=[...a];
+    for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+    return arr;
+}
+function todayKey() { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`; }
+function fmtKey(k)  { return k.replace(/-/g,'. '); }
+
+function showCombo(ok) {
+    if(ok) comboCount++; else { comboCount=0; return; }
+    if(comboCount < 2) return;
+    const el=document.getElementById('combo');
+    el.innerText=`${comboCount} COMBO! ✨`;
+    el.classList.remove('combo-pop'); void el.offsetWidth; el.classList.add('combo-pop');
+}
+
+function updateEvo(pre, cur, tot) {
+    const r = tot===0 ? 0 : cur/tot;
+    const s=[
+        [0,'🥚','신비한 수리나무 알'],
+        [.001,'🐣','부화하는 아기 용'],
+        [.25,'🦎','꼬마 드래곤'],
+        [.5,'🦖','파워 용'],
+        [.75,'🐲','비상하는 매직 용'],
+        [1,'🐉✨','수리나무 마스터 용!!']
+    ];
+    let st=s[0]; for(let x of s) if(r>=x[0]) st=x;
+    const pct=Math.floor(r*100);
+    const em=document.getElementById(pre+'e');
+    em.innerText=st[1]; em.style.transform='scale(1.3)';
+    setTimeout(()=>em.style.transform='scale(1)',300);
+    document.getElementById(pre+'n').innerText=`${st[2]} (${pct}%)`;
+    document.getElementById(pre+'b').style.width=pct+'%';
+}
+
+function showSection(id, btn) {
+    stopLoop(); comboCount=0;
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    if(id==='dict-sec') {
+        initAudio();
+        if(!dictLoaded) { loadDict(); dictLoaded=true; }
+        else { isLoop=true; loopPlay(); }
+        updatePlayBtn();
     }
+}
 
-    function playTone(freq, type, duration, vol=0.1) {
-        if (!audioCtx) return;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
+function saveHist(key, data) {
+    let arr=JSON.parse(localStorage.getItem('hl_'+key)||'[]');
+    data.date=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'});
+    arr.unshift(data); if(arr.length>10) arr=arr.slice(0,10);
+    localStorage.setItem('hl_'+key,JSON.stringify(arr));
+}
+function saveWrong(w) {
+    let arr=JSON.parse(localStorage.getItem('hl_wrong')||'[]');
+    if(!arr.find(x=>x.en===w.en)) { arr.push(w); localStorage.setItem('hl_wrong',JSON.stringify(arr)); }
+}
+
+// ============================================================
+// 1. WORD TEST
+// ============================================================
+let wList=[], wIdx=0, wOK=0, wBusy=false;
+
+function startWord() {
+    wList=shuffle(wordList); wIdx=0; wOK=0; comboCount=0;
+    document.getElementById('word-intro').style.display='none';
+    document.getElementById('word-result').style.display='none';
+    document.getElementById('word-quiz').style.display='block';
+    loadWord();
+}
+function loadWord() {
+    wBusy=false; updateEvo('wevo-',wIdx,wList.length);
+    const q=wList[wIdx];
+    document.getElementById('w-status').innerText=`문제 ${wIdx+1} / ${wList.length}`;
+    document.getElementById('w-en').innerText=q.en;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(q.en); u.lang='en-US'; u.rate=1.0;
+    window.speechSynthesis.speak(u);
+    const opts=shuffle([{t:q.ko,ok:true},...shuffle(wordList.filter(w=>w.ko!==q.ko)).slice(0,3).map(w=>({t:w.ko,ok:false}))]);
+    const div=document.getElementById('w-opts'); div.innerHTML='';
+    opts.forEach((o,i)=>{
+        const b=document.createElement('button'); b.className='opt-btn';
+        b.innerText=`${i+1}. ${o.t}`;
+        b.onclick=()=>handleWord(b,o.ok,div,q);
+        div.appendChild(b);
+    });
+}
+function handleWord(btn,ok,div,q) {
+    if(wBusy) return; wBusy=true; showCombo(ok);
+    if(ok) { sfxOK(); btn.classList.add('correct'); wOK++; }
+    else   { sfxNG(); btn.classList.add('wrong'); saveWrong(q);
+        for(const b of div.querySelectorAll('.opt-btn')) if(b.innerText.includes(q.ko)){b.classList.add('correct');break;} }
+    setTimeout(()=>{ wIdx++; wIdx<wList.length ? loadWord() : finishWord(); },800);
+}
+function finishWord(early=false) {
+    const tot=early?wIdx:wList.length; if(tot===0){resetWord();return;}
+    const sc=Math.round(wOK/tot*100);
+    updateEvo('wevo-',wIdx,wList.length);
+    setTimeout(()=>{
+        document.getElementById('word-quiz').style.display='none';
+        document.getElementById('word-result').style.display='block';
+        const em=document.getElementById('w-res-e');
+        em.innerText=sc>=90?'🐉✨':sc>=70?'🐲':'🦖💦';
+        const sd=document.getElementById('w-score');
+        sd.innerText=sc+'점'; sd.style.color=sc>=90?'var(--main)':sc>=70?'#f5a623':'var(--red)';
+        document.getElementById('w-detail').innerText=`정답: ${wOK}개 / ${tot}문항`;
+        saveHist('word',{score:sc,correct:wOK,total:tot});
+        if(!early&&sc>=90) boom();
+    },500);
+}
+function resetWord() { document.getElementById('word-result').style.display='none'; document.getElementById('word-intro').style.display='block'; }
+
+// ============================================================
+// 2. DICTATION
+// ============================================================
+let dIdx=0, isLoop=false, loopTimer=null, dictLoaded=false;
+const speeds=[1.0,0.75,0.55], sLabels=['🐇 보통 속도','🐢 느리게','🐌 아주 느리게'];
+let spIdx=0;
+
+function loopPlay() {
+    if(!isLoop||!sentenceList.length) return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(sentenceList[dIdx].en);
+    u.lang='en-US'; u.rate=speeds[spIdx];
+    u.onend=()=>{ if(isLoop) loopTimer=setTimeout(loopPlay,1000); };
+    window.speechSynthesis.speak(u);
+}
+function stopLoop() { isLoop=false; window.speechSynthesis.cancel(); clearTimeout(loopTimer); }
+function toggleAudio() { if(isLoop) stopLoop(); else{isLoop=true;loopPlay();} updatePlayBtn(); }
+function updatePlayBtn() {
+    const b=document.getElementById('play-btn'); if(!b) return;
+    b.innerHTML=isLoop?'⏸️ 음성 반복 멈춤':'▶️ 원어민 음성 재생';
+    b.className='audio-btn play-btn'+(isLoop?' playing':'');
+}
+function toggleSpeed() {
+    spIdx=(spIdx+1)%speeds.length;
+    document.getElementById('speed-btn').innerHTML=sLabels[spIdx];
+    if(isLoop){stopLoop();isLoop=true;loopPlay();}
+}
+function loadDict() {
+    if(!sentenceList.length) return;
+    stopLoop(); updateEvo('devo-',dIdx,sentenceList.length);
+    const s=sentenceList[dIdx];
+    document.getElementById('d-status').innerText=`영작 문제 ${dIdx+1} / ${sentenceList.length}`;
+    document.getElementById('d-ko').innerText=s.ko;
+    const aa=document.getElementById('answer-area');
+    aa.innerHTML=''; aa.style.background='var(--light)'; aa.style.borderColor='var(--main)';
+    const sa=document.getElementById('scramble-area'); sa.innerHTML='';
+    shuffle(s.en.split(' ').filter(w=>w)).forEach(w=>{
+        const b=document.createElement('button'); b.className='word-chip'; b.innerText=w;
+        b.onclick=function(){
+            if(this.parentElement.id==='scramble-area') aa.appendChild(this);
+            else sa.appendChild(this);
+            if(sa.children.length===0) checkDict();
+        };
+        sa.appendChild(b);
+    });
+    if(!window._ds) {
+        window._ds=new Sortable(aa,{
+            animation:280, ghostClass:'sortable-ghost', dragClass:'sortable-drag', swapThreshold:.65,
+            onEnd:()=>{ if(document.getElementById('scramble-area').children.length===0) checkDict(); }
+        });
     }
-
-    function playCorrectSFX() {
-        playTone(600, 'sine', 0.1);
-        setTimeout(() => playTone(800, 'sine', 0.15), 100);
+    isLoop=true; loopPlay(); updatePlayBtn();
+}
+function checkDict() {
+    const aa=document.getElementById('answer-area');
+    const student=Array.from(aa.children).map(b=>b.innerText.trim()).join(' ');
+    const norm=s=>s.toLowerCase().replace(/[^a-z0-9]/g,'');
+    if(norm(student)===norm(sentenceList[dIdx].en)){
+        sfxOK(); showCombo(true);
+        aa.style.background='#d4edda'; aa.style.borderColor='var(--green)';
+        recDict(); stopLoop(); updatePlayBtn();
+        setTimeout(()=>nextDict(),700);
+    } else {
+        sfxNG(); showCombo(false);
+        aa.style.background='#fde8e8';
+        setTimeout(()=>aa.style.background='var(--light)',400);
     }
-
-    function playWrongSFX() {
-        playTone(300, 'sawtooth', 0.2, 0.15);
+}
+function nextDict() {
+    if(dIdx+1<sentenceList.length){ dIdx++; loadDict(); }
+    else{
+        stopLoop(); updatePlayBtn();
+        updateEvo('devo-',sentenceList.length,sentenceList.length); boom();
+        setTimeout(()=>alert('수리나무 마스터 달성! 영작 훈련 완료! 🐉🎉'),300);
     }
+}
+function jumpTo() {
+    const n=parseInt(document.getElementById('jumpNum').value);
+    if(n>=1&&n<=sentenceList.length){dIdx=n-1;comboCount=0;loadDict();}
+    else alert(`1~${sentenceList.length} 사이 번호를 입력하세요.`);
+}
+function recDict() {
+    const dk=todayKey(); let h=JSON.parse(localStorage.getItem('hl_dict')||'{}');
+    if(!h[dk]) h[dk]={count:0}; h[dk].count++;
+    localStorage.setItem('hl_dict',JSON.stringify(h));
+}
 
-    function playEvolutionSFX() {
-        playTone(400, 'square', 0.1, 0.05);
-        setTimeout(() => playTone(500, 'square', 0.1, 0.05), 150);
-        setTimeout(() => playTone(600, 'square', 0.3, 0.05), 300);
-    }
+// ============================================================
+// 3. ANALYSIS
+// ============================================================
+let aIdx=0, aStage=1, aActive=0, aAns=[];
 
-    function triggerConfetti() {
-        playEvolutionSFX();
-        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#48BB78', '#3182CE', '#D69E2E', '#E53E3E'] });
-    }
-
-    function handleCombo(isCorrect) {
-        if (isCorrect) {
-            comboCount++;
-            if (comboCount >= 2) {
-                const comboEl = document.getElementById('combo-display');
-                comboEl.innerText = `${comboCount} COMBO! 🔥`;
-                comboEl.classList.remove('animate-combo');
-                void comboEl.offsetWidth; // 리플로우 강제 트리거
-                comboEl.classList.add('animate-combo');
+function startAnal() {
+    aIdx=0; aStage=1; comboCount=0;
+    document.getElementById('anal-intro').style.display='none';
+    document.getElementById('anal-result').style.display='none';
+    document.getElementById('anal-quiz').style.display='block';
+    loadAnal();
+}
+function loadAnal() {
+    updateEvo('aevo-',aIdx,analysisList.length);
+    aStage=1; aActive=0;
+    const d=analysisList[aIdx];
+    aAns=new Array(d[1].length).fill(null);
+    document.getElementById('a-count').innerText=`${aIdx+1} / ${analysisList.length}`;
+    document.getElementById('a-ko').innerText=d[0];
+    document.getElementById('a-result-box').innerHTML='';
+    document.getElementById('a-info').classList.remove('show');
+    document.getElementById('a-choices').style.display='flex';
+    const sb=document.getElementById('a-stage');
+    sb.innerText='1단계: 품사(구/절) 찾기'; sb.className='stage-badge stage1';
+    buildChunks(); buildChoices();
+}
+function buildChunks() {
+    const d=analysisList[aIdx], wrap=document.getElementById('a-chunks');
+    wrap.innerHTML='';
+    d[1].forEach((c,i)=>{
+        const div=document.createElement('div');
+        div.className='chunk-card'+(i===aActive?' active':'');
+        div.innerHTML=`<div class="chunk-en">${c[0]}</div><div class="chunk-ans" id="ca${i}">?</div>`;
+        div.onclick=()=>{ aActive=i; highlightChunk(); };
+        wrap.appendChild(div);
+    });
+}
+function highlightChunk() {
+    document.querySelectorAll('.chunk-card').forEach((c,i)=>{
+        const isDone=c.classList.contains('done')||c.classList.contains('done2');
+        c.classList.toggle('active', i===aActive && !isDone);
+    });
+}
+function buildChoices() {
+    const grid=document.getElementById('a-choices'); grid.innerHTML='';
+    const list=aStage===1 ? relevantPos(aIdx) : roleList;
+    list.forEach(item=>{
+        const b=document.createElement('button'); b.className='choice-btn';
+        b.innerText=item; b.onclick=()=>pick(item); grid.appendChild(b);
+    });
+}
+function pick(val) {
+    const d=analysisList[aIdx], chunk=d[1][aActive];
+    const correct=aStage===1 ? chunk[1] : chunk[2];
+    const card=document.querySelectorAll('.chunk-card')[aActive];
+    if(val===correct){
+        sfxOK(); showCombo(true);
+        aAns[aActive]=val;
+        const el=document.getElementById('ca'+aActive);
+        el.innerText=val; el.style.color=aStage===1?'var(--green)':'var(--main)';
+        card.classList.remove('active'); card.classList.add(aStage===1?'done':'done2');
+        const next=aAns.indexOf(null);
+        if(next!==-1){ aActive=next; highlightChunk(); }
+        else {
+            if(aStage===1){
+                sfxEvo();
+                let html='';
+                d[1].forEach(c=>{
+                    if(c[3]) {
+                        const noteHtml = c[3].replace(/\n/g,'<br>');
+                        html+=`<div class="detail-row"><b>${c[0]}</b><br>${noteHtml}</div>`;
+                    }
+                });
+                if(!html) html='<div class="detail-row">✅ 기본 단어들로 깔끔하게 이루어진 문장이에요!</div>';
+                document.getElementById('a-info-desc').innerHTML=html;
+                document.getElementById('a-choices').style.display='none';
+                document.getElementById('a-info').classList.add('show');
+            } else {
+                sfxEvo();
+                const roles=d[1].map(c=>c[2]);
+                let pat;
+                if(roles.includes('목적어')&&roles.filter(r=>r==='보어').length) pat='5형식 (S+V+O+O.C)';
+                else if(roles.filter(r=>r==='목적어').length>=2) pat='4형식 (S+V+I.O+D.O)';
+                else if(roles.includes('목적어')) pat='3형식 (S+V+O)';
+                else if(roles.includes('보어')) pat='2형식 (S+V+S.C)';
+                else pat='1형식 (S+V+[M])';
+                document.getElementById('a-choices').style.display='none';
+                document.getElementById('a-result-box').innerHTML=`
+                    <div class="pattern-box">
+                        <div class="pattern-title">🎉 완벽하게 분석했습니다!</div>
+                        <div class="pattern-val">${pat}</div>
+                        <button class="primary-btn blue" style="margin-top:12px" onclick="nextAnal()">다음 문장 분석하기 ➔</button>
+                    </div>`;
+                recAnal();
             }
-        } else {
-            comboCount = 0;
         }
+    } else {
+        sfxNG(); showCombo(false);
+        card.style.borderColor='var(--red)';
+        setTimeout(()=>card.style.borderColor=card.classList.contains('active')?'var(--main)':'#e2dcf5',600);
     }
-
-    // ==========================================
-    // Data Definitions (Chapter 02 - 시제 Tense)
-    // ==========================================
-    const wordList = [
-        { en: "post", ko: "게시하다" }, { en: "heavily", ko: "심하게, 무겁게" }, { en: "present", ko: "선물" },
-        { en: "subject", ko: "주제, 과목" }, { en: "president", ko: "대통령" }, { en: "stay", ko: "머무르다" },
-        { en: "sweatshirt", ko: "스웨트셔츠, 맨투맨" }, { en: "sure", ko: "확신하는" }, { en: "famous", ko: "유명한" },
-        { en: "usually", ko: "보통, 대개" }, { en: "grow", ko: "기르다, 재배하다" }, { en: "rose", ko: "장미" },
-        { en: "tomorrow", ko: "내일" }, { en: "weekend", ko: "주말" }, { en: "sometimes", ko: "가끔, 때때로" },
-        { en: "buy", ko: "사다" }, { en: "sleep", ko: "자다" }, { en: "call", ko: "전화하다" },
-        { en: "arrive", ko: "도착하다" }, { en: "airport", ko: "공항" }, { en: "wild", ko: "야생의" },
-        { en: "tiger", ko: "호랑이" }, { en: "already", ko: "이미, 벌써" }, { en: "ride", ko: "타다" },
-        { en: "horse", ko: "말" }, { en: "movie", ko: "영화" }, { en: "cousin", ko: "사촌" },
-        { en: "lose", ko: "잃어버리다" }, { en: "key", ko: "열쇠" }, { en: "drawer", ko: "서랍" }
-    ];
-
-    const sentenceList = [
-        { en: "She likes to post on her blog.", ko: "그녀는 그녀의 블로그에 게시하는 것을 좋아한다." },
-        { en: "It was raining heavily when I got up.", ko: "내가 일어났을 때 비가 심하게 내리고 있었다." },
-        { en: "He is giving presents to children now.", ko: "그는 지금 아이들에게 선물을 주고 있다." },
-        { en: "Dave knows about this subject very well.", ko: "데이브는 이 주제에 대해 매우 잘 안다." },
-        { en: "The president is going to stay in Washington for a week.", ko: "대통령은 일주일 동안 워싱턴에 머무를 것이다." },
-        { en: "He has many good friends.", ko: "그는 좋은 친구들이 많이 있다." },
-        { en: "Now she is wearing a black sweatshirt.", ko: "지금 그녀는 검은색 스웨트셔츠를 입고 있다." },
-        { en: "She was talking to Peter when I saw her.", ko: "내가 그녀를 보았을 때 그녀는 피터와 이야기하고 있었다." },
-        { en: "I am going to see a doctor this Friday.", ko: "나는 이번 주 금요일에 의사를 진찰하러 갈 것이다." },
-        { en: "I'm sure you will become famous in five years.", ko: "나는 네가 5년 안에 유명해질 것이라고 확신해." },
-        { en: "She usually grows roses in her garden.", ko: "그녀는 보통 그녀의 정원에 장미를 기른다." },
-        { en: "I don't think it will rain tomorrow.", ko: "나는 내일 비가 올 것이라고 생각하지 않아." },
-        { en: "My sister is not sleeping.", ko: "언니는 잠을 자고 있지 않다." },
-        { en: "She is playing games.", ko: "그녀는 게임을 하고 있다." },
-        { en: "I am going to go to my friend's house this weekend.", ko: "나는 이번 주말에 내 친구 집에 갈 것이다." },
-        { en: "Mom sometimes buys me chocolate.", ko: "엄마는 가끔 나에게 초콜릿을 사 주신다." },
-        { en: "The cat is sleeping on your bed.", ko: "고양이가 네 침대에서 자고 있어." },
-        { en: "I will call you tomorrow.", ko: "내가 내일 전화할게." },
-        { en: "I have just arrived at the airport.", ko: "나는 방금 공항에 도착했다." },
-        { en: "Has she ever seen wild tigers?", ko: "그녀는 야생 호랑이를 본 적이 있니?" },
-        { en: "She has never been to Jeju Island.", ko: "그녀는 제주도에 가본 적이 없다." },
-        { en: "Have you already eaten your lunch?", ko: "너는 이미 점심을 먹었니?" },
-        { en: "He has gone to France.", ko: "그는 프랑스로 가버렸다." },
-        { en: "I have never ridden a horse.", ko: "나는 말을 타본 적이 결코 없다." },
-        { en: "We went to the movies last Sunday.", ko: "우리는 지난 일요일에 영화를 보러 갔다." },
-        { en: "I have never met my cousins in America.", ko: "나는 미국에 있는 내 사촌들을 만난 적이 결코 없다." },
-        { en: "She has lost the key, so she can't open the drawer.", ko: "그녀는 열쇠를 잃어버려서, 그녀는 서랍을 열 수 없다." }
-    ];
-
-    const grammarList = [
-        ["그녀는 그녀의 블로그에 게시하는 것을 좋아한다.", [["She", "대명사", "주어"], ["likes", "동사", "서술어"], ["to post", "to부정사구(명사적)", "목적어"], ["on her blog", "전치사구", "수식어"]]],
-        ["내가 일어났을 때 비가 심하게 내리고 있었다.", [["It", "대명사", "주어"], ["was raining", "동사", "서술어"], ["heavily", "부사", "수식어"], ["when I got up", "접속사절", "수식어"]]],
-        ["그는 지금 아이들에게 선물을 주고 있다.", [["He", "대명사", "주어"], ["is giving", "동사", "서술어"], ["presents", "명사", "목적어"], ["to children", "전치사구", "수식어"], ["now", "부사", "수식어"]]],
-        ["데이브는 이 주제에 대해 매우 잘 안다.", [["Dave", "명사", "주어"], ["knows", "동사", "서술어"], ["about this subject", "전치사구", "수식어"], ["very well", "부사구", "수식어"]]],
-        ["대통령은 일주일 동안 워싱턴에 머무를 것이다.", [["The president", "명사구", "주어"], ["is going to stay", "동사구", "서술어"], ["in Washington", "전치사구", "수식어"], ["for a week", "전치사구", "수식어"]]],
-        ["그는 좋은 친구들이 많이 있다.", [["He", "대명사", "주어"], ["has", "동사", "서술어"], ["many good friends", "명사구", "목적어"]]],
-        ["내가 그녀를 보았을 때 그녀는 피터와 이야기하고 있었다.", [["She", "대명사", "주어"], ["was talking", "동사", "서술어"], ["to Peter", "전치사구", "수식어"], ["when I saw her", "접속사절", "수식어"]]],
-        ["그녀는 보통 그녀의 정원에 장미를 기른다.", [["She", "대명사", "주어"], ["usually", "부사", "수식어"], ["grows", "동사", "서술어"], ["roses", "명사", "목적어"], ["in her garden", "전치사구", "수식어"]]],
-        ["나는 내일 비가 올 것이라고 생각하지 않아.", [["I", "대명사", "주어"], ["don't think", "동사", "서술어"], ["it will rain tomorrow", "명사절", "목적어"]]],
-        ["고양이가 네 침대에서 자고 있어.", [["The cat", "명사구", "주어"], ["is sleeping", "동사", "서술어"], ["on your bed", "전치사구", "수식어"]]],
-        ["나는 방금 공항에 도착했다.", [["I", "대명사", "주어"], ["have just arrived", "동사구", "서술어"], ["at the airport", "전치사구", "수식어"]]],
-        ["우리는 지난 일요일에 영화를 보러 갔다.", [["We", "대명사", "주어"], ["went", "동사", "서술어"], ["to the movies", "전치사구", "수식어"], ["last Sunday", "부사구", "수식어"]]],
-        ["나는 말을 타본 적이 결코 없다.", [["I", "대명사", "주어"], ["have never ridden", "동사구", "서술어"], ["a horse", "명사구", "목적어"]]],
-        ["그는 프랑스로 가버렸다.", [["He", "대명사", "주어"], ["has gone", "동사구", "서술어"], ["to France", "전치사구", "수식어"]]],
-        ["너는 이미 점심을 먹었니?", [["Have", "동사", "서술어"], ["you", "대명사", "주어"], ["already", "부사", "수식어"], ["eaten", "동사", "서술어"], ["your lunch", "명사구", "목적어"]]]
-    ];
-
-    const chunkPosList = ["명사(구/절)", "대명사", "동사", "형용사(구/절)", "부사(구/절)", "접속사(절)"];
-    const roleList = ["주어", "서술어", "목적어", "보어", "수식어"];
-
-    function shuffleArray(array) {
-        let newArr = [...array];
-        for (let i = newArr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-        }
-        return newArr;
+}
+function startStep2() {
+    aStage=2; aAns.fill(null); aActive=0;
+    document.getElementById('a-info').classList.remove('show');
+    document.getElementById('a-result-box').innerHTML='';
+    const sb=document.getElementById('a-stage');
+    sb.innerText='2단계: 문장 성분 맞히기'; sb.className='stage-badge stage2';
+    document.querySelectorAll('.chunk-card').forEach((c,i)=>{
+        c.classList.remove('done','done2','active');
+        if(i===0) c.classList.add('active');
+        const el=document.getElementById('ca'+i);
+        if(el){ el.innerText='?'; el.style.color='#a0aec0'; }
+    });
+    document.getElementById('a-choices').style.display='flex';
+    buildChoices();
+}
+function nextAnal() {
+    aIdx++;
+    if(aIdx<analysisList.length){ aStage=1; loadAnal(); }
+    else{
+        updateEvo('aevo-',analysisList.length,analysisList.length);
+        setTimeout(()=>{
+            document.getElementById('anal-quiz').style.display='none';
+            document.getElementById('anal-result').style.display='block';
+            boom();
+        },500);
     }
-    function formatDate(dateObj) { return `${dateObj.getFullYear()}.${String(dateObj.getMonth() + 1).padStart(2, '0')}.${String(dateObj.getDate()).padStart(2, '0')}`; }
-    function getTodayKey() { const t = new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`; }
+}
+function finishAnal(early=false){
+    if(aIdx===0&&early){resetAnal();return;}
+    updateEvo('aevo-',aIdx,analysisList.length);
+    setTimeout(()=>{
+        document.getElementById('anal-quiz').style.display='none';
+        document.getElementById('anal-result').style.display='block';
+        if(!early) boom();
+    },500);
+}
+function resetAnal(){ document.getElementById('anal-result').style.display='none'; document.getElementById('anal-intro').style.display='block'; }
+function recAnal(){
+    const dk=todayKey(); let h=JSON.parse(localStorage.getItem('hl_anal')||'{}');
+    if(!h[dk]) h[dk]={count:0}; h[dk].count++;
+    localStorage.setItem('hl_anal',JSON.stringify(h));
+}
 
-    let isDictationLoaded = false; 
+// ============================================================
+// 4. HISTORY
+// ============================================================
+function renderHistory(){
+    const div=document.getElementById('hist-list'); div.innerHTML='';
+    div.insertAdjacentHTML('beforeend','<div class="hist-category">📝 단어 테스트 성적</div>');
+    const wh=JSON.parse(localStorage.getItem('hl_word')||'[]');
+    if(!wh.length) div.insertAdjacentHTML('beforeend','<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
+    else wh.slice(0,3).forEach(r=>{
+        const st=r.score>=90?'<span class="stamp">마스터 🐉</span>':'';
+        div.insertAdjacentHTML('beforeend',`<div class="hist-card"><div><div class="hist-date">${r.date}</div><div class="hist-score">${r.score}점 <span style="font-size:12px;color:#a0aec0">(${r.correct}/${r.total})</span></div></div>${st}</div>`);
+    });
+    div.insertAdjacentHTML('beforeend','<div class="hist-category">🎧 영작 달성도</div>');
+    const dh=JSON.parse(localStorage.getItem('hl_dict')||'{}');
+    const dks=Object.keys(dh).sort((a,b)=>new Date(b)-new Date(a));
+    if(!dks.length) div.insertAdjacentHTML('beforeend','<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
+    else dks.slice(0,3).forEach(k=>{
+        const st=dh[k].count>=10?'<span class="stamp">진화 🐉</span>':'';
+        div.insertAdjacentHTML('beforeend',`<div class="hist-card"><div><div class="hist-date">${fmtKey(k)}</div><div class="hist-score">${dh[k].count}문장 성공</div></div>${st}</div>`);
+    });
+    div.insertAdjacentHTML('beforeend','<div class="hist-category">🧩 문장 분석 달성도</div>');
+    const ah=JSON.parse(localStorage.getItem('hl_anal')||'{}');
+    const aks=Object.keys(ah).sort((a,b)=>new Date(b)-new Date(a));
+    if(!aks.length) div.insertAdjacentHTML('beforeend','<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
+    else aks.slice(0,3).forEach(k=>{
+        const st=ah[k].count>=10?'<span class="stamp">분석 마스터 🐉</span>':'';
+        div.insertAdjacentHTML('beforeend',`<div class="hist-card"><div><div class="hist-date">${fmtKey(k)}</div><div class="hist-score">${ah[k].count}문장 분석</div></div>${st}</div>`);
+    });
+}
 
-    function showSection(sectionId, btnElement) {
-        stopLooping(); 
-        comboCount = 0; // 탭 이동시 콤보 리셋
-        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
-        document.getElementById(sectionId).classList.add('active');
-        if(btnElement) btnElement.classList.add('active');
-        
-        if(sectionId === 'dictation-section') { 
-            initAudioContext();
-            if (!isDictationLoaded) { loadDictationSentence(); isDictationLoaded = true; } 
-            else { isLooping = true; playAndLoop(); }
-            updateAudioBtnText();
-        }
+// ============================================================
+// 5. REVIEW
+// ============================================================
+function renderReview(){
+    const div=document.getElementById('rev-list'); div.innerHTML='';
+    const arr=JSON.parse(localStorage.getItem('hl_wrong')||'[]');
+    if(!arr.length){
+        div.innerHTML='<div style="padding:16px;text-align:center;color:var(--green);font-weight:800;background:#f0fff4;border-radius:10px">🎉 오답이 없습니다! 완벽해요!</div>';
+        return;
     }
-
-    function updateEvolutionUI(prefix, current, total) {
-        const ratio = total === 0 ? 0 : current / total;
-        let emoji = '🥚'; let stageName = '신비한 수리나무 알';
-        if (ratio === 0) { emoji = '🥚'; stageName = '신비한 수리나무 알'; }
-        else if (ratio < 0.25) { emoji = '🐣'; stageName = '부화하는 아기 용'; }
-        else if (ratio < 0.5) { emoji = '🦎'; stageName = '꼬마 드래곤'; }
-        else if (ratio < 0.75) { emoji = '🦖'; stageName = '성장하는 파워 용'; }
-        else if (ratio < 1.0) { emoji = '🐲'; stageName = '비상하는 매직 용'; }
-        else { emoji = '🐉✨'; stageName = '수리나무 마스터 용!!'; playEvolutionSFX(); } // 진화 사운드
-
-        const percent = Math.floor(ratio * 100);
-        const emojiEl = document.getElementById(prefix + '-emoji');
-        emojiEl.innerText = emoji;
-        emojiEl.style.transform = 'scale(1.3)';
-        setTimeout(() => { emojiEl.style.transform = 'scale(1)'; }, 300);
-
-        document.getElementById(prefix + '-text').innerText = `${stageName} (${percent}%)`;
-        document.getElementById(prefix + '-bar').style.width = percent + '%';
-    }
-
-    // ==========================================
-    // 1. 단어 테스트
-    // ==========================================
-    let currentWordTestList = []; let currentWordIdx = 0; let wordCorrectCount = 0; let isWordAnswering = false;
-
-    function startWordTest() {
-        currentWordTestList = shuffleArray(wordList); currentWordIdx = 0; wordCorrectCount = 0; comboCount = 0;
-        document.getElementById('intro-screen-word').style.display = 'none'; document.getElementById('result-screen-word').style.display = 'none';
-        document.getElementById('quiz-screen-word').style.display = 'block';
-        loadWordQuestion();
-    }
-
-    function loadWordQuestion() {
-        isWordAnswering = false; updateEvolutionUI('word-evo', currentWordIdx, currentWordTestList.length);
-        const currentQ = currentWordTestList[currentWordIdx];
-        document.getElementById('word-status').innerText = `문제 ${currentWordIdx + 1} / ${currentWordTestList.length}`;
-        document.getElementById('word-display').innerText = currentQ.en;
-        
-        window.speechSynthesis.cancel(); 
-        const wordAudio = new SpeechSynthesisUtterance(currentQ.en); wordAudio.lang = 'en-US'; wordAudio.rate = 1.0;
-        window.speechSynthesis.speak(wordAudio);
-
-        const optionsDiv = document.getElementById('word-options'); optionsDiv.innerHTML = '';
-        let options = [{ text: currentQ.ko, isCorrect: true }];
-        let distractors = shuffleArray(wordList.filter(w => w.ko !== currentQ.ko));
-        for(let i=0; i<3; i++) { if(distractors[i]) options.push({ text: distractors[i].ko, isCorrect: false }); }
-        options = shuffleArray(options);
-
-        options.forEach((opt, index) => {
-            const btn = document.createElement('button'); btn.className = 'option-btn';
-            btn.innerText = `${index + 1}. ${opt.text}`;
-            btn.onclick = () => handleWordAnswer(btn, opt.isCorrect, optionsDiv, currentQ);
-            optionsDiv.appendChild(btn);
-        });
-    }
-
-    function handleWordAnswer(clickedBtn, isCorrect, optionsContainer, currentQ) {
-        if (isWordAnswering) return;
-        isWordAnswering = true;
-        handleCombo(isCorrect); // 콤보 처리
-
-        if (isCorrect) {
-            playCorrectSFX();
-            clickedBtn.classList.add('correct'); wordCorrectCount++;
-        } else {
-            playWrongSFX();
-            clickedBtn.classList.add('wrong');
-            saveWrongWord(currentQ); // 오답 노트 저장
-            const buttons = optionsContainer.getElementsByClassName('option-btn');
-            for(let btn of buttons) { if(btn.innerText.includes(currentQ.ko)) { btn.classList.add('correct'); break; } }
-        }
-
-        setTimeout(() => {
-            currentWordIdx++;
-            if (currentWordIdx < currentWordTestList.length) loadWordQuestion(); else finishWordTest();
-        }, 800);
-    }
-
-    function finishWordTest() {
-        updateEvolutionUI('word-evo', currentWordTestList.length, currentWordTestList.length);
-        setTimeout(() => {
-            document.getElementById('quiz-screen-word').style.display = 'none'; document.getElementById('result-screen-word').style.display = 'block';
-            const total = currentWordTestList.length; const calculatedScore = Math.round((wordCorrectCount / total) * 100);
-            const resultDragon = document.getElementById('result-dragon-word');
-            
-            if (calculatedScore >= 90) { resultDragon.innerText = '🐉✨'; triggerConfetti(); }
-            else if (calculatedScore >= 70) resultDragon.innerText = '🐲';
-            else resultDragon.innerText = '🦖💦';
-
-            document.getElementById('final-score-word').innerText = `${calculatedScore}점`;
-            document.getElementById('final-score-word').style.color = calculatedScore >= 90 ? '#3182CE' : (calculatedScore >= 70 ? '#D69E2E' : '#E53E3E');
-            document.getElementById('final-detail-word').innerText = `정답: ${wordCorrectCount}개 / ${total}문항`;
-            saveHistory('word', { score: calculatedScore, correct: wordCorrectCount, total: total });
-        }, 500); 
-    }
-
-    function resetWordTest() { document.getElementById('result-screen-word').style.display = 'none'; document.getElementById('intro-screen-word').style.display = 'block'; }
-
-    // ==========================================
-    // 2. 영작(딕테이션)
-    // ==========================================
-    let currentSentenceIdx = 0; let isLooping = false; let loopTimeout; 
-    
-    // ⭐ 속도 3단계 설정 로직 ⭐
-    const speedRates = [0.9, 0.7, 0.5];
-    const speedLabels = ['🐇 보통 속도', '🐢 느리게', '🐌 아주 느리게'];
-    let currentSpeedIdx = 0;
-    let currentSpeechRate = speedRates[currentSpeedIdx];
-
-    function toggleSpeechRate() {
-        currentSpeedIdx = (currentSpeedIdx + 1) % speedRates.length;
-        currentSpeechRate = speedRates[currentSpeedIdx];
-        document.getElementById('speed-btn').innerHTML = speedLabels[currentSpeedIdx];
-        
-        if (isLooping) {
-            stopLooping();
-            isLooping = true;
-            playAndLoop();
-        }
-    }
-
-    function playAndLoop() {
-        if(!isLooping || sentenceList.length === 0) return;
-        window.speechSynthesis.cancel(); 
-        const utterance = new SpeechSynthesisUtterance(sentenceList[currentSentenceIdx].en);
-        utterance.lang = 'en-US'; utterance.rate = currentSpeechRate; 
-        utterance.onend = function() { if(isLooping) loopTimeout = setTimeout(playAndLoop, 1000); };
-        window.speechSynthesis.speak(utterance);
-    }
-
-    function stopLooping() { isLooping = false; window.speechSynthesis.cancel(); clearTimeout(loopTimeout); }
-    function toggleAudio() { if (isLooping) stopLooping(); else { isLooping = true; playAndLoop(); } updateAudioBtnText(); }
-    function updateAudioBtnText() {
-        const btn = document.getElementById('audio-toggle-btn');
-        if(btn) { btn.innerHTML = isLooping ? '⏸️ 음성 반복 멈춤' : '▶️ 원어민 음성 재생'; btn.style.background = isLooping ? '#E53E3E' : '#3182CE'; }
-    }
-
-    function loadDictationSentence() {
-        if(sentenceList.length === 0) return;
-        stopLooping(); updateEvolutionUI('dict-evo', currentSentenceIdx, sentenceList.length);
-        const currentSenObj = sentenceList[currentSentenceIdx];
-        document.getElementById('sentence-status').innerText = `영작 문제 ${currentSentenceIdx + 1} / ${sentenceList.length}`;
-        document.getElementById('sentence-ko-text').innerText = currentSenObj.ko;
-        
-        const answerArea = document.getElementById('answer-area'); answerArea.innerHTML = '';
-        answerArea.style.backgroundColor = 'var(--bg-color)'; answerArea.style.borderColor = 'var(--main-green)';
-        
-        const scrambledDiv = document.getElementById('scrambled-words'); scrambledDiv.innerHTML = '';
-        let words = currentSenObj.en.split(' ').filter(w => w.trim() !== '');
-        let scrambled = shuffleArray([...words]);
-        
-        scrambled.forEach(word => {
-            const btn = document.createElement('button'); btn.className = 'word-block'; btn.innerText = word;
-            btn.onclick = function() {
-                if (this.parentElement.id === 'scrambled-words') answerArea.appendChild(this); 
-                else scrambledDiv.appendChild(this); 
-                if (scrambledDiv.children.length === 0) checkDictationSentence();
-            };
-            scrambledDiv.appendChild(btn);
-        });
-
-        if (!window.dictSortable) {
-            window.dictSortable = new Sortable(answerArea, {
-                animation: 300, easing: "cubic-bezier(0.25, 1, 0.5, 1)", ghostClass: 'sortable-ghost', dragClass: 'sortable-drag', swapThreshold: 0.65, 
-                onEnd: function () { if (document.getElementById('scrambled-words').children.length === 0) checkDictationSentence(); }
-            });
-        }
-        isLooping = true; playAndLoop(); updateAudioBtnText();
-    }
-    
-    function checkDictationSentence() {
-        const answerArea = document.getElementById('answer-area');
-        const studentSentence = Array.from(answerArea.children).map(btn => btn.innerText.trim()).join(' ');
-        const targetSentence = sentenceList[currentSentenceIdx].en;
-        const normalize = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, ''); // 알파벳/숫자만 남겨 대소문자 특수문자 무시
-
-        if (normalize(studentSentence) === normalize(targetSentence)) {
-            playCorrectSFX(); handleCombo(true);
-            answerArea.style.backgroundColor = '#C6F6D5'; answerArea.style.borderColor = '#48BB78';
-            recordDictationProgress(); stopLooping(); updateAudioBtnText();
-            setTimeout(() => { nextDictationSentence(); }, 800); 
-        } else {
-            playWrongSFX(); handleCombo(false);
-            answerArea.style.backgroundColor = '#FED7D7';
-            setTimeout(() => { answerArea.style.backgroundColor = 'var(--bg-color)'; }, 400);
-        }
-    }
-    
-    function nextDictationSentence() {
-        if (currentSentenceIdx + 1 < sentenceList.length) { currentSentenceIdx++; loadDictationSentence(); } 
-        else { 
-            stopLooping(); updateAudioBtnText(); updateEvolutionUI('dict-evo', sentenceList.length, sentenceList.length); triggerConfetti();
-            setTimeout(() => { alert('수리나무 마스터 달성! 영작 훈련을 모두 완료했습니다! 🐉🎉'); }, 300);
-        }
-    }
-    function jumpToSentence() {
-        const num = parseInt(document.getElementById('startSenNum').value);
-        if (num >= 1 && num <= sentenceList.length) { currentSentenceIdx = num - 1; comboCount = 0; loadDictationSentence(); } 
-        else alert(`1에서 ${sentenceList.length} 사이의 번호를 입력하세요.`);
-    }
-
-    function recordDictationProgress() {
-        const dateKey = getTodayKey(); let history = JSON.parse(localStorage.getItem('surinamu_dictation_history')) || {};
-        if (!history[dateKey]) history[dateKey] = { dictation: 0 }; history[dateKey].dictation++;
-        localStorage.setItem('surinamu_dictation_history', JSON.stringify(history));
-    }
-
-    // ==========================================
-    // 3. 문법 분석 (시제)
-    // ==========================================
-    let curGramIdx = 0; let gramStage = 1; let activeChunk = 0; let gramAnswers = [];
-
-    function startGrammarTest() {
-        curGramIdx = 0; gramStage = 1;
-        document.getElementById('intro-screen-gram').style.display = 'none'; document.getElementById('result-screen-gram').style.display = 'none';
-        document.getElementById('quiz-screen-gram').style.display = 'block'; loadGrammar();
-    }
-
-    function loadGrammar() {
-        updateEvolutionUI('gram-evo', curGramIdx, grammarList.length);
-        const d = grammarList[curGramIdx];
-        let badge = document.getElementById('gram-level-badge');
-        badge.innerText = "1단계: 품사(구/절) 찾기"; badge.style.color = "var(--main-green)"; badge.style.background = "#C6F6D5";
-        document.getElementById('gram-count').innerText = `${curGramIdx + 1} / ${grammarList.length}`;
-        document.getElementById('gram-ko').innerText = d[0];
-        document.getElementById('gram-result-container').innerHTML = ''; document.getElementById('gram-step1-exp').classList.remove('show');
-        document.getElementById('gram-choices').style.display = 'flex';
-        
-        const container = document.getElementById('gram-chunks'); container.innerHTML = '';
-        gramAnswers = new Array(d[1].length).fill(null); activeChunk = 0;
-
-        d[1].forEach((c, i) => {
-            container.innerHTML += `<div class="chunk-card ${i===0?'active':''}" onclick="activeChunk=${i}; renderChunks();"><div class="chunk-txt">${c[0]}</div><div class="chunk-ans" id="ans-${i}">?</div></div>`;
-        });
-        renderChoices();
-    }
-
-    function renderChunks() { document.querySelectorAll('.chunk-card').forEach((c, i) => { c.classList.toggle('active', i === activeChunk); }); }
-    function renderChoices() {
-        const grid = document.getElementById('gram-choices'); grid.innerHTML = '';
-        const list = (gramStage === 1) ? chunkPosList : roleList;
-        list.forEach(item => { grid.innerHTML += `<button class="choice-btn" onclick="pickGram('${item}')">${item}</button>`; });
-    }
-
-    function getSimplePos(detail, role) {
-        if (detail.includes("대명사")) return "대명사";
-        if (detail.includes("동사") && !detail.includes("동명사") && !detail.includes("부정사") && !detail.includes("분사")) return "동사";
-        if (detail.includes("접속사")) return "접속사(절)";
-        if (detail.includes("명사") || detail.includes("동명사")) return "명사(구/절)";
-        if (role === "보어" && (detail.includes("부정사") || detail.includes("분사") || detail.includes("형용사"))) return "형용사(구/절)";
-        if ((role === "주어" || role === "목적어") && detail.includes("부정사")) return "명사(구/절)";
-        if (detail.includes("형용사") || detail.includes("분사")) return "형용사(구/절)";
-        if (detail.includes("부사") || detail.includes("전치사")) return "부사(구/절)";
-        return "명사(구/절)";
-    }
-
-    function getPattern(roles) {
-        if (roles.includes("목적격보어") || (roles.includes("목적어") && roles.includes("보어"))) return "5형식 (S+V+O+O.C)"; 
-        if (roles.filter(r => r === "목적어").length >= 2 || roles.includes("간접목적어")) return "4형식 (S+V+I.O+D.O)";
-        if (roles.includes("목적어")) return "3형식 (S+V+O)";
-        if (roles.includes("보어")) return "2형식 (S+V+S.C)";
-        return "1형식 (S+V+[M])";
-    }
-
-    function pickGram(val) {
-        const d = grammarList[curGramIdx];
-        const detailedPos = d[1][activeChunk][1]; const correctStep2 = d[1][activeChunk][2]; const correctStep1 = getSimplePos(detailedPos, correctStep2); 
-        const correct = (gramStage === 1) ? correctStep1 : correctStep2;
-        const card = document.querySelectorAll('.chunk-card')[activeChunk];
-        
-        if(val === correct) {
-            playCorrectSFX();
-            gramAnswers[activeChunk] = val;
-            document.getElementById(`ans-${activeChunk}`).innerText = val;
-            document.getElementById(`ans-${activeChunk}`).style.color = (gramStage===1)?'#2F855A':'#3182CE';
-            card.classList.add('correct');
-            
-            let next = gramAnswers.indexOf(null);
-            if(next !== -1) { activeChunk = next; renderChunks(); } 
-            else {
-                if(gramStage === 1) {
-                    playEvolutionSFX();
-                    let descHtml = d[1].map(c => {
-                        let word = c[0]; let detail = c[1]; let simple = getSimplePos(detail, c[2]);
-                        if (detail === simple || detail === "대명사" || detail === "동사") return ""; 
-                        return `<div class="detail-row"><b>${word}</b>는 <b>[${detail}]</b> 형태로서 이 안에서 <b>${simple}</b> 역할을 했어요.</div>`;
-                    }).join('');
-                    if(descHtml === "") descHtml = "<div class='detail-row'>이 문장은 복잡한 구나 절 없이 기본 단어들로 깔끔하게 이루어져 있어요!</div>";
-                    document.getElementById('gram-choices').style.display = 'none';
-                    document.getElementById('gram-step1-desc').innerHTML = descHtml;
-                    document.getElementById('gram-step1-exp').classList.add('show');
-                } else {
-                    playEvolutionSFX();
-                    let patternStr = getPattern(d[1].map(c => c[2]));
-                    document.getElementById('gram-choices').style.display = 'none';
-                    document.getElementById('gram-result-container').innerHTML = `
-                        <div class="pattern-alert">
-                            <div class="pattern-title">🎉 완벽하게 분석했습니다!</div>
-                            <div class="pattern-desc">${patternStr}</div>
-                            <button class="step-btn blue" style="margin-top:20px;" onclick="nextGrammar()">다음 문장 분석하기 ➔</button>
-                        </div>`;
-                    recordGrammarProgress();
-                }
-            }
-        } else {
-            playWrongSFX();
-            card.style.borderColor = '#E53E3E';
-            setTimeout(()=> { if(card.classList.contains('active')) card.style.borderColor = '#3182CE'; else card.style.borderColor = '#CBD5E0'; }, 600);
-        }
-    }
-    
-    function startGrammarStep2() {
-        document.getElementById('gram-step1-exp').classList.remove('show'); gramStage = 2;
-        let badge = document.getElementById('gram-level-badge'); badge.innerText = "2단계: 문장 성분 맞히기"; badge.style.color = "#3182CE"; badge.style.background = "#EBF8FF";
-        document.querySelectorAll('.chunk-card').forEach(c => { c.classList.remove('correct'); c.style.backgroundColor='white'; });
-        document.querySelectorAll('.chunk-ans').forEach(a => { a.innerText = "?"; a.style.color = "#A0AEC0"; });
-        document.getElementById('gram-choices').style.display = 'flex';
-        gramAnswers.fill(null); activeChunk = 0; renderChunks(); renderChoices();
-    }
-
-    function nextGrammar() {
-        curGramIdx++;
-        if(curGramIdx < grammarList.length) { gramStage = 1; loadGrammar(); } 
-        else {
-            updateEvolutionUI('gram-evo', grammarList.length, grammarList.length); triggerConfetti();
-            setTimeout(() => { document.getElementById('quiz-screen-gram').style.display = 'none'; document.getElementById('result-screen-gram').style.display = 'block'; }, 500);
-        }
-    }
-
-    function resetGrammarTest() { document.getElementById('result-screen-gram').style.display = 'none'; document.getElementById('intro-screen-gram').style.display = 'block'; }
-    function recordGrammarProgress() {
-        const dateKey = getTodayKey(); let history = JSON.parse(localStorage.getItem('surinamu_grammar_history')) || {};
-        if (!history[dateKey]) history[dateKey] = { count: 0 }; history[dateKey].count++;
-        localStorage.setItem('surinamu_grammar_history', JSON.stringify(history));
-    }
-    function saveHistory(type, data) {
-        let history = JSON.parse(localStorage.getItem(`surinamu_${type}_history`)) || [];
-        history.unshift({ date: formatDate(new Date()), ...data });
-        localStorage.setItem(`surinamu_${type}_history`, JSON.stringify(history));
-    }
-
-    // ==========================================
-    // 4. 명예의 전당 (기록)
-    // ==========================================
-    function renderHistory() {
-        const historyList = document.getElementById('history-list'); historyList.innerHTML = '';
-        let wordHistory = JSON.parse(localStorage.getItem('surinamu_word_history')) || [];
-        let dictHistory = JSON.parse(localStorage.getItem('surinamu_dictation_history')) || {};
-        let gramHistory = JSON.parse(localStorage.getItem('surinamu_grammar_history')) || {};
-
-        const wordTitle = document.createElement('div'); wordTitle.className = 'history-category'; wordTitle.innerHTML = '📝 단어 100점 테스트'; historyList.appendChild(wordTitle);
-        if(wordHistory.length === 0) { historyList.innerHTML += '<p style="color:#A0AEC0; font-size:14px;">응시 기록이 없습니다.</p>'; } 
-        else {
-            wordHistory.slice(0, 3).forEach(item => {
-                let stamp = item.score >= 90 ? '<div class="stamp-excellent">마스터 용! 🐉</div>' : ''; 
-                historyList.innerHTML += `<div class="history-card"><div class="history-info"><span class="history-date">${item.date}</span><span class="history-score">${item.score}점 <span style="font-size:14px; color:#A0AEC0;">(${item.correct}/${item.total})</span></span></div>${stamp}</div>`;
-            });
-        }
-
-        const dictTitle = document.createElement('div'); dictTitle.className = 'history-category'; dictTitle.innerHTML = '🎧 영작(딕테이션) 달성도'; historyList.appendChild(dictTitle);
-        const dictDates = Object.keys(dictHistory).sort((a, b) => new Date(b) - new Date(a));
-        if(dictDates.length === 0) { historyList.innerHTML += '<p style="color:#A0AEC0; font-size:14px;">훈련 기록이 없습니다.</p>'; } 
-        else {
-            dictDates.slice(0, 3).forEach(date => {
-                const data = dictHistory[date]; let stamp = data.dictation >= 10 ? '<span class="stamp-excellent" style="font-size:14px;">멋진 진화! 🐉</span>' : ''; 
-                historyList.innerHTML += `<div class="history-card"><div class="history-info"><span class="history-date">${date.replace(/-/g, '. ')}</span><span class="history-score">${data.dictation}문장 <span style="font-size:14px; color:#A0AEC0;">성공</span></span></div>${stamp}</div>`;
-            });
-        }
-
-        const gramTitle = document.createElement('div'); gramTitle.className = 'history-category'; gramTitle.innerHTML = '🧩 문장 분석 달성도'; historyList.appendChild(gramTitle);
-        const gramDates = Object.keys(gramHistory).sort((a, b) => new Date(b) - new Date(a));
-        if(gramDates.length === 0) { historyList.innerHTML += '<p style="color:#A0AEC0; font-size:14px;">분석 기록이 없습니다.</p>'; } 
-        else {
-            gramDates.slice(0, 3).forEach(date => {
-                const data = gramHistory[date]; let stamp = data.count >= 10 ? '<span class="stamp-excellent" style="font-size:14px;">문법 마스터! 🐉</span>' : ''; 
-                historyList.innerHTML += `<div class="history-card"><div class="history-info"><span class="history-date">${date.replace(/-/g, '. ')}</span><span class="history-score">${data.count}문장 <span style="font-size:14px; color:#A0AEC0;">분석완료</span></span></div>${stamp}</div>`;
-            });
-        }
-    }
-
-    // ==========================================
-    // 5. 오답 복습 기능 (나만의 몬스터 도감)
-    // ==========================================
-    function saveWrongWord(wordObj) {
-        let list = JSON.parse(localStorage.getItem('surinamu_wrong_words') || '[]');
-        if (!list.find(w => w.en === wordObj.en)) {
-            list.push(wordObj);
-            localStorage.setItem('surinamu_wrong_words', JSON.stringify(list));
-        }
-    }
-
-    function renderReview() {
-        const listDiv = document.getElementById('wrong-word-list');
-        listDiv.innerHTML = '';
-        let list = JSON.parse(localStorage.getItem('surinamu_wrong_words') || '[]');
-        
-        if (list.length === 0) {
-            listDiv.innerHTML = '<div style="padding: 20px; text-align: center; color: #48BB78; font-weight: bold; background: #F0FDF4; border-radius: 10px;">🎉 현재 등록된 오답이 없습니다! 완벽해요!</div>';
-            return;
-        }
-
-        list.forEach((w, idx) => {
-            listDiv.innerHTML += `
-                <div class="wrong-word-item">
-                    <div>
-                        <div class="wrong-en">${w.en}</div>
-                        <div class="wrong-ko">${w.ko}</div>
-                    </div>
-                    <button class="delete-btn" onclick="deleteWrongWord(${idx})">외웠음 ✓</button>
-                </div>
-            `;
-        });
-    }
-
-    function deleteWrongWord(idx) {
-        let list = JSON.parse(localStorage.getItem('surinamu_wrong_words') || '[]');
-        list.splice(idx, 1);
-        localStorage.setItem('surinamu_wrong_words', JSON.stringify(list));
-        renderReview();
-    }
-
-    function clearWrongWords() {
-        if(confirm("오답 도감을 전부 비울까요?")) {
-            localStorage.removeItem('surinamu_wrong_words');
-            renderReview();
-        }
-    }
+    arr.forEach((w,i)=>{
+        div.insertAdjacentHTML('beforeend',`
+            <div class="wrong-item">
+                <div><div class="wrong-en">${w.en}</div><div class="wrong-ko">${w.ko}</div></div>
+                <button class="del-btn" onclick="delWrong(${i})">외웠음 ✓</button>
+            </div>`);
+    });
+}
+function delWrong(i){
+    let arr=JSON.parse(localStorage.getItem('hl_wrong')||'[]');
+    arr.splice(i,1); localStorage.setItem('hl_wrong',JSON.stringify(arr)); renderReview();
+}
+function clearWrong(){
+    if(confirm('오답 도감을 전부 비울까요?')){ localStorage.removeItem('hl_wrong'); renderReview(); }
+}
 </script>
-
 </body>
 </html>
