@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>수리나무학원 - Cuckoo Legends in Europe</title>
+    <title>수리나무학원 - 고1 주제 2문제</title>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --main: #4a3fa0;
-            --accent: #7bc043;
-            --light: #f0eeff;
-            --bg: #f5f4ff;
-            --text: #1e1a3a;
+            --main: #1a5c9a;
+            --accent: #f5a623;
+            --light: #eef7ff;
+            --bg: #f3f8ff;
+            --text: #102033;
             --green: #27ae60;
             --red: #e74c3c;
             --shadow: 0 8px 32px rgba(74,63,160,0.13);
@@ -22,15 +22,15 @@
         #app { max-width: 480px; margin: 0 auto; background: white; border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; padding-bottom: 30px; position: relative; }
 
         /* HEADER */
-        .header { background: linear-gradient(135deg, #4a3fa0 0%, #2d2470 100%); color: white; padding: 28px 20px 20px; text-align: center; }
-        .header-badge { background: var(--accent); color: #1e3a00; font-size: 11px; font-weight: 900; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; letter-spacing: 1px; }
+        .header { background: linear-gradient(135deg, #1a5c9a 0%, #0f355a 100%); color: white; padding: 28px 20px 20px; text-align: center; }
+        .header-badge { background: var(--accent); color: #3b2600; font-size: 11px; font-weight: 900; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; letter-spacing: 1px; }
         .header h1 { margin: 0 0 4px; font-size: 19px; font-weight: 900; line-height: 1.3; }
         .header p { margin: 0; font-size: 13px; opacity: 0.8; }
 
         /* NAV */
         .nav { display: flex; padding: 12px 12px 0; gap: 6px; }
         .nav-btn { flex: 1; padding: 9px 2px; border: none; border-radius: 10px; background: #edf2f7; color: #4a5568; font-size: 12px; font-weight: 700; cursor: pointer; transition: .2s; }
-        .nav-btn:hover { background: #ddd8f5; }
+        .nav-btn:hover { background: #d9ecff; }
         .nav-btn.active { background: var(--main); color: white; }
         .nav-btn.review-btn { background: #fde8e8; color: var(--red); }
         .nav-btn.review-btn.active { background: var(--red); color: white; }
@@ -41,11 +41,11 @@
         @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
         /* EVO BOX */
-        .evo-box { background: var(--light); border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; border: 1.5px solid #ccc8f0; }
+        .evo-box { background: var(--light); border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; border: 1.5px solid #b9d9f5; }
         .evo-emoji { font-size: 2.8rem; display: inline-block; transition: transform .3s cubic-bezier(.17,.89,.32,1.27); }
         .evo-name { font-size: 14px; font-weight: 900; color: var(--main); margin: 3px 0 9px; }
-        .prog-bg { background: #ddd8f5; height: 11px; border-radius: 8px; overflow: hidden; }
-        .prog-bar { background: linear-gradient(90deg, #7bc043, #4a3fa0); height: 100%; width: 0%; transition: width .5s ease; border-radius: 8px; }
+        .prog-bg { background: #d9ecff; height: 11px; border-radius: 8px; overflow: hidden; }
+        .prog-bar { background: linear-gradient(90deg, #f5a623, #1a5c9a); height: 100%; width: 0%; transition: width .5s ease; border-radius: 8px; }
 
         /* STATUS ROW */
         .status-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -55,16 +55,16 @@
         /* WORD TEST */
         .word-display { font-size: 1.9rem; font-weight: 900; color: var(--main); margin: 14px 0 20px; text-align: center; word-break: keep-all; line-height: 1.3; }
         .options-grid { display: grid; gap: 10px; margin-bottom: 14px; }
-        .opt-btn { background: white; border: 2px solid #e2dcf5; padding: 13px 16px; border-radius: 13px; font-size: 15px; font-weight: 700; cursor: pointer; text-align: left; transition: .15s; color: var(--text); }
+        .opt-btn { background: white; border: 2px solid #cfe4f8; padding: 13px 16px; border-radius: 13px; font-size: 15px; font-weight: 700; cursor: pointer; text-align: left; transition: .15s; color: var(--text); }
         .opt-btn:hover { border-color: var(--main); background: var(--light); }
         .opt-btn.correct { background: #d4edda; border-color: var(--green); color: var(--green); transform: scale(1.02); }
         .opt-btn.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); animation: shake .4s; }
 
         /* DICTATION */
-        .ko-meaning { background: #f5f0ff; border-left: 4px solid var(--main); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-weight: 800; color: #2d2470; margin-bottom: 13px; word-break: keep-all; line-height: 1.6; }
+        .ko-meaning { background: #eef7ff; border-left: 4px solid var(--main); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-weight: 800; color: #0f355a; margin-bottom: 13px; word-break: keep-all; line-height: 1.6; }
         #answer-area { min-height: 56px; border: 2px dashed var(--main); background: var(--light); padding: 11px; border-radius: 13px; display: flex; flex-wrap: wrap; gap: 7px; align-items: center; justify-content: center; margin-bottom: 10px; transition: background .3s; }
         #scramble-area { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; min-height: 44px; margin-bottom: 13px; }
-        .word-chip { background: white; border: 2px solid #ccc8f0; padding: 8px 13px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: .15s; user-select: none; touch-action: manipulation; }
+        .word-chip { background: white; border: 2px solid #b9d9f5; padding: 8px 13px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: .15s; user-select: none; touch-action: manipulation; }
         .word-chip:active { transform: translateY(2px); }
         .sortable-ghost { opacity: .35; background: #edf2f7 !important; }
         .sortable-drag { background: var(--main) !important; color: white !important; transform: scale(1.06) !important; }
@@ -76,26 +76,26 @@
         .play-btn.playing { background: var(--red); }
 
         /* ANALYSIS */
-        .analysis-ko { background: var(--light); border-left: 4px solid var(--main); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-weight: 800; color: #2d2470; margin-bottom: 13px; word-break: keep-all; line-height: 1.6; }
+        .analysis-ko { background: var(--light); border-left: 4px solid var(--main); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-weight: 800; color: #0f355a; margin-bottom: 13px; word-break: keep-all; line-height: 1.6; }
         .stage-badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; }
         .stage1 { background: #c6f6d5; color: #276749; }
-        .stage2 { background: #e0d9ff; color: #4a3fa0; }
+        .stage2 { background: #e0d9ff; color: #1a5c9a; }
         .chunks-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 13px; }
-        .chunk-card { border: 2px solid #e2dcf5; border-radius: 10px; min-width: 66px; background: white; cursor: pointer; overflow: hidden; transition: .2s; }
+        .chunk-card { border: 2px solid #cfe4f8; border-radius: 10px; min-width: 66px; background: white; cursor: pointer; overflow: hidden; transition: .2s; }
         .chunk-card.active { border-color: var(--main); box-shadow: 0 0 0 3px rgba(74,63,160,.15); transform: translateY(-2px); }
         .chunk-card.done  { border-color: var(--green); background: #f0fff4; pointer-events: none; }
         .chunk-card.done2 { border-color: var(--main); background: var(--light); pointer-events: none; }
-        .chunk-en { padding: 7px 8px; font-size: 12px; font-weight: 800; background: #f7f5ff; border-bottom: 1px dashed #e2dcf5; text-align: center; }
+        .chunk-en { padding: 7px 8px; font-size: 12px; font-weight: 800; background: #f6fbff; border-bottom: 1px dashed #cfe4f8; text-align: center; }
         .chunk-ans { padding: 5px 6px; font-size: 11px; font-weight: 900; color: #a0aec0; text-align: center; min-height: 22px; }
         .choices-wrap { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-bottom: 10px; }
         .choice-btn { flex: 1 1 calc(33% - 7px); padding: 10px 4px; background: #edf2f7; border: none; border-radius: 10px; font-size: 12px; font-weight: 800; color: var(--text); cursor: pointer; transition: .15s; line-height: 1.3; text-align: center; }
-        .choice-btn:active { background: #ccc8f0; transform: scale(.96); }
+        .choice-btn:active { background: #b9d9f5; transform: scale(.96); }
         .info-box { display: none; background: white; border: 2.5px solid var(--accent); border-radius: 14px; padding: 16px; margin-top: 13px; animation: fadeIn .35s; }
         .info-box.show { display: block; }
         .info-title { font-size: 15px; font-weight: 900; margin-bottom: 10px; }
-        .detail-row { background: #f7f5ff; padding: 9px 12px; border-radius: 8px; margin-bottom: 7px; border-left: 3px solid var(--main); font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.6; }
-        .pattern-box { background: #f5f0ff; border: 3px dashed var(--main); border-radius: 14px; padding: 18px; text-align: center; margin-top: 13px; animation: fadeIn .4s; }
-        .pattern-title { font-size: 16px; color: #2d2470; font-weight: 900; margin-bottom: 8px; }
+        .detail-row { background: #f6fbff; padding: 9px 12px; border-radius: 8px; margin-bottom: 7px; border-left: 3px solid var(--main); font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.6; }
+        .pattern-box { background: #eef7ff; border: 3px dashed var(--main); border-radius: 14px; padding: 18px; text-align: center; margin-top: 13px; animation: fadeIn .4s; }
+        .pattern-title { font-size: 16px; color: #0f355a; font-weight: 900; margin-bottom: 8px; }
         .pattern-val { font-size: 18px; color: var(--main); font-weight: 900; }
 
         /* COMMON BTNS */
@@ -127,35 +127,100 @@
         .del-btn { background: #edf2f7; border: none; padding: 5px 9px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: #718096; }
 
         /* COMBO */
-        #combo { position: absolute; top: 28%; left: 50%; transform: translate(-50%,-50%) scale(.5); font-size: 2.8rem; font-weight: 900; color: #7bc043; text-shadow: 0 3px 10px rgba(123,192,67,.5); opacity: 0; pointer-events: none; z-index: 99; }
+        #combo { position: absolute; top: 28%; left: 50%; transform: translate(-50%,-50%) scale(.5); font-size: 2.8rem; font-weight: 900; color: #f5a623; text-shadow: 0 3px 10px rgba(123,192,67,.5); opacity: 0; pointer-events: none; z-index: 99; }
         .combo-pop { animation: comboAnim 1s cubic-bezier(.17,.89,.32,1.27) forwards; }
         @keyframes comboAnim { 0%{opacity:0;transform:translate(-50%,-30%) scale(.5)} 20%{opacity:1;transform:translate(-50%,-50%) scale(1.2)} 80%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-60%) scale(.8)} }
         @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-5px)} 50%{transform:translateX(5px)} 75%{transform:translateX(-5px)} 100%{transform:translateX(0)} }
 
-        .setup-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 13px; background: white; border: 1.5px solid #e2dcf5; padding: 9px 13px; border-radius: 12px; }
-        .setup-row input { padding: 6px 8px; font-size: 14px; border: 1.5px solid #e2dcf5; border-radius: 8px; width: 55px; text-align: center; }
+        .setup-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 13px; background: white; border: 1.5px solid #cfe4f8; padding: 9px 13px; border-radius: 12px; }
+        .setup-row input { padding: 6px 8px; font-size: 14px; border: 1.5px solid #cfe4f8; border-radius: 8px; width: 55px; text-align: center; }
         .setup-row button { padding: 7px 12px; background: var(--main); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
+
+
+        /* PROBLEM READING */
+        .problem-card { background: #fff; border: 2px solid #cfe4f8; border-radius: 16px; padding: 15px; margin-bottom: 14px; line-height: 1.75; }
+        .problem-title { font-size: 17px; font-weight: 900; color: var(--main); margin: 0 0 10px; }
+        .problem-passage { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color: #1f2937; line-height: 1.9; text-align: left; }
+        .problem-vocab { text-align:right; font-size:13px; color:#4a5568; font-weight:700; margin-top:8px; }
+        .question-box { background: var(--light); border-left: 4px solid var(--main); padding: 12px 13px; border-radius: 12px; margin: 14px 0; font-size: 15px; font-weight: 900; line-height: 1.55; }
+        .choice-list { display: grid; gap: 9px; margin: 12px 0; }
+        .q-choice { width: 100%; background: white; border: 2px solid #cfe4f8; border-radius: 12px; padding: 12px 13px; text-align: left; font-size: 14px; font-weight: 800; color: var(--text); cursor: pointer; line-height: 1.45; }
+        .q-choice:hover { background: var(--light); border-color: var(--main); }
+        .q-choice.selected { border-color: var(--main); background: #eef7ff; box-shadow: 0 0 0 3px rgba(26,92,154,.12); }
+        .q-choice.correct { border-color: var(--green); background: #d4edda; color: #176b37; }
+        .q-choice.wrong { border-color: var(--red); background: #fde8e8; color: #b83227; }
+        .result-box { display:none; border-radius: 14px; padding: 14px; margin-top: 14px; line-height: 1.65; }
+        .result-box.correct { display:block; background:#f0fff4; border:2px solid var(--green); }
+        .result-box.wrong { display:block; background:#fff5f5; border:2px solid var(--red); }
+        .explain-wrap { display:none; margin-top: 14px; }
+        .explain-wrap.show { display:block; animation: fadeIn .35s; }
+        .explain-card { background: white; border: 1.5px solid #cfe4f8; border-radius: 13px; padding: 12px 13px; margin-bottom: 10px; line-height: 1.65; }
+        .ex-en { font-family: Georgia, 'Times New Roman', serif; font-size: 15px; font-weight: 800; color: #102033; margin-bottom: 5px; }
+        .ex-ko { font-size: 14px; font-weight: 800; color: #0f355a; margin-bottom: 6px; }
+        .ex-gram { font-size: 13px; color: #4a5568; }
+        .pill { display:inline-block; background:#fffbeb; color:#8a6300; border:1px solid #f6c94e; border-radius:20px; padding:2px 8px; font-size:12px; font-weight:900; margin-right:4px; }
     </style>
 </head>
 <body>
 <div id="app">
     <div id="combo"></div>
     <div class="header">
-        <div class="header-badge">Reading 2 · Legends</div>
-        <h1>🐦 Cuckoo Legends in Europe</h1>
-        <p>수리나무학원 스마트 영어 학습</p>
+        <div class="header-badge">고1 영어 · 주제 2문제</div>
+        <h1>🌱 Crop Rotation & Hardship</h1>
+        <p>수리나무학원 스마트 영어 학습 · iPhone 음성 최적화</p>
     </div>
 
     <div class="nav">
-        <button class="nav-btn active" onclick="showSection('word-sec',this)">1.단어</button>
+        <button class="nav-btn active" onclick="showSection('problem-sec',this)">문제</button>
+        <button class="nav-btn" onclick="showSection('word-sec',this)">1.단어</button>
         <button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
         <button class="nav-btn" onclick="showSection('anal-sec',this)">3.분석</button>
         <button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
         <button class="nav-btn review-btn" onclick="showSection('rev-sec',this);renderReview()">5.오답</button>
     </div>
 
+    <!-- ===== 0. PROBLEM ===== -->
+    <div id="problem-sec" class="section active">
+        <div class="question-box">고등부 교재 형식: 먼저 문제를 풀고, 채점 후 한 줄 해석 · 문법 · 구문 · 중요표현을 확인하세요.</div>
+
+        <div class="problem-card" id="problem-1">
+            <div class="problem-title">1. 다음 글의 주제로 가장 적절한 것은?</div>
+            <div class="problem-passage">
+                Crop rotation is the process in which farmers change the crops they grow in their fields in a special order. For example, if a farmer has three fields, he or she may grow carrots in the first field, green beans in the second, and tomatoes in the third. The next year, green beans will be in the first field, tomatoes in the second field, and carrots will be in the third. In year three, the crops will rotate again. By the fourth year, the crops will go back to their original order. Each crop enriches the soil for the next crop. This type of farming is sustainable because the soil stays healthy.
+            </div>
+            <div class="problem-vocab">* sustainable: 지속 가능한</div>
+            <div class="choice-list">
+                <button class="q-choice q1" data-q="0" data-n="1" onclick="selectProblemChoice(this)">① advantage of crop rotation in maintaining soil health</button>
+                <button class="q-choice q1" data-q="0" data-n="2" onclick="selectProblemChoice(this)">② influence of purchasing organic food on farmers</button>
+                <button class="q-choice q1" data-q="0" data-n="3" onclick="selectProblemChoice(this)">③ ways to choose three important crops for rich soil</button>
+                <button class="q-choice q1" data-q="0" data-n="4" onclick="selectProblemChoice(this)">④ danger of growing diverse crops in small spaces</button>
+                <button class="q-choice q1" data-q="0" data-n="5" onclick="selectProblemChoice(this)">⑤ negative impact of crop rotation on the environment</button>
+            </div>
+            <button class="primary-btn" onclick="checkProblem(0)">1번 정답 확인하고 해설 보기 ✅</button>
+            <div id="problem-result-0" class="result-box"></div>
+            <div id="line-explain-0" class="explain-wrap"></div>
+        </div>
+
+        <div class="problem-card" id="problem-2">
+            <div class="problem-title">2. 다음 글의 주제로 가장 적절한 것은?</div>
+            <div class="problem-passage">
+                We often try to make cuts in our challenges and take the easy route. When taking the quick exit, we fail to acquire the strength to compete. We often take the easy route to improve our skills. Many of us never really work to achieve mastery in the key areas of life. These skills are key tools that can be useful to our career, health, and prosperity. Highly successful athletes don’t win because of better equipment; they win by facing hardship to gain strength and skill. They win through preparation. It’s the mental preparation, winning mindset, strategy, and skill that set them apart. Strength comes from struggle, not from taking the path of least resistance. Hardship is not just a lesson for the next time in front of us. Hardship will be the greatest teacher we will ever have in life.
+            </div>
+            <div class="choice-list">
+                <button class="q-choice q2" data-q="1" data-n="1" onclick="selectProblemChoice(this)">① characteristics of well-equipped athletes</button>
+                <button class="q-choice q2" data-q="1" data-n="2" onclick="selectProblemChoice(this)">② difficulties in overcoming life’s sudden challenges</button>
+                <button class="q-choice q2" data-q="1" data-n="3" onclick="selectProblemChoice(this)">③ relationship between personal habit and competence</button>
+                <button class="q-choice q2" data-q="1" data-n="4" onclick="selectProblemChoice(this)">④ risks of enduring hardship without any preparation</button>
+                <button class="q-choice q2" data-q="1" data-n="5" onclick="selectProblemChoice(this)">⑤ importance of confronting hardship in one’s life</button>
+            </div>
+            <button class="primary-btn" onclick="checkProblem(1)">2번 정답 확인하고 해설 보기 ✅</button>
+            <div id="problem-result-1" class="result-box"></div>
+            <div id="line-explain-1" class="explain-wrap"></div>
+        </div>
+    </div>
+
     <!-- ===== 1. WORD ===== -->
-    <div id="word-sec" class="section active">
+    <div id="word-sec" class="section">
         <div id="word-intro" class="intro-wrap">
             <div class="intro-icon">🥚</div>
             <h2>전설의 용 키우기!</h2>
@@ -203,7 +268,7 @@
         <div id="answer-area"></div>
         <div id="scramble-area"></div>
         <div class="audio-row">
-            <button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🐇 보통 속도</button>
+            <button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🍎 iPhone 보통</button>
             <button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">▶️ 원어민 음성 재생</button>
         </div>
     </div>
@@ -265,396 +330,258 @@
 
 <script>
 // ============================================================
-// DATA  ─  Cuckoo Legends in Europe
+// DATA  ─  High School English 23
 // ============================================================
 
-// ── 1. WORD LIST (32개) ──────────────────────────────────────
+// ── 1. WORD LIST ───────────────────────────────────────────
 const wordList = [
     {
-        "en": "cuckoo",
-        "ko": "뻐꾸기"
+        "en": "crop rotation",
+        "ko": "윤작, 작물 돌려짓기"
     },
     {
-        "en": "appear",
-        "ko": "나타나다, 등장하다"
+        "en": "process",
+        "ko": "과정"
     },
     {
-        "en": "legend",
-        "ko": "전설"
+        "en": "farmer",
+        "ko": "농부"
     },
     {
-        "en": "Europe",
-        "ko": "유럽"
+        "en": "field",
+        "ko": "밭, 들판"
     },
     {
-        "en": "Britain",
-        "ko": "영국"
+        "en": "special order",
+        "ko": "특별한 순서"
     },
     {
-        "en": "first call",
-        "ko": "첫 울음소리"
+        "en": "carrot",
+        "ko": "당근"
     },
     {
-        "en": "bring",
-        "ko": "가져오다"
+        "en": "green bean",
+        "ko": "껍질콩"
     },
     {
-        "en": "spring",
-        "ko": "봄"
+        "en": "tomato",
+        "ko": "토마토"
     },
     {
-        "en": "each year",
-        "ko": "매년"
+        "en": "rotate",
+        "ko": "순환하다, 교대하다"
     },
     {
-        "en": "major",
-        "ko": "주요한, 큰"
+        "en": "original",
+        "ko": "원래의"
     },
     {
-        "en": "newspaper",
-        "ko": "신문"
+        "en": "enrich",
+        "ko": "풍부하게 하다"
     },
     {
-        "en": "report",
-        "ko": "보도하다, 알리다"
+        "en": "soil",
+        "ko": "토양"
     },
     {
-        "en": "Russia",
-        "ko": "러시아"
+        "en": "sustainable",
+        "ko": "지속 가능한"
     },
     {
-        "en": "believe",
-        "ko": "믿다"
+        "en": "healthy",
+        "ko": "건강한"
     },
     {
-        "en": "know",
-        "ko": "알다"
+        "en": "advantage",
+        "ko": "장점"
     },
     {
-        "en": "how long",
-        "ko": "얼마나 오래"
+        "en": "maintain",
+        "ko": "유지하다"
     },
     {
-        "en": "person",
-        "ko": "사람"
+        "en": "challenge",
+        "ko": "도전, 어려움"
     },
     {
-        "en": "live",
-        "ko": "살다"
+        "en": "easy route",
+        "ko": "쉬운 길"
     },
     {
-        "en": "hear",
-        "ko": "듣다"
+        "en": "quick exit",
+        "ko": "빠른 탈출구"
     },
     {
-        "en": "woods",
-        "ko": "숲"
+        "en": "fail to",
+        "ko": "~하지 못하다"
     },
     {
-        "en": "ask",
-        "ko": "묻다"
+        "en": "acquire",
+        "ko": "얻다, 습득하다"
     },
     {
-        "en": "be believed",
-        "ko": "믿어지다, 여겨지다"
+        "en": "strength",
+        "ko": "힘, 강점"
     },
     {
-        "en": "one more year",
-        "ko": "1년 더"
+        "en": "compete",
+        "ko": "경쟁하다"
     },
     {
-        "en": "each time",
-        "ko": "~할 때마다"
+        "en": "skill",
+        "ko": "기술, 능력"
     },
     {
-        "en": "call out",
-        "ko": "외치다, 큰 소리로 부르다"
+        "en": "achieve",
+        "ko": "성취하다"
     },
     {
-        "en": "in return",
-        "ko": "그에 대한 응답으로"
+        "en": "mastery",
+        "ko": "숙달, 완성"
     },
     {
-        "en": "France",
-        "ko": "프랑스"
+        "en": "key area",
+        "ko": "핵심 영역"
     },
     {
-        "en": "good luck",
-        "ko": "행운"
+        "en": "prosperity",
+        "ko": "번영, 성공"
     },
     {
-        "en": "pocket",
-        "ko": "주머니"
+        "en": "highly successful",
+        "ko": "매우 성공한"
     },
     {
-        "en": "rich",
-        "ko": "부유한, 돈이 많은"
+        "en": "equipment",
+        "ko": "장비"
     },
     {
-        "en": "all year",
-        "ko": "일 년 내내"
+        "en": "face hardship",
+        "ko": "고난에 맞서다"
     },
     {
-        "en": "mainly about",
-        "ko": "주로 ~에 관한"
+        "en": "preparation",
+        "ko": "준비"
+    },
+    {
+        "en": "mindset",
+        "ko": "사고방식, 마음가짐"
+    },
+    {
+        "en": "strategy",
+        "ko": "전략"
+    },
+    {
+        "en": "set apart",
+        "ko": "구별하다"
+    },
+    {
+        "en": "struggle",
+        "ko": "투쟁, 분투"
+    },
+    {
+        "en": "path of least resistance",
+        "ko": "가장 쉬운 길, 저항이 가장 적은 길"
+    },
+    {
+        "en": "confront",
+        "ko": "직면하다"
+    },
+    {
+        "en": "hardship",
+        "ko": "고난, 역경"
+    },
+    {
+        "en": "teacher",
+        "ko": "스승, 교훈을 주는 존재"
     }
 ];
 
-// ── 2. SENTENCE LIST (9개) ──────────────────────────────────
+// ── 2. SENTENCE LIST ───────────────────────────────────────
 const sentenceList = [
     {
-        "en": "Cuckoos appear in many legends of Europe.",
-        "ko": "뻐꾸기는 유럽의 많은 전설에 등장한다."
+        "en": "Crop rotation is the process in which farmers change the crops they grow in their fields in a special order.",
+        "ko": "윤작은 농부들이 밭에서 기르는 작물을 특별한 순서로 바꾸는 과정이다."
     },
     {
-        "en": "In Britain, people think that the cuckoo's first call brings spring.",
-        "ko": "영국에서 사람들은 뻐꾸기의 첫 울음소리가 봄을 가져온다고 생각한다."
+        "en": "For example, if a farmer has three fields, he or she may grow carrots in the first field, green beans in the second, and tomatoes in the third.",
+        "ko": "예를 들어, 농부에게 세 개의 밭이 있다면, 첫 번째 밭에는 당근을, 두 번째 밭에는 껍질콩을, 세 번째 밭에는 토마토를 기를 수 있다."
     },
     {
-        "en": "Each year, major newspapers report the cuckoo's first calls.",
-        "ko": "매년 주요 신문들은 뻐꾸기의 첫 울음소리를 보도한다."
+        "en": "The next year, green beans will be in the first field, tomatoes in the second field, and carrots will be in the third.",
+        "ko": "다음 해에는 껍질콩이 첫 번째 밭에, 토마토가 두 번째 밭에, 당근이 세 번째 밭에 있게 된다."
     },
     {
-        "en": "In Russia, people believe that the cuckoo knows how long a person will live.",
-        "ko": "러시아에서 사람들은 뻐꾸기가 사람이 얼마나 오래 살지를 안다고 믿는다."
+        "en": "In year three, the crops will rotate again.",
+        "ko": "3년째에는 작물들이 다시 순환한다."
     },
     {
-        "en": "If someone hears a cuckoo's call in the woods, he or she asks, Cuckoo, cuckoo, how long will I live?",
-        "ko": "누군가 숲에서 뻐꾸기 울음소리를 들으면, 그 사람은 ‘뻐꾸기야, 뻐꾸기야, 나는 얼마나 오래 살까?’라고 묻는다."
+        "en": "By the fourth year, the crops will go back to their original order.",
+        "ko": "4년째가 되면 작물들은 원래 순서로 돌아간다."
     },
     {
-        "en": "It is believed that the person will live one more year for each time the bird calls out Cuckoo in return.",
-        "ko": "그 새가 응답으로 ‘뻐꾹’ 하고 울 때마다 그 사람이 1년 더 살 것이라고 믿어진다."
+        "en": "Each crop enriches the soil for the next crop.",
+        "ko": "각 작물은 다음 작물을 위해 토양을 풍부하게 한다."
     },
     {
-        "en": "In France, a legend says it is good luck to hear the first cuckoo call of spring when you have money in your pocket.",
-        "ko": "프랑스에서는 주머니에 돈이 있을 때 봄의 첫 뻐꾸기 울음소리를 듣는 것이 행운이라고 한 전설이 말한다."
+        "en": "This type of farming is sustainable because the soil stays healthy.",
+        "ko": "이런 종류의 농업은 토양이 건강하게 유지되기 때문에 지속 가능하다."
     },
     {
-        "en": "If you do, you will be rich all year!",
-        "ko": "만약 그렇게 하면, 너는 일 년 내내 부유할 것이다!"
+        "en": "We often try to make cuts in our challenges and take the easy route.",
+        "ko": "우리는 종종 도전에서 지름길을 찾고 쉬운 길을 택하려고 한다."
     },
     {
-        "en": "The passage is mainly about some interesting legends about cuckoos.",
-        "ko": "이 글은 주로 뻐꾸기에 관한 흥미로운 전설들에 대한 것이다."
+        "en": "When taking the quick exit, we fail to acquire the strength to compete.",
+        "ko": "빠른 탈출구를 택할 때, 우리는 경쟁할 힘을 얻지 못한다."
+    },
+    {
+        "en": "We often take the easy route to improve our skills.",
+        "ko": "우리는 종종 기술을 향상시키기 위해 쉬운 길을 택한다."
+    },
+    {
+        "en": "Many of us never really work to achieve mastery in the key areas of life.",
+        "ko": "우리 중 많은 사람들은 삶의 핵심 영역에서 숙달을 이루기 위해 진정으로 노력하지 않는다."
+    },
+    {
+        "en": "These skills are key tools that can be useful to our career, health, and prosperity.",
+        "ko": "이러한 기술들은 우리의 직업, 건강, 번영에 유용할 수 있는 핵심 도구이다."
+    },
+    {
+        "en": "Highly successful athletes don’t win because of better equipment; they win by facing hardship to gain strength and skill.",
+        "ko": "매우 성공한 운동선수들은 더 좋은 장비 때문에 이기는 것이 아니라, 힘과 기술을 얻기 위해 고난에 맞섬으로써 이긴다."
+    },
+    {
+        "en": "They win through preparation.",
+        "ko": "그들은 준비를 통해 승리한다."
+    },
+    {
+        "en": "It’s the mental preparation, winning mindset, strategy, and skill that set them apart.",
+        "ko": "그들을 구별되게 만드는 것은 정신적 준비, 이기는 마음가짐, 전략, 그리고 기술이다."
+    },
+    {
+        "en": "Strength comes from struggle, not from taking the path of least resistance.",
+        "ko": "힘은 가장 쉬운 길을 택하는 것이 아니라 분투에서 온다."
+    },
+    {
+        "en": "Hardship is not just a lesson for the next time in front of us.",
+        "ko": "고난은 우리 앞에 놓인 다음번을 위한 단순한 교훈만은 아니다."
+    },
+    {
+        "en": "Hardship will be the greatest teacher we will ever have in life.",
+        "ko": "고난은 우리가 인생에서 갖게 될 가장 위대한 스승일 것이다."
     }
 ];
 
-// ── 3. ANALYSIS LIST (12문장) ────────────────────────────────
-// pos 5종류만 사용: "명사(구/절)" | "대명사" | "형용사(구/절)" | "부사(구/절)" | "동사(구)"
-// note(4번째): 실제 구조(전치사구/to부정사/동명사/접속사절 등) 상세 해설
+// ── 3. ANALYSIS LIST ───────────────────────────────────────
 const analysisList = [
     [
-        "뻐꾸기는 유럽의 많은 전설에 등장한다.",
+        "윤작은 농부들이 밭에서 기르는 작물을 특별한 순서로 바꾸는 과정이다.",
         [
             [
-                "Cuckoos",
+                "Crop rotation",
                 "명사(구/절)",
                 "주어"
-            ],
-            [
-                "appear",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "in many legends of Europe",
-                "부사(구/절)",
-                "수식어",
-                "✦ 전치사 in이 이끄는 전치사구 (부사구)\nappear를 수식하여 ‘어디에 등장하는지’를 설명합니다."
-            ]
-        ]
-    ],
-    [
-        "영국에서 사람들은 뻐꾸기의 첫 울음소리가 봄을 가져온다고 생각한다.",
-        [
-            [
-                "In Britain",
-                "부사(구/절)",
-                "수식어",
-                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n문장 전체의 장소 배경을 나타냅니다."
-            ],
-            [
-                "people",
-                "명사(구/절)",
-                "주어"
-            ],
-            [
-                "think",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "that the cuckoo's first call brings spring",
-                "명사(구/절)",
-                "목적어",
-                "✦ 접속사 that이 이끄는 명사절 (목적어)\nthink의 목적어로 쓰여 ‘무엇을 생각하는지’를 나타냅니다."
-            ]
-        ]
-    ],
-    [
-        "매년 주요 신문들은 뻐꾸기의 첫 울음소리를 보도한다.",
-        [
-            [
-                "Each year",
-                "부사(구/절)",
-                "수식어",
-                "✦ 시간 부사구\n문장 전체를 수식하여 ‘매년’이라는 시간을 나타냅니다."
-            ],
-            [
-                "major newspapers",
-                "명사(구/절)",
-                "주어"
-            ],
-            [
-                "report",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "the cuckoo's first calls",
-                "명사(구/절)",
-                "목적어"
-            ]
-        ]
-    ],
-    [
-        "러시아에서 사람들은 뻐꾸기가 사람이 얼마나 오래 살지를 안다고 믿는다.",
-        [
-            [
-                "In Russia",
-                "부사(구/절)",
-                "수식어",
-                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n문장 전체의 장소 배경을 나타냅니다."
-            ],
-            [
-                "people",
-                "명사(구/절)",
-                "주어"
-            ],
-            [
-                "believe",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "that the cuckoo knows how long a person will live",
-                "명사(구/절)",
-                "목적어",
-                "✦ 접속사 that이 이끄는 명사절 (목적어)\nbelieve의 목적어이며, 그 안에 how long이 이끄는 간접의문문이 포함되어 있습니다."
-            ]
-        ]
-    ],
-    [
-        "누군가 숲에서 뻐꾸기 울음소리를 들으면, 그 사람은 ‘나는 얼마나 오래 살까?’라고 묻는다.",
-        [
-            [
-                "If someone hears a cuckoo's call in the woods",
-                "부사(구/절)",
-                "수식어",
-                "✦ 접속사 if가 이끄는 부사절 (조건)\n주절 전체를 수식하여 ‘~한다면’의 조건을 나타냅니다."
-            ],
-            [
-                "he or she",
-                "대명사",
-                "주어"
-            ],
-            [
-                "asks",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "Cuckoo, cuckoo, how long will I live?",
-                "명사(구/절)",
-                "목적어",
-                "✦ 직접화법 인용문 (명사절 역할)\nasks의 목적어로, 실제로 묻는 말을 나타냅니다."
-            ]
-        ]
-    ],
-    [
-        "그 사람이 새가 응답으로 ‘뻐꾹’ 하고 울 때마다 1년 더 살 것이라고 믿어진다.",
-        [
-            [
-                "It",
-                "대명사",
-                "주어",
-                "⚠️ 가주어 It — 진짜 주어는 뒤의 that절입니다."
-            ],
-            [
-                "is believed",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "that the person will live one more year for each time the bird calls out Cuckoo in return",
-                "명사(구/절)",
-                "주어",
-                "✦ 접속사 that이 이끄는 명사절 (진주어)\n가주어 It에 대응하는 진짜 주어이며, ‘~라고 믿어진다’의 내용을 나타냅니다."
-            ]
-        ]
-    ],
-    [
-        "그 사람은 새가 응답으로 ‘뻐꾹’ 하고 울 때마다 1년 더 살 것이다.",
-        [
-            [
-                "the person",
-                "명사(구/절)",
-                "주어"
-            ],
-            [
-                "will live",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "one more year",
-                "명사(구/절)",
-                "목적어"
-            ],
-            [
-                "for each time the bird calls out Cuckoo in return",
-                "부사(구/절)",
-                "수식어",
-                "✦ 전치사 for가 이끄는 전치사구 (부사구)\nwill live를 수식하며, ‘새가 응답으로 울 때마다’라는 조건적 의미를 더합니다."
-            ]
-        ]
-    ],
-    [
-        "프랑스에서는 한 전설이 그것이 행운이라고 말한다.",
-        [
-            [
-                "In France",
-                "부사(구/절)",
-                "수식어",
-                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n문장 전체의 장소 배경을 나타냅니다."
-            ],
-            [
-                "a legend",
-                "명사(구/절)",
-                "주어"
-            ],
-            [
-                "says",
-                "동사(구)",
-                "서술어"
-            ],
-            [
-                "it is good luck to hear the first cuckoo call of spring when you have money in your pocket",
-                "명사(구/절)",
-                "목적어",
-                "✦ 접속사 that이 생략된 명사절 (목적어)\nsays의 목적어이며, 명사절 안에는 It ~ to부정사 가주어-진주어 구문이 포함되어 있습니다."
-            ]
-        ]
-    ],
-    [
-        "주머니에 돈이 있을 때 봄의 첫 뻐꾸기 울음소리를 듣는 것은 행운이다.",
-        [
-            [
-                "it",
-                "대명사",
-                "주어",
-                "⚠️ 가주어 it — 진짜 주어는 뒤의 to부정사구입니다."
             ],
             [
                 "is",
@@ -662,68 +589,78 @@ const analysisList = [
                 "서술어"
             ],
             [
-                "good luck",
+                "the process",
                 "명사(구/절)",
                 "보어"
             ],
             [
-                "to hear the first cuckoo call of spring",
-                "명사(구/절)",
-                "주어",
-                "✦ to부정사구 (명사구 — 명사적 용법, 진주어)\n가주어 it에 대응하는 진짜 주어입니다."
+                "in which farmers change the crops",
+                "형용사(구/절)",
+                "수식어",
+                "✦ 관계부사 in which가 이끄는 관계사절 (형용사절)\n앞의 명사 the process를 수식하며, '그 과정 안에서'라는 의미를 더합니다."
             ],
             [
-                "when you have money in your pocket",
+                "they grow in their fields",
+                "형용사(구/절)",
+                "수식어",
+                "✦ 목적격 관계대명사가 생략된 관계사절 (형용사절)\n앞의 crops를 수식하며 '그들이 밭에서 기르는 작물'이라는 뜻입니다."
+            ],
+            [
+                "in a special order",
                 "부사(구/절)",
                 "수식어",
-                "✦ 접속사 when이 이끄는 부사절 (시간)\n‘언제 행운인지’를 나타내며 주절을 수식합니다."
+                "✦ 전치사 in이 이끄는 전치사구 (부사구)\nchange의 방식을 설명합니다."
             ]
         ]
     ],
     [
-        "주머니에 돈이 있을 때, 너는 봄의 첫 뻐꾸기 울음소리를 듣는다.",
+        "예를 들어, 농부에게 세 개의 밭이 있다면, 그는 작물을 각각 다른 밭에 기를 수 있다.",
         [
             [
-                "when you have money in your pocket",
+                "For example",
                 "부사(구/절)",
-                "수식어",
-                "✦ 접속사 when이 이끄는 부사절 (시간)\n주절 전체를 수식합니다."
+                "수식어"
             ],
             [
-                "you",
+                "if a farmer has three fields",
+                "부사(구/절)",
+                "수식어",
+                "✦ 접속사 if가 이끄는 부사절 (조건)\n주절의 조건을 나타냅니다."
+            ],
+            [
+                "he or she",
                 "대명사",
                 "주어"
             ],
             [
-                "have",
+                "may grow",
                 "동사(구)",
                 "서술어"
             ],
             [
-                "money",
+                "carrots, green beans, and tomatoes",
                 "명사(구/절)",
                 "목적어"
             ],
             [
-                "in your pocket",
-                "형용사(구/절)",
+                "in the first, second, and third fields",
+                "부사(구/절)",
                 "수식어",
-                "✦ 전치사 in이 이끄는 전치사구 (형용사구)\n앞의 명사 money를 수식하여 ‘주머니 안의 돈’을 뜻합니다."
+                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n작물이 자라는 장소를 나타냅니다."
             ]
         ]
     ],
     [
-        "만약 그렇게 하면, 너는 일 년 내내 부유할 것이다.",
+        "다음 해에는 작물의 위치가 바뀐다.",
         [
             [
-                "If you do",
+                "The next year",
                 "부사(구/절)",
-                "수식어",
-                "✦ 접속사 if가 이끄는 부사절 (조건)\n주절 전체를 수식하여 ‘만약 그렇게 하면’의 뜻을 나타냅니다."
+                "수식어"
             ],
             [
-                "you",
-                "대명사",
+                "green beans, tomatoes, and carrots",
+                "명사(구/절)",
                 "주어"
             ],
             [
@@ -732,23 +669,97 @@ const analysisList = [
                 "서술어"
             ],
             [
-                "rich",
-                "형용사(구/절)",
-                "보어"
-            ],
-            [
-                "all year",
+                "in different fields",
                 "부사(구/절)",
                 "수식어",
-                "✦ 시간 부사구\nwill be rich를 수식하여 ‘일 년 내내’라는 기간을 나타냅니다."
+                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n작물들이 있게 되는 위치를 나타냅니다."
             ]
         ]
     ],
     [
-        "이 글은 주로 뻐꾸기에 관한 흥미로운 전설들에 대한 것이다.",
+        "3년째에는 작물들이 다시 순환한다.",
         [
             [
-                "The passage",
+                "In year three",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n시간을 나타냅니다."
+            ],
+            [
+                "the crops",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "will rotate",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "again",
+                "부사(구/절)",
+                "수식어"
+            ]
+        ]
+    ],
+    [
+        "4년째가 되면 작물들은 원래 순서로 돌아간다.",
+        [
+            [
+                "By the fourth year",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 by가 이끄는 전치사구 (부사구)\n'~까지는, ~쯤에는'의 시간 의미입니다."
+            ],
+            [
+                "the crops",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "will go back",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "to their original order",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 to가 이끄는 전치사구 (부사구)\ngo back의 방향을 나타냅니다."
+            ]
+        ]
+    ],
+    [
+        "각 작물은 다음 작물을 위해 토양을 풍부하게 한다.",
+        [
+            [
+                "Each crop",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "enriches",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "the soil",
+                "명사(구/절)",
+                "목적어"
+            ],
+            [
+                "for the next crop",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 for가 이끄는 전치사구 (부사구)\n목적이나 대상을 나타냅니다."
+            ]
+        ]
+    ],
+    [
+        "이런 종류의 농업은 토양이 건강하게 유지되기 때문에 지속 가능하다.",
+        [
+            [
+                "This type of farming",
                 "명사(구/절)",
                 "주어"
             ],
@@ -758,10 +769,296 @@ const analysisList = [
                 "서술어"
             ],
             [
-                "mainly about some interesting legends about cuckoos",
+                "sustainable",
                 "형용사(구/절)",
-                "보어",
-                "✦ 전치사 about이 이끄는 전치사구 (형용사구)\nbe동사 뒤에서 주어 The passage의 내용을 설명하는 보어 역할을 합니다."
+                "보어"
+            ],
+            [
+                "because the soil stays healthy",
+                "부사(구/절)",
+                "수식어",
+                "✦ 접속사 because가 이끄는 부사절 (이유)\n앞 문장의 이유를 설명합니다."
+            ]
+        ]
+    ],
+    [
+        "우리는 종종 도전에서 지름길을 찾고 쉬운 길을 택하려고 한다.",
+        [
+            [
+                "We",
+                "대명사",
+                "주어"
+            ],
+            [
+                "often try",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "to make cuts in our challenges and take the easy route",
+                "명사(구/절)",
+                "목적어",
+                "✦ to부정사구 (명사구 — 명사적 용법, 목적어)\ntry의 목적어로 '~하려고 하다'의 의미입니다."
+            ]
+        ]
+    ],
+    [
+        "빠른 탈출구를 택할 때, 우리는 경쟁할 힘을 얻지 못한다.",
+        [
+            [
+                "When taking the quick exit",
+                "부사(구/절)",
+                "수식어",
+                "✦ 접속사 when이 이끄는 축약 부사절 (시간)\n'When we take the quick exit'에서 주어와 be동사가 생략된 구조로 볼 수 있습니다."
+            ],
+            [
+                "we",
+                "대명사",
+                "주어"
+            ],
+            [
+                "fail to acquire",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "the strength",
+                "명사(구/절)",
+                "목적어"
+            ],
+            [
+                "to compete",
+                "형용사(구/절)",
+                "수식어",
+                "✦ to부정사구 (형용사구 — 형용사적 용법)\n앞의 명사 strength를 수식합니다."
+            ]
+        ]
+    ],
+    [
+        "우리 중 많은 사람들은 삶의 핵심 영역에서 숙달을 이루기 위해 진정으로 노력하지 않는다.",
+        [
+            [
+                "Many of us",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "never really work",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "to achieve mastery",
+                "부사(구/절)",
+                "수식어",
+                "✦ to부정사구 (부사구 — 부사적 용법, 목적)\n'숙달을 이루기 위해'라는 목적을 나타냅니다."
+            ],
+            [
+                "in the key areas of life",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 in이 이끄는 전치사구 (부사구)\n숙달이 필요한 영역을 나타냅니다."
+            ]
+        ]
+    ],
+    [
+        "이러한 기술들은 우리의 직업, 건강, 번영에 유용할 수 있는 핵심 도구이다.",
+        [
+            [
+                "These skills",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "are",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "key tools",
+                "명사(구/절)",
+                "보어"
+            ],
+            [
+                "that can be useful to our career, health, and prosperity",
+                "형용사(구/절)",
+                "수식어",
+                "✦ 관계대명사 that이 이끄는 관계사절 (형용사절)\n앞의 key tools를 수식합니다."
+            ]
+        ]
+    ],
+    [
+        "매우 성공한 운동선수들은 더 좋은 장비 때문에 이기는 것이 아니다.",
+        [
+            [
+                "Highly successful athletes",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "don’t win",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "because of better equipment",
+                "부사(구/절)",
+                "수식어",
+                "✦ because of가 이끄는 전치사구 (부사구)\n이유를 나타냅니다."
+            ]
+        ]
+    ],
+    [
+        "그들은 힘과 기술을 얻기 위해 고난에 맞섬으로써 이긴다.",
+        [
+            [
+                "they",
+                "대명사",
+                "주어"
+            ],
+            [
+                "win",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "by facing hardship",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 by + 동명사구 (부사구)\n'~함으로써'라는 수단을 나타냅니다."
+            ],
+            [
+                "to gain strength and skill",
+                "부사(구/절)",
+                "수식어",
+                "✦ to부정사구 (부사구 — 부사적 용법, 목적)\n고난에 맞서는 목적을 나타냅니다."
+            ]
+        ]
+    ],
+    [
+        "그들은 준비를 통해 승리한다.",
+        [
+            [
+                "They",
+                "대명사",
+                "주어"
+            ],
+            [
+                "win",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "through preparation",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 through가 이끄는 전치사구 (부사구)\n수단을 나타냅니다."
+            ]
+        ]
+    ],
+    [
+        "그들을 구별되게 만드는 것은 정신적 준비, 이기는 마음가짐, 전략, 그리고 기술이다.",
+        [
+            [
+                "It",
+                "대명사",
+                "주어",
+                "⚠️ 강조구문의 It — 뒤의 that절과 함께 특정 요소를 강조합니다."
+            ],
+            [
+                "is",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "the mental preparation, winning mindset, strategy, and skill",
+                "명사(구/절)",
+                "보어"
+            ],
+            [
+                "that set them apart",
+                "형용사(구/절)",
+                "수식어",
+                "✦ 강조구문 It is ~ that ...\n강조되는 말은 the mental preparation, winning mindset, strategy, and skill입니다."
+            ]
+        ]
+    ],
+    [
+        "힘은 분투에서 오지, 가장 쉬운 길을 택하는 것에서 오지 않는다.",
+        [
+            [
+                "Strength",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "comes",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "from struggle",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 from이 이끄는 전치사구 (부사구)\n출처를 나타냅니다."
+            ],
+            [
+                "not from taking the path of least resistance",
+                "부사(구/절)",
+                "수식어",
+                "✦ 전치사 from + 동명사구 (부사구)\nnot from A 구조로 'A에서 오는 것이 아니다'라는 대조를 만듭니다."
+            ]
+        ]
+    ],
+    [
+        "고난은 우리 앞에 놓인 다음번을 위한 단순한 교훈만은 아니다.",
+        [
+            [
+                "Hardship",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "is not",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "just a lesson",
+                "명사(구/절)",
+                "보어"
+            ],
+            [
+                "for the next time in front of us",
+                "형용사(구/절)",
+                "수식어",
+                "✦ 전치사구 (형용사구)\n앞의 lesson을 수식합니다."
+            ]
+        ]
+    ],
+    [
+        "고난은 우리가 인생에서 갖게 될 가장 위대한 스승일 것이다.",
+        [
+            [
+                "Hardship",
+                "명사(구/절)",
+                "주어"
+            ],
+            [
+                "will be",
+                "동사(구)",
+                "서술어"
+            ],
+            [
+                "the greatest teacher",
+                "명사(구/절)",
+                "보어"
+            ],
+            [
+                "we will ever have in life",
+                "형용사(구/절)",
+                "수식어",
+                "✦ 목적격 관계대명사가 생략된 관계사절 (형용사절)\n앞의 teacher를 수식합니다."
             ]
         ]
     ]
@@ -777,6 +1074,41 @@ const roleList = ["주어","서술어","목적어","보어","수식어"];
 function relevantPos(idx) {
     // 항상 5개 고정 반환
     return posList;
+}
+
+
+// ============================================================
+// iPhone / iPad English Voice Optimization
+// ============================================================
+let selectedEnglishVoice = null;
+
+function loadEnglishVoice() {
+    if (!('speechSynthesis' in window)) return;
+    const voices = window.speechSynthesis.getVoices();
+    selectedEnglishVoice =
+        voices.find(v => v.lang === 'en-US' && /samantha|alex|ava|allison|nicky|english/i.test(v.name)) ||
+        voices.find(v => v.lang === 'en-US') ||
+        voices.find(v => v.lang && v.lang.startsWith('en')) ||
+        null;
+}
+
+if ('speechSynthesis' in window) {
+    loadEnglishVoice();
+    window.speechSynthesis.onvoiceschanged = loadEnglishVoice;
+}
+
+function speak(text, rate = 0.78, onend = null) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    loadEnglishVoice();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = selectedEnglishVoice?.lang || 'en-US';
+    utterance.rate = rate;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    if (selectedEnglishVoice) utterance.voice = selectedEnglishVoice;
+    if (onend) utterance.onend = onend;
+    window.speechSynthesis.speak(utterance);
 }
 
 let audioCtx = null, comboCount = 0;
@@ -795,7 +1127,7 @@ function tone(f,t,d,v=0.08) {
 function sfxOK()  { tone(600,'sine',.1); setTimeout(()=>tone(800,'sine',.15),100); }
 function sfxNG()  { tone(280,'sawtooth',.2,.12); }
 function sfxEvo() { [400,500,650].forEach((f,i)=>setTimeout(()=>tone(f,'square',.2,.06),i*150)); }
-function boom()   { sfxEvo(); confetti({particleCount:140,spread:75,origin:{y:.6},colors:['#4a3fa0','#7bc043','#e74c3c','#f5a623']}); }
+function boom()   { sfxEvo(); confetti({particleCount:140,spread:75,origin:{y:.6},colors:['#1a5c9a','#f5a623','#e74c3c','#f5a623']}); }
 
 function shuffle(a) {
     let arr=[...a];
@@ -847,14 +1179,180 @@ function showSection(id, btn) {
 }
 
 function saveHist(key, data) {
-    let arr=JSON.parse(localStorage.getItem('ck_'+key)||'[]');
+    let arr=JSON.parse(localStorage.getItem('sr_ss2_'+key)||'[]');
     data.date=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'});
     arr.unshift(data); if(arr.length>10) arr=arr.slice(0,10);
-    localStorage.setItem('ck_'+key,JSON.stringify(arr));
+    localStorage.setItem('sr_ss2_'+key,JSON.stringify(arr));
 }
 function saveWrong(w) {
-    let arr=JSON.parse(localStorage.getItem('ck_wrong')||'[]');
-    if(!arr.find(x=>x.en===w.en)) { arr.push(w); localStorage.setItem('ck_wrong',JSON.stringify(arr)); }
+    let arr=JSON.parse(localStorage.getItem('sr_ss2_wrong')||'[]');
+    if(!arr.find(x=>x.en===w.en)) { arr.push(w); localStorage.setItem('sr_ss2_wrong',JSON.stringify(arr)); }
+}
+
+
+// ============================================================
+// 0. PROBLEM READING + GRADING
+// ============================================================
+let selectedProblemAnswers = {};
+const problemData = [
+    {
+        "answer": 1,
+        "summary": "윤작은 작물 순환을 통해 토양을 건강하게 유지하는 지속 가능한 농업 방식이라는 글입니다. 따라서 정답은 ①입니다.",
+        "lines": [
+            {
+                "en": "Crop rotation is the process in which farmers change the crops they grow in their fields in a special order.",
+                "ko": "윤작은 농부들이 밭에서 기르는 작물을 특별한 순서로 바꾸는 과정이다.",
+                "gram": "process in which ~는 관계부사구문으로 '그 안에서 ~하는 과정'입니다. they grow in their fields는 crops를 수식하는 관계사절입니다. 핵심표현: crop rotation, in a special order."
+            },
+            {
+                "en": "For example, if a farmer has three fields, he or she may grow carrots in the first field, green beans in the second, and tomatoes in the third.",
+                "ko": "예를 들어, 농부에게 세 개의 밭이 있다면, 첫 번째 밭에는 당근을, 두 번째 밭에는 껍질콩을, 세 번째 밭에는 토마토를 기를 수 있다.",
+                "gram": "For example은 예시 도입 표현입니다. if절은 조건 부사절입니다. in the second, in the third 뒤에는 field가 생략되어 병렬 구조를 이룹니다."
+            },
+            {
+                "en": "The next year, green beans will be in the first field, tomatoes in the second field, and carrots will be in the third.",
+                "ko": "다음 해에는 껍질콩이 첫 번째 밭에, 토마토가 두 번째 밭에, 당근이 세 번째 밭에 있게 된다.",
+                "gram": "작물의 위치가 해마다 바뀌는 예시입니다. tomatoes in the second field는 tomatoes will be in the second field에서 반복되는 will be가 생략된 병렬 구조입니다."
+            },
+            {
+                "en": "In year three, the crops will rotate again.",
+                "ko": "3년째에는 작물들이 다시 순환한다.",
+                "gram": "In year three는 시간 부사구입니다. rotate는 '순환하다, 돌아가다'라는 뜻으로 글의 핵심 동사입니다."
+            },
+            {
+                "en": "By the fourth year, the crops will go back to their original order.",
+                "ko": "4년째가 되면 작물들은 원래 순서로 돌아간다.",
+                "gram": "By the fourth year는 '~쯤에는, ~까지는'의 의미입니다. go back to는 '~로 돌아가다'라는 중요 표현입니다."
+            },
+            {
+                "en": "Each crop enriches the soil for the next crop.",
+                "ko": "각 작물은 다음 작물을 위해 토양을 풍부하게 한다.",
+                "gram": "Each는 단수 취급하므로 동사 enriches가 쓰였습니다. enrich the soil은 '토양을 비옥하게 하다'입니다."
+            },
+            {
+                "en": "This type of farming is sustainable because the soil stays healthy.",
+                "ko": "이런 종류의 농업은 토양이 건강하게 유지되기 때문에 지속 가능하다.",
+                "gram": "because절은 이유를 나타냅니다. stays healthy는 2형식 구조로 '건강한 상태로 유지되다'입니다. 글의 결론 문장입니다."
+            }
+        ]
+    },
+    {
+        "answer": 5,
+        "summary": "쉬운 길을 택하기보다 고난에 맞서야 힘과 기술을 얻고 성장할 수 있다는 글입니다. 따라서 정답은 ⑤입니다.",
+        "lines": [
+            {
+                "en": "We often try to make cuts in our challenges and take the easy route.",
+                "ko": "우리는 종종 도전에서 지름길을 찾고 쉬운 길을 택하려고 한다.",
+                "gram": "try to부정사는 '~하려고 하다'입니다. make cuts는 여기서 '과정을 줄이다, 지름길을 찾다'의 의미로 쓰였습니다."
+            },
+            {
+                "en": "When taking the quick exit, we fail to acquire the strength to compete.",
+                "ko": "빠른 탈출구를 택할 때, 우리는 경쟁할 힘을 얻지 못한다.",
+                "gram": "When taking ~은 When we take ~의 축약 부사절로 볼 수 있습니다. fail to는 '~하지 못하다', to compete는 strength를 수식하는 형용사적 용법입니다."
+            },
+            {
+                "en": "We often take the easy route to improve our skills.",
+                "ko": "우리는 종종 기술을 향상시키기 위해 쉬운 길을 택한다.",
+                "gram": "to improve our skills는 목적을 나타내는 부사적 to부정사입니다. 하지만 필자는 쉬운 길이 진짜 실력 향상에 도움이 되지 않는다고 전개합니다."
+            },
+            {
+                "en": "Many of us never really work to achieve mastery in the key areas of life.",
+                "ko": "우리 중 많은 사람들은 삶의 핵심 영역에서 숙달을 이루기 위해 진정으로 노력하지 않는다.",
+                "gram": "Many of us가 주어입니다. to achieve mastery는 목적을 나타냅니다. key areas of life는 '삶의 핵심 영역'이라는 중요 표현입니다."
+            },
+            {
+                "en": "These skills are key tools that can be useful to our career, health, and prosperity.",
+                "ko": "이러한 기술들은 우리의 직업, 건강, 번영에 유용할 수 있는 핵심 도구이다.",
+                "gram": "that can be useful ~은 key tools를 수식하는 관계사절입니다. be useful to는 '~에 유용하다'입니다."
+            },
+            {
+                "en": "Highly successful athletes don’t win because of better equipment; they win by facing hardship to gain strength and skill.",
+                "ko": "매우 성공한 운동선수들은 더 좋은 장비 때문에 이기는 것이 아니라, 힘과 기술을 얻기 위해 고난에 맞섬으로써 이긴다.",
+                "gram": "because of는 전치사구로 이유를 나타냅니다. by facing hardship은 수단, to gain strength and skill은 목적입니다. 세미콜론 뒤 문장이 필자의 핵심 주장입니다."
+            },
+            {
+                "en": "They win through preparation.",
+                "ko": "그들은 준비를 통해 승리한다.",
+                "gram": "through preparation은 '준비를 통해'라는 수단 표현입니다. 앞 문장의 내용을 짧게 강조합니다."
+            },
+            {
+                "en": "It’s the mental preparation, winning mindset, strategy, and skill that set them apart.",
+                "ko": "그들을 구별되게 만드는 것은 정신적 준비, 이기는 마음가짐, 전략, 그리고 기술이다.",
+                "gram": "It is ~ that 강조구문입니다. 강조되는 부분은 the mental preparation, winning mindset, strategy, and skill입니다. set A apart는 'A를 구별되게 하다'입니다."
+            },
+            {
+                "en": "Strength comes from struggle, not from taking the path of least resistance.",
+                "ko": "힘은 가장 쉬운 길을 택하는 것이 아니라 분투에서 온다.",
+                "gram": "from struggle과 not from taking ~이 대조됩니다. taking은 전치사 from의 목적어인 동명사입니다. path of least resistance는 '가장 쉬운 길'입니다."
+            },
+            {
+                "en": "Hardship is not just a lesson for the next time in front of us.",
+                "ko": "고난은 우리 앞에 놓인 다음번을 위한 단순한 교훈만은 아니다.",
+                "gram": "not just는 '단지 ~만은 아니다'라는 표현입니다. for the next time은 lesson을 수식합니다."
+            },
+            {
+                "en": "Hardship will be the greatest teacher we will ever have in life.",
+                "ko": "고난은 우리가 인생에서 갖게 될 가장 위대한 스승일 것이다.",
+                "gram": "the greatest teacher 뒤에 목적격 관계대명사가 생략된 we will ever have in life가 붙어 teacher를 수식합니다. 글의 결론입니다."
+            }
+        ]
+    }
+];
+
+function selectProblemChoice(btn) {
+    const q = Number(btn.dataset.q);
+    const n = Number(btn.dataset.n);
+    selectedProblemAnswers[q] = n;
+    document.querySelectorAll(`.q-choice[data-q="${q}"]`).forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+}
+
+function checkProblem(q) {
+    initAudio();
+    if (!selectedProblemAnswers[q]) {
+        alert('먼저 정답을 선택하세요.');
+        return;
+    }
+    const data = problemData[q];
+    const result = document.getElementById(`problem-result-${q}`);
+    const choices = document.querySelectorAll(`.q-choice[data-q="${q}"]`);
+    choices.forEach(b => {
+        b.classList.remove('correct','wrong');
+        const n = Number(b.dataset.n);
+        if (n === data.answer) b.classList.add('correct');
+        if (n === selectedProblemAnswers[q] && n !== data.answer) b.classList.add('wrong');
+    });
+    const ok = selectedProblemAnswers[q] === data.answer;
+    showCombo(ok);
+    if (ok) {
+        sfxOK();
+        result.className = 'result-box correct';
+        result.innerHTML = `<b>정답입니다! ${data.answer}번</b><br>${data.summary}`;
+        confetti({particleCount:90,spread:65,origin:{y:.72},colors:['#1a5c9a','#f5a623','#27ae60']});
+    } else {
+        sfxNG();
+        result.className = 'result-box wrong';
+        result.innerHTML = `<b>아쉽습니다. 정답은 ${data.answer}번입니다.</b><br>${data.summary}`;
+    }
+    renderLineExplain(q);
+    saveHist('problem',{score: ok ? 100 : 0, correct: ok ? 1 : 0, total: 1});
+}
+
+function renderLineExplain(q) {
+    const wrap = document.getElementById(`line-explain-${q}`);
+    const data = problemData[q];
+    let html = '<div class="question-box">📌 한 줄씩 해석 · 문법사항 · 구문상황 · 중요표현</div>';
+    data.lines.forEach((x, i) => {
+        html += `<div class="explain-card">
+            <div class="ex-en"><span class="pill">${i+1}</span>${x.en}</div>
+            <div class="ex-ko">${x.ko}</div>
+            <div class="ex-gram">🔎 ${x.gram}</div>
+        </div>`;
+    });
+    html += `<div class="question-box"><b>전체 요지</b><br>${data.summary}</div>`;
+    wrap.innerHTML = html;
+    wrap.classList.add('show');
+    wrap.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // ============================================================
@@ -874,9 +1372,7 @@ function loadWord() {
     const q=wList[wIdx];
     document.getElementById('w-status').innerText=`문제 ${wIdx+1} / ${wList.length}`;
     document.getElementById('w-en').innerText=q.en;
-    window.speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(q.en); u.lang='en-US'; u.rate=1.0;
-    window.speechSynthesis.speak(u);
+    speak(q.en, 0.78);
     const opts=shuffle([{t:q.ko,ok:true},...shuffle(wordList.filter(w=>w.ko!==q.ko)).slice(0,3).map(w=>({t:w.ko,ok:false}))]);
     const div=document.getElementById('w-opts'); div.innerHTML='';
     opts.forEach((o,i)=>{
@@ -915,18 +1411,14 @@ function resetWord() { document.getElementById('word-result').style.display='non
 // 2. DICTATION
 // ============================================================
 let dIdx=0, isLoop=false, loopTimer=null, dictLoaded=false;
-const speeds=[1.0,0.75,0.55], sLabels=['🐇 보통 속도','🐢 느리게','🐌 아주 느리게'];
+const speeds=[0.78,0.62,0.5], sLabels=['🍎 iPhone 보통','🐢 느리게','🐌 아주 느리게'];
 let spIdx=0;
 
 function loopPlay() {
     if(!isLoop||!sentenceList.length) return;
-    window.speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(sentenceList[dIdx].en);
-    u.lang='en-US'; u.rate=speeds[spIdx];
-    u.onend=()=>{ if(isLoop) loopTimer=setTimeout(loopPlay,1000); };
-    window.speechSynthesis.speak(u);
+    speak(sentenceList[dIdx].en, speeds[spIdx], ()=>{ if(isLoop) loopTimer=setTimeout(loopPlay,1000); });
 }
-function stopLoop() { isLoop=false; window.speechSynthesis.cancel(); clearTimeout(loopTimer); }
+function stopLoop() { isLoop=false; if('speechSynthesis' in window) window.speechSynthesis.cancel(); clearTimeout(loopTimer); }
 function toggleAudio() { if(isLoop) stopLoop(); else{isLoop=true;loopPlay();} updatePlayBtn(); }
 function updatePlayBtn() {
     const b=document.getElementById('play-btn'); if(!b) return;
@@ -993,9 +1485,9 @@ function jumpTo() {
     else alert(`1~${sentenceList.length} 사이 번호를 입력하세요.`);
 }
 function recDict() {
-    const dk=todayKey(); let h=JSON.parse(localStorage.getItem('ck_dict')||'{}');
+    const dk=todayKey(); let h=JSON.parse(localStorage.getItem('sr_ss2_dict')||'{}');
     if(!h[dk]) h[dk]={count:0}; h[dk].count++;
-    localStorage.setItem('ck_dict',JSON.stringify(h));
+    localStorage.setItem('sr_ss2_dict',JSON.stringify(h));
 }
 
 // ============================================================
@@ -1097,7 +1589,7 @@ function pick(val) {
     } else {
         sfxNG(); showCombo(false);
         card.style.borderColor='var(--red)';
-        setTimeout(()=>card.style.borderColor=card.classList.contains('active')?'var(--main)':'#e2dcf5',600);
+        setTimeout(()=>card.style.borderColor=card.classList.contains('active')?'var(--main)':'#cfe4f8',600);
     }
 }
 function startStep2() {
@@ -1138,9 +1630,9 @@ function finishAnal(early=false){
 }
 function resetAnal(){ document.getElementById('anal-result').style.display='none'; document.getElementById('anal-intro').style.display='block'; }
 function recAnal(){
-    const dk=todayKey(); let h=JSON.parse(localStorage.getItem('ck_anal')||'{}');
+    const dk=todayKey(); let h=JSON.parse(localStorage.getItem('sr_ss2_anal')||'{}');
     if(!h[dk]) h[dk]={count:0}; h[dk].count++;
-    localStorage.setItem('ck_anal',JSON.stringify(h));
+    localStorage.setItem('sr_ss2_anal',JSON.stringify(h));
 }
 
 // ============================================================
@@ -1149,14 +1641,14 @@ function recAnal(){
 function renderHistory(){
     const div=document.getElementById('hist-list'); div.innerHTML='';
     div.insertAdjacentHTML('beforeend','<div class="hist-category">📝 단어 테스트 성적</div>');
-    const wh=JSON.parse(localStorage.getItem('ck_word')||'[]');
+    const wh=JSON.parse(localStorage.getItem('sr_ss2_word')||'[]');
     if(!wh.length) div.insertAdjacentHTML('beforeend','<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
     else wh.slice(0,3).forEach(r=>{
         const st=r.score>=90?'<span class="stamp">마스터 🐉</span>':'';
         div.insertAdjacentHTML('beforeend',`<div class="hist-card"><div><div class="hist-date">${r.date}</div><div class="hist-score">${r.score}점 <span style="font-size:12px;color:#a0aec0">(${r.correct}/${r.total})</span></div></div>${st}</div>`);
     });
     div.insertAdjacentHTML('beforeend','<div class="hist-category">🎧 영작 달성도</div>');
-    const dh=JSON.parse(localStorage.getItem('ck_dict')||'{}');
+    const dh=JSON.parse(localStorage.getItem('sr_ss2_dict')||'{}');
     const dks=Object.keys(dh).sort((a,b)=>new Date(b)-new Date(a));
     if(!dks.length) div.insertAdjacentHTML('beforeend','<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
     else dks.slice(0,3).forEach(k=>{
@@ -1164,7 +1656,7 @@ function renderHistory(){
         div.insertAdjacentHTML('beforeend',`<div class="hist-card"><div><div class="hist-date">${fmtKey(k)}</div><div class="hist-score">${dh[k].count}문장 성공</div></div>${st}</div>`);
     });
     div.insertAdjacentHTML('beforeend','<div class="hist-category">🧩 문장 분석 달성도</div>');
-    const ah=JSON.parse(localStorage.getItem('ck_anal')||'{}');
+    const ah=JSON.parse(localStorage.getItem('sr_ss2_anal')||'{}');
     const aks=Object.keys(ah).sort((a,b)=>new Date(b)-new Date(a));
     if(!aks.length) div.insertAdjacentHTML('beforeend','<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
     else aks.slice(0,3).forEach(k=>{
@@ -1178,7 +1670,7 @@ function renderHistory(){
 // ============================================================
 function renderReview(){
     const div=document.getElementById('rev-list'); div.innerHTML='';
-    const arr=JSON.parse(localStorage.getItem('ck_wrong')||'[]');
+    const arr=JSON.parse(localStorage.getItem('sr_ss2_wrong')||'[]');
     if(!arr.length){
         div.innerHTML='<div style="padding:16px;text-align:center;color:var(--green);font-weight:800;background:#f0fff4;border-radius:10px">🎉 오답이 없습니다! 완벽해요!</div>';
         return;
@@ -1192,11 +1684,11 @@ function renderReview(){
     });
 }
 function delWrong(i){
-    let arr=JSON.parse(localStorage.getItem('ck_wrong')||'[]');
-    arr.splice(i,1); localStorage.setItem('ck_wrong',JSON.stringify(arr)); renderReview();
+    let arr=JSON.parse(localStorage.getItem('sr_ss2_wrong')||'[]');
+    arr.splice(i,1); localStorage.setItem('sr_ss2_wrong',JSON.stringify(arr)); renderReview();
 }
 function clearWrong(){
-    if(confirm('오답 도감을 전부 비울까요?')){ localStorage.removeItem('ck_wrong'); renderReview(); }
+    if(confirm('오답 도감을 전부 비울까요?')){ localStorage.removeItem('sr_ss2_wrong'); renderReview(); }
 }
 </script>
 </body>
