@@ -3,163 +3,1180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수리나무학원 고등독해 - Avoid Overwork</title>
+<title>수리나무학원 - Data Saved Thousands of Lives</title>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
-:root{--main:#1a5c9a;--accent:#f5a623;--light:#eef7ff;--bg:#f3f8ff;--text:#102033;--green:#27ae60;--red:#e74c3c;--shadow:0 8px 32px rgba(26,92,154,.16)}
-*{box-sizing:border-box} body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);margin:0;padding:16px;color:var(--text)} #app{max-width:480px;margin:0 auto;background:white;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;padding-bottom:30px;position:relative}
-.header{background:linear-gradient(135deg,#1a5c9a 0%,#0f355a 100%);color:white;padding:26px 20px 18px;text-align:center} .header-badge{background:var(--accent);color:#3b2600;font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px} .header h1{margin:0;font-size:20px;font-weight:900} .header p{margin:5px 0 0;font-size:13px;opacity:.86}
-.nav{display:flex;padding:12px 10px 0;gap:5px;overflow-x:auto} .nav-btn{flex:1;min-width:56px;padding:9px 3px;border:none;border-radius:10px;background:#edf2f7;color:#4a5568;font-size:12px;font-weight:800;cursor:pointer} .nav-btn.active{background:var(--main);color:#fff} .nav-btn.review-btn{background:#fde8e8;color:var(--red)} .nav-btn.review-btn.active{background:var(--red);color:#fff}
-.section{display:none;padding:16px 18px 0;animation:fadeIn .35s} .section.active{display:block} @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.card,.problem-card{background:white;border:2px solid #cfe4f8;border-radius:16px;padding:15px;margin-bottom:14px;line-height:1.7} .problem-title{font-size:17px;font-weight:900;color:var(--main);margin-bottom:10px} .problem-passage{font-family:Georgia,'Times New Roman',serif;font-size:16.5px;line-height:1.85;text-align:left} .question-box{background:var(--light);border-left:4px solid var(--main);padding:12px 13px;border-radius:12px;margin:14px 0;font-weight:900;line-height:1.55}
-.choice-list,.options-grid{display:grid;gap:9px;margin:12px 0} .q-choice,.opt-btn{width:100%;background:white;border:2px solid #cfe4f8;border-radius:12px;padding:12px 13px;text-align:left;font-size:14px;font-weight:800;color:var(--text);cursor:pointer;line-height:1.45} .q-choice.selected{border-color:var(--main);background:#eef7ff} .q-choice.correct,.opt-btn.correct{border-color:var(--green);background:#d4edda;color:#176b37} .q-choice.wrong,.opt-btn.wrong{border-color:var(--red);background:#fde8e8;color:#b83227;animation:shake .4s}
-.primary-btn{width:100%;background:var(--main);color:white;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;margin-top:12px;box-shadow:0 4px 12px rgba(26,92,154,.25)} .primary-btn.orange{background:var(--accent);color:#3b2600} .stop-btn,.del-btn{background:#edf2f7;border:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;color:#4a5568}
-.result-box{display:none;border-radius:14px;padding:14px;margin-top:14px;line-height:1.65} .result-box.correct{display:block;background:#f0fff4;border:2px solid var(--green)} .result-box.wrong{display:block;background:#fff5f5;border:2px solid var(--red)} .explain-wrap{display:none;margin-top:14px} .explain-wrap.show{display:block} .explain-card{background:#fff;border:1.5px solid #cfe4f8;border-radius:13px;padding:12px 13px;margin-bottom:10px;line-height:1.65} .ex-en{font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:800;margin-bottom:5px} .ex-ko{font-size:14px;font-weight:800;color:#0f355a;margin-bottom:6px} .ex-gram{font-size:13px;color:#4a5568} .pill{display:inline-block;background:#fffbeb;color:#8a6300;border:1px solid #f6c94e;border-radius:20px;padding:2px 8px;font-size:12px;font-weight:900;margin-right:4px}
-.evo-box{background:var(--light);border-radius:16px;padding:14px 16px;margin-bottom:14px;border:1.5px solid #b9d9f5} .evo-emoji{font-size:2.6rem;display:inline-block;transition:.25s} .evo-name{font-size:14px;font-weight:900;color:var(--main);margin:3px 0 9px} .prog-bg{background:#d9ecff;height:11px;border-radius:8px;overflow:hidden} .prog-bar{background:linear-gradient(90deg,#f5a623,#1a5c9a);height:100%;width:0%;transition:.5s;border-radius:8px}
-.status-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px} .status-badge{background:#edf2f7;padding:5px 12px;border-radius:20px;font-size:13px;font-weight:800;color:#4a5568} .word-display{font-size:1.8rem;font-weight:900;color:var(--main);margin:14px 0 20px;text-align:center;line-height:1.3}
-.intro-wrap{text-align:center;padding:18px 10px} .intro-icon{font-size:3.8rem} .intro-wrap h2{color:var(--main);font-size:19px;margin:8px 0 6px} .intro-wrap p{color:#718096;font-weight:700;font-size:14px;line-height:1.6}
-.ko-meaning{background:#eef7ff;border-left:4px solid var(--main);border-radius:10px;padding:12px 14px;font-size:15px;font-weight:800;color:#0f355a;margin-bottom:13px;line-height:1.6} #answer-area{min-height:56px;border:2px dashed var(--main);background:var(--light);padding:11px;border-radius:13px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:center;margin-bottom:10px;transition:.3s} #scramble-area{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;min-height:44px;margin-bottom:13px} .word-chip{background:white;border:2px solid #b9d9f5;padding:8px 13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;user-select:none;touch-action:manipulation} .drag-tip{background:#fffbeb;border:1px solid #f6c94e;color:#8a6300;font-size:12px;font-weight:700;padding:8px 12px;border-radius:8px;margin-bottom:12px;line-height:1.5} .audio-row{display:flex;gap:8px;margin-top:10px} .audio-btn{flex:1;padding:11px;border:none;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;color:white} .speed-btn{background:#718096} .play-btn{background:var(--main)} .play-btn.playing{background:var(--red)}
-.grammar-sentence{font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.75;background:#f6fbff;border-radius:14px;padding:13px;margin-bottom:12px} .g-choice{display:inline-block;margin:4px 4px;padding:7px 10px;border:2px solid #cfe4f8;border-radius:999px;background:#fff;font-weight:900;cursor:pointer} .g-choice.correct{border-color:var(--green);background:#d4edda;color:#176b37} .g-choice.wrong{border-color:var(--red);background:#fde8e8;color:#b83227} .g-explain{display:none;background:#fff;border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:14px;line-height:1.6} .g-explain.show{display:block}
-.hist-category{background:#edf2f7;padding:8px 12px;border-radius:8px;font-size:14px;font-weight:900;margin:14px 0 10px;border-left:4px solid var(--main)} .hist-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:12px 14px;margin-bottom:9px} .hist-score{font-size:17px;font-weight:900;color:var(--green)} .hist-date{font-size:12px;color:#718096;font-weight:700} .wrong-item{display:flex;justify-content:space-between;align-items:center;background:#fff5f5;padding:11px 13px;border-radius:10px;margin-bottom:8px;border-left:4px solid var(--red)} .wrong-en{font-weight:900;font-size:16px;color:#c0392b} .wrong-ko{font-size:13px;color:#718096;font-weight:600}
-#combo{position:absolute;top:28%;left:50%;transform:translate(-50%,-50%) scale(.5);font-size:2.3rem;font-weight:900;color:#f5a623;text-shadow:0 3px 10px rgba(245,166,35,.45);opacity:0;pointer-events:none;z-index:99} .combo-pop{animation:comboAnim 1s cubic-bezier(.17,.89,.32,1.27) forwards} @keyframes comboAnim{0%{opacity:0;transform:translate(-50%,-30%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-60%) scale(.8)}} @keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-5px)}100%{transform:translateX(0)}}
+:root{
+  --main:#0f8f4f;
+  --main2:#14532d;
+  --accent:#facc15;
+  --green:#16a34a;
+  --red:#ef4444;
+  --ink:#172033;
+  --soft:#eef5ff;
+  --line:#d7e5ff;
+  --bg:#f7fbff;
+  --shadow:0 14px 34px rgba(30,64,175,.16);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:16px;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 7%,rgba(34,197,94,.16),transparent 25%),
+    radial-gradient(circle at 88% 12%,rgba(250,204,21,.20),transparent 24%),
+    linear-gradient(180deg,#f7fee7 0%,var(--bg) 55%,#ecfdf5 100%);
+  font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;
+}
+#app{
+  max-width:520px;
+  min-height:92vh;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:24px;
+  background:white;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.header{
+  position:relative;
+  padding:22px 18px 18px;
+  color:white;
+  overflow:hidden;
+  background:linear-gradient(135deg,#064e3b 0%,#16a34a 58%,#facc15 135%);
+}
+.header:before{
+  content:"";
+  position:absolute;
+  right:-54px;
+  bottom:-72px;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  background:rgba(255,255,255,.13);
+}
+.brand-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  position:relative;
+  z-index:1;
+}
+.badge,.academy{
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  padding:6px 10px;
+}
+.badge{
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.24);
+}
+.academy{
+  background:#fff;
+  color:#166534;
+}
+.header h1{
+  position:relative;
+  z-index:1;
+  margin:14px 0 5px;
+  font-size:24px;
+  line-height:1.16;
+  letter-spacing:0;
+}
+.header p{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:13px;
+  font-weight:800;
+  opacity:.9;
+}
+.hero-art,.soccer-art{
+  position:relative;
+  z-index:1;
+  height:126px;
+  margin-top:16px;
+  border-radius:18px;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,.42);
+  background:linear-gradient(180deg,#d9f99d 0%,#86efac 100%);
+}
+.soccer-field{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.34) 2px,transparent 2px) 50% 0/50% 100% no-repeat,
+    repeating-linear-gradient(90deg,rgba(22,163,74,.22) 0 42px,rgba(5,150,105,.22) 42px 84px);
+}
+.soccer-field:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:54px;
+  height:54px;
+  border:3px solid rgba(255,255,255,.65);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.goal{
+  position:absolute;
+  right:20px;
+  bottom:28px;
+  width:84px;
+  height:52px;
+  border:5px solid #fff;
+  border-bottom:0;
+  border-radius:8px 8px 0 0;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px) 0 0/13px 13px,
+    linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px) 0 0/13px 13px;
+  box-shadow:0 8px 18px rgba(6,78,59,.18);
+}
+.ball{
+  position:absolute;
+  left:52px;
+  bottom:30px;
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,#111 0 5px,transparent 6px),
+    radial-gradient(circle at 27% 28%,#111 0 4px,transparent 5px),
+    radial-gradient(circle at 73% 28%,#111 0 4px,transparent 5px),
+    radial-gradient(circle at 28% 72%,#111 0 4px,transparent 5px),
+    radial-gradient(circle at 72% 72%,#111 0 4px,transparent 5px),
+    #fff;
+  box-shadow:0 10px 16px rgba(6,78,59,.22);
+  animation:ballBounce 1.8s ease-in-out infinite;
+}
+.trophy{
+  position:absolute;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%);
+  font-size:54px;
+  filter:drop-shadow(0 8px 10px rgba(6,78,59,.24));
+}
+.cheer{
+  content:"";
+  position:absolute;
+  left:22px;
+  top:15px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.86);
+  color:#166534;
+  font-size:12px;
+  font-weight:900;
+}
+@keyframes ballBounce{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-10px) rotate(18deg)}
+}
+.rose{display:none}
+.nurse{
+  position:absolute;
+  right:38px;
+  bottom:18px;
+  width:72px;
+  height:86px;
+}
+.nurse:before{
+  content:"";
+  position:absolute;
+  left:18px;
+  top:0;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#ffe0bd;
+  box-shadow:0 34px 0 10px #fff;
+}
+.nurse:after{
+  content:"+";
+  position:absolute;
+  left:24px;
+  top:-13px;
+  width:24px;
+  height:22px;
+  border-radius:6px 6px 0 0;
+  background:#fff;
+  color:#ef4444;
+  text-align:center;
+  line-height:23px;
+  font-weight:900;
+}
+.chart-line{
+  position:absolute;
+  left:130px;
+  right:122px;
+  bottom:34px;
+  height:54px;
+  display:flex;
+  align-items:end;
+  gap:8px;
+}
+.bar{
+  flex:1;
+  border-radius:7px 7px 2px 2px;
+  background:linear-gradient(180deg,#60a5fa,#2563eb);
+  min-width:12px;
+}
+.bar:nth-child(1){height:28px}.bar:nth-child(2){height:47px}.bar:nth-child(3){height:35px}.bar:nth-child(4){height:58px}
+.nav{
+  display:flex;
+  gap:6px;
+  padding:12px 10px 0;
+  background:white;
+}
+.nav-btn{
+  flex:1;
+  border:0;
+  border-radius:12px;
+  padding:10px 2px;
+  background:#eaf2ff;
+  color:#1d4ed8;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+.nav-btn.active{
+  background:var(--main);
+  color:white;
+  box-shadow:0 8px 18px rgba(37,99,235,.22);
+}
+.nav-btn.review-btn{background:#fff1f2;color:#be123c}
+.nav-btn.review-btn.active{background:#e11d48;color:white}
+.section{
+  display:none;
+  padding:16px 18px 26px;
+  animation:fade .22s ease;
+}
+.section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.intro{
+  text-align:center;
+  padding:18px 6px 8px;
+}
+.intro-icon{
+  width:84px;
+  height:84px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 10px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#dbeafe,#fef3c7);
+  border:2px solid #bfdbfe;
+  font-size:42px;
+}
+.intro h2{margin:8px 0 6px;color:var(--main);font-size:20px}
+.intro p{
+  max-width:380px;
+  margin:0 auto 14px;
+  color:#64748b;
+  line-height:1.6;
+  font-size:14px;
+  font-weight:800;
+}
+.primary-btn,.small-btn{
+  border:0;
+  border-radius:14px;
+  color:white;
+  background:linear-gradient(135deg,var(--main),var(--main2));
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(37,99,235,.2);
+}
+.primary-btn{width:100%;padding:14px 16px;font-size:16px}
+.small-btn{padding:9px 12px;font-size:13px}
+.small-btn.gray{background:#eaf2ff;color:#1d4ed8;box-shadow:none}
+.small-btn.green{background:linear-gradient(135deg,#059669,#22c55e)}
+.status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:12px;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#eaf2ff;
+  color:#1d4ed8;
+  font-size:13px;
+  font-weight:900;
+}
+.evo-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  padding:13px;
+  border-radius:18px;
+  border:1.5px solid var(--line);
+  background:linear-gradient(135deg,#eef5ff,#fff7df);
+}
+.evo-emoji{
+  width:62px;
+  height:62px;
+  display:grid;
+  place-items:center;
+  border-radius:20px;
+  background:white;
+  font-size:38px;
+  box-shadow:0 8px 16px rgba(30,64,175,.1);
+  transition:transform .28s cubic-bezier(.17,.89,.32,1.27);
+}
+.evo-name{
+  font-size:15px;
+  color:#1e40af;
+  font-weight:900;
+  line-height:1.4;
+}
+.evo-sub{font-size:12px;color:#64748b;font-weight:900;margin-top:3px}
+.word-display{
+  margin:16px 0 18px;
+  text-align:center;
+  color:var(--main);
+  font-size:30px;
+  line-height:1.2;
+  font-weight:900;
+  word-break:keep-all;
+}
+.options-grid,.grammar-options{
+  display:grid;
+  gap:10px;
+}
+.opt-btn{
+  border:2px solid var(--line);
+  border-radius:14px;
+  background:white;
+  color:var(--ink);
+  padding:13px 14px;
+  text-align:left;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.45;
+  cursor:pointer;
+  transition:.15s;
+}
+.opt-btn.correct{
+  border-color:#22c55e;
+  background:#dcfce7;
+  color:#047857;
+  transform:scale(1.015);
+}
+.opt-btn.wrong{
+  border-color:#ef4444;
+  background:#ffe4e6;
+  color:#be123c;
+  animation:shake .32s;
+}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-4px)}}
+.score-card{text-align:center;padding:16px 10px 2px}
+.score-big{font-size:52px;font-weight:900;color:var(--main);margin:8px 0 0}
+.score-sub{color:#64748b;font-weight:800;margin:3px 0 16px}
+.ko-box,.explain-box{
+  margin-bottom:12px;
+  padding:12px 14px;
+  border-radius:13px;
+  border-left:5px solid var(--main);
+  background:#f4f8ff;
+  color:#1e293b;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.65;
+  word-break:keep-all;
+}
+.drag-tip{
+  margin-bottom:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1.5px solid #ffd166;
+  background:#fff8e1;
+  color:#805400;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.5;
+}
+.answer-area,.scramble-area{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:58px;
+  padding:10px;
+  border-radius:15px;
+}
+.answer-area{
+  margin-bottom:10px;
+  border:2px dashed var(--main);
+  background:#eef5ff;
+}
+.scramble-area{
+  margin-bottom:12px;
+  border:2px solid #e5efff;
+  background:white;
+}
+.word-chip{
+  border:2px solid #bfdbfe;
+  border-radius:12px;
+  padding:8px 12px;
+  background:white;
+  color:#1e293b;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  user-select:none;
+  touch-action:manipulation;
+}
+.word-chip.in-answer{background:#fff7df;border-color:#f59e0b}
+.sortable-ghost{opacity:1!important;background:#dcfce7!important;border-color:#22c55e!important}
+.sortable-drag{opacity:1!important;background:var(--main)!important;color:white!important;border-color:var(--main2)!important;transform:scale(1.06)!important;box-shadow:0 10px 20px rgba(37,99,235,.24)!important}
+.audio-row{display:flex;gap:8px;margin-top:10px}
+.audio-row button{flex:1}
+.grammar-card{
+  margin-bottom:12px;
+  padding:14px;
+  border-radius:18px;
+  border:2px solid #dbeafe;
+  background:linear-gradient(180deg,#fff,#f7fbff);
+}
+.grammar-en{
+  margin-bottom:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  color:#1e40af;
+  background:#eff6ff;
+  font-weight:900;
+  line-height:1.55;
+}
+.grammar-q{
+  margin:5px 0 12px;
+  color:#172033;
+  font-size:18px;
+  font-weight:900;
+  line-height:1.5;
+}
+.explain-box{
+  display:none;
+  border-left-color:#f59e0b;
+  background:#fff8e7;
+}
+.explain-box.show{display:block}
+.stamp-board{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:14px;
+}
+.big-stamp{
+  min-height:116px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:7px;
+  border:2.5px dashed #bfdbfe;
+  border-radius:18px;
+  background:#f7fbff;
+  text-align:center;
+}
+.big-stamp.done{
+  color:#dc2626;
+  border:4px solid #ef4444;
+  background:#fff7f7;
+  transform:rotate(-2deg);
+  box-shadow:0 8px 16px rgba(239,68,68,.12);
+}
+.stamp-main{font-size:24px;font-weight:900;letter-spacing:1px}
+.stamp-sub{font-size:12px;color:#64748b;font-weight:900;line-height:1.45}
+.hist-category{
+  margin:16px 0 9px;
+  padding:9px 12px;
+  border-radius:12px;
+  border-left:5px solid var(--main);
+  background:#eaf2ff;
+  color:#1d4ed8;
+  font-weight:900;
+}
+.hist-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+  padding:12px;
+  border:1.5px solid #dbeafe;
+  border-radius:14px;
+  background:white;
+}
+.hist-date{color:#64748b;font-size:12px;font-weight:800}
+.hist-score{color:#1e40af;font-size:18px;font-weight:900}
+.mini-stamp{
+  display:inline-block;
+  padding:3px 7px;
+  border:2px solid #ef4444;
+  border-radius:8px;
+  color:#dc2626;
+  font-weight:900;
+  transform:rotate(-6deg);
+  white-space:nowrap;
+}
+.wrong-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:9px;
+  padding:12px;
+  border-radius:14px;
+  border-left:5px solid #ef4444;
+  background:#fff1f2;
+}
+.wrong-en{font-size:16px;font-weight:900;color:#be123c}
+.wrong-ko{font-size:13px;font-weight:800;color:#64748b;line-height:1.45}
+.empty{
+  padding:14px;
+  border-radius:12px;
+  background:#f7fbff;
+  color:#64748b;
+  text-align:center;
+  font-weight:800;
+}
+#pop{
+  position:absolute;
+  left:50%;
+  top:32%;
+  z-index:20;
+  opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,-50%) scale(.75);
+  color:#16a34a;
+  font-size:48px;
+  font-weight:900;
+  text-shadow:0 6px 20px rgba(22,163,74,.25);
+}
+#pop.show{animation:pop .9s cubic-bezier(.18,.92,.25,1.25)}
+@keyframes pop{
+  0%{opacity:0;transform:translate(-50%,-35%) scale(.5)}
+  20%,75%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+  100%{opacity:0;transform:translate(-50%,-65%) scale(.9)}
+}
+.spark{
+  position:absolute;
+  z-index:19;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#f59e0b;
+  pointer-events:none;
+  animation:spark .8s ease-out forwards;
+}
+@keyframes spark{to{transform:translate(var(--x),var(--y)) scale(.15);opacity:0}}
+@media(max-width:390px){
+  body{padding:8px}
+  .header h1{font-size:22px}
+  .nav{gap:4px;padding-left:7px;padding-right:7px}
+  .nav-btn{font-size:11px}
+  .section{padding-left:13px;padding-right:13px}
+  .stamp-board{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <div id="app">
-<div id="combo"></div>
-<div class="header"><div class="header-badge">고1 고등독해 · 24번</div><h1>수리나무학원 고등독해</h1><p>Avoid Overwork · 제목 찾기</p></div>
-<div class="nav">
-<button class="nav-btn active" onclick="showSection('problem-sec',this)">문제</button>
-<button class="nav-btn" onclick="showSection('word-sec',this)">1.단어</button>
-<button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
-<button class="nav-btn" onclick="showSection('grammar-sec',this)">3.어법</button>
-<button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
-<button class="nav-btn review-btn" onclick="showSection('rev-sec',this);renderReview()">5.오답</button>
-</div>
+  <div id="pop">GOOD!</div>
+  <header class="header">
+    <div class="brand-row">
+      <span class="badge">World Cup Mission · Data Reading</span>
+      <span class="academy">수리나무학원</span>
+    </div>
+    <h1>Data Saved<br>Thousands of Lives</h1>
+    <p>단어 · 전체 문장 영작 · 기초 영문법</p>
+    <div class="soccer-art" aria-hidden="true">
+      <div class="soccer-field"></div>
+      <div class="cheer">DATA GOAL!</div>
+      <div class="ball"></div>
+      <div class="goal"></div>
+      <div class="trophy">🏆</div>
+    </div>
+  </header>
 
-<div id="problem-sec" class="section active">
-<div class="problem-card"><div class="problem-title">24. 다음 글의 제목으로 가장 적절한 것은?</div><div class="problem-passage">Working around the whole painting, rather than concentrating on one area at a time, will mean you can stop at any point and the painting can be considered “finished.” Artists often find it difficult to know when to stop painting, and it can be tempting to keep on adding more to your work. It is important to take a few steps back from the painting from time to time to assess your progress. Putting too much into a painting can spoil its impact and leave it looking overworked. If you find yourself struggling to decide whether you have finished, take a break and come back to it later with fresh eyes. Then you can decide whether any areas of your painting would benefit from further refinement.</div></div>
-<div class="choice-list"><button class="q-choice" data-n="1" onclick="selectMainChoice(this)">1번. Drawing Inspiration from Diverse Artists</button><button class="q-choice" data-n="2" onclick="selectMainChoice(this)">2번. Don’t Spoil Your Painting by Leaving It Incomplete</button><button class="q-choice" data-n="3" onclick="selectMainChoice(this)">3번. Art Interpretation: Discover Meanings in a Painting</button><button class="q-choice" data-n="4" onclick="selectMainChoice(this)">4번. Do Not Put Down Your Brush: The More, the Better</button><button class="q-choice" data-n="5" onclick="selectMainChoice(this)">5번. Avoid Overwork and Find the Right Moment to Finish</button></div>
-<button class="primary-btn" onclick="checkMainProblem()">정답 확인하고 해설 보기 ✅</button>
-<div id="main-result" class="result-box"></div><div id="line-explain" class="explain-wrap"></div>
-</div>
+  <nav class="nav">
+    <button class="nav-btn active" onclick="showSection('word-sec',this)">1.단어</button>
+    <button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
+    <button class="nav-btn" onclick="showSection('gram-sec',this)">3.문법</button>
+    <button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
+    <button class="nav-btn review-btn" onclick="showSection('rev-sec',this);renderReview()">5.오답</button>
+  </nav>
 
-<div id="word-sec" class="section">
-<div id="word-intro" class="intro-wrap"><div class="intro-icon">🥚</div><h2>멋진 소로 성장!</h2><p>핵심 단어를 맞히며<br>알을 멋진 소로 성장시켜 보세요.</p><button class="primary-btn" onclick="initAudio();startWord()">테스트 시작 🚀</button></div>
-<div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">🥚</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
-<div id="word-result" style="display:none;text-align:center"><div class="intro-icon" id="w-res-e">🐦</div><h2 style="color:var(--main)">테스트 종료!</h2><div class="word-display" id="w-score">100점</div><div class="status-badge" id="w-detail"></div><button class="primary-btn" onclick="resetWord()">다시 시작 🔄</button></div>
-</div>
+  <section id="word-sec" class="section active">
+    <div id="word-intro" class="intro">
+      <div class="intro-icon">⚽</div>
+      <h2>단어 예선전</h2>
+      <p>핵심 단어를 맞히며 예선부터 결승까지 올라가 보세요. 틀린 단어는 오답 단어장에 저장됩니다.</p>
+      <button class="primary-btn" onclick="initAudio();startWord()">킥오프!</button>
+    </div>
+    <div id="word-quiz" style="display:none">
+      <div class="status-row">
+        <span class="pill" id="w-status"></span>
+        <button class="small-btn gray" onclick="finishWord(true)">중간 채점</button>
+      </div>
+      <div class="evo-box">
+        <div class="evo-emoji" id="w-evo-emoji">⚽</div>
+        <div><div class="evo-name" id="w-evo-name">예선 준비</div><div class="evo-sub" id="w-evo-sub">킥오프 전</div></div>
+      </div>
+      <div class="word-display" id="w-en"></div>
+      <div class="options-grid" id="w-opts"></div>
+    </div>
+    <div id="word-result" class="score-card" style="display:none">
+      <div class="intro-icon">🏆</div>
+      <h2 style="color:var(--main)">단어 경기 종료</h2>
+      <div class="score-big" id="w-score">0점</div>
+      <div class="score-sub" id="w-detail"></div>
+      <button class="primary-btn" onclick="resetWord()">다시 풀기</button>
+    </div>
+  </section>
 
-<div id="dict-sec" class="section">
-<div class="evo-box"><div class="evo-emoji" id="devo-e">🥚</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
-<span class="status-badge" id="d-status"></span><div class="ko-meaning" id="d-ko"></div><div class="drag-tip">구두점은 제외됩니다. 맞으면 즉시 완료 기록을 저장하고 자동으로 다음 의미 구간으로 이동합니다.</div>
-<div id="answer-area"></div><div id="scramble-area"></div>
-<div class="audio-row"><button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🇺🇸 보통</button><button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">⏸️ 일시정지</button></div>
-</div>
+  <section id="dict-sec" class="section">
+    <div class="status-row">
+      <span class="pill" id="d-status">영작 문제 1 / 31</span>
+      <button class="small-btn gray" onclick="jumpDict()">번호 이동</button>
+    </div>
+    <div class="evo-box">
+      <div class="evo-emoji" id="d-evo-emoji">⚽</div>
+      <div><div class="evo-name" id="d-evo-name">영작 킥오프</div><div class="evo-sub" id="d-evo-sub">미국식 음성 자동 반복</div></div>
+    </div>
+    <div class="ko-box" id="d-ko"></div>
+    <div class="drag-tip">영작 탭에 들어오면 미국식 음성이 바로 반복됩니다. 단어 조각을 눌러 위 칸에 놓고, 맞으면 자동으로 다음 문장으로 넘어갑니다.</div>
+    <div class="answer-area" id="answer-area"></div>
+    <div class="scramble-area" id="scramble-area"></div>
+    <div class="audio-row">
+      <button class="small-btn" onclick="toggleAudio()" id="play-btn">미국식 음성 반복 중</button>
+      <button class="small-btn gray" onclick="toggleSpeed()" id="speed-btn">보통 속도</button>
+    </div>
+    <button class="primary-btn" style="margin-top:12px" onclick="checkDict()">정답 확인</button>
+    <div class="audio-row">
+      <button class="small-btn gray" onclick="prevDict()">이전</button>
+      <button class="small-btn green" onclick="nextDict()">다음</button>
+    </div>
+  </section>
 
-<div id="grammar-sec" class="section">
-<div class="evo-box"><div class="evo-emoji" id="gevo-e">🥚</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
-<div class="status-row"><span class="status-badge" id="g-status"></span><button class="stop-btn" onclick="renderGrammar()">처음으로</button></div>
-<div id="grammar-box"></div>
-</div>
+  <section id="gram-sec" class="section">
+    <div id="gram-intro" class="intro">
+      <div class="intro-icon">🥅</div>
+      <h2>문법 승부차기</h2>
+      <p>4지선다 문제를 풀고 바로 설명을 읽은 뒤 다음 슛으로 넘어가요.</p>
+      <button class="primary-btn" onclick="startGram()">승부차기 시작</button>
+    </div>
+    <div id="gram-quiz" style="display:none">
+      <div class="status-row">
+        <span class="pill" id="g-status"></span>
+        <button class="small-btn gray" onclick="finishGram(true)">중간 종료</button>
+      </div>
+      <div class="evo-box">
+        <div class="evo-emoji" id="g-evo-emoji">🥅</div>
+        <div><div class="evo-name" id="g-evo-name">문법 골대 앞</div><div class="evo-sub" id="g-evo-sub">설명 읽고 다음 슛</div></div>
+      </div>
+      <div class="grammar-card">
+        <div class="grammar-en" id="g-en"></div>
+        <div class="grammar-q" id="g-q"></div>
+        <div class="grammar-options" id="g-opts"></div>
+      </div>
+      <div class="explain-box" id="g-exp"></div>
+      <button class="primary-btn" id="g-next" style="display:none" onclick="nextGram()">설명 읽었어요, 다음 문제</button>
+    </div>
+    <div id="gram-result" class="score-card" style="display:none">
+      <div class="intro-icon">🌟</div>
+      <h2 style="color:var(--main)">문법 훈련 완료</h2>
+      <div class="score-big" id="g-score">0점</div>
+      <div class="score-sub" id="g-detail"></div>
+      <button class="primary-btn" onclick="resetGram()">다시 풀기</button>
+    </div>
+  </section>
 
-<div id="hist-sec" class="section"><h3 style="color:var(--main);margin-top:0">📘 학습 기록</h3><div id="hist-list"></div></div>
-<div id="rev-sec" class="section"><h3 style="color:var(--red);margin-top:0">🚨 오답 단어</h3><div id="rev-list"></div><button class="primary-btn" style="background:var(--red)" onclick="clearWrong()">전체 비우기</button></div>
+  <section id="hist-sec" class="section">
+    <div class="intro" style="padding-top:6px">
+      <div class="intro-icon">✅</div>
+      <h2>오늘 학습 확인</h2>
+      <p>단어와 영작을 끝내면 큰 도장이 찍혀서 바로 확인할 수 있어요.</p>
+    </div>
+    <div class="stamp-board" id="stamp-board"></div>
+    <div id="hist-list"></div>
+  </section>
+
+  <section id="rev-sec" class="section">
+    <div class="status-row">
+      <span class="pill">오답 단어장</span>
+      <button class="small-btn gray" onclick="clearWrong()">전체 비우기</button>
+    </div>
+    <div id="rev-list"></div>
+  </section>
 </div>
 
 <script>
-const STORE='sr_painting_finish_24_template_v2';
-const wordList=[{"en": "work around", "ko": "전체를 두루 작업하다"}, {"en": "rather than", "ko": "~라기보다, ~대신에"}, {"en": "concentrate on", "ko": "~에 집중하다"}, {"en": "one area at a time", "ko": "한 번에 한 부분"}, {"en": "at any point", "ko": "어느 시점에서든"}, {"en": "be considered", "ko": "~로 여겨지다"}, {"en": "find it difficult to", "ko": "~하기 어렵다고 여기다"}, {"en": "tempting", "ko": "유혹하는, 하고 싶게 만드는"}, {"en": "keep on -ing", "ko": "계속 ~하다"}, {"en": "add A to B", "ko": "A를 B에 더하다"}, {"en": "take a few steps back", "ko": "몇 걸음 물러나다"}, {"en": "from time to time", "ko": "때때로"}, {"en": "assess", "ko": "평가하다"}, {"en": "progress", "ko": "진행 상황"}, {"en": "put too much into", "ko": "~에 너무 많은 것을 넣다"}, {"en": "spoil", "ko": "망치다"}, {"en": "impact", "ko": "영향, 효과"}, {"en": "leave A -ing", "ko": "A가 ~한 상태로 두다"}, {"en": "overworked", "ko": "지나치게 손댄"}, {"en": "find oneself -ing", "ko": "자신이 ~하고 있음을 깨닫다"}, {"en": "struggle to", "ko": "~하려고 애쓰다"}, {"en": "whether", "ko": "~인지 아닌지"}, {"en": "take a break", "ko": "휴식을 취하다"}, {"en": "come back to", "ko": "~로 돌아오다"}, {"en": "with fresh eyes", "ko": "새로운 시각으로"}, {"en": "benefit from", "ko": "~로부터 도움을 받다"}, {"en": "further", "ko": "더 많은, 추가적인"}, {"en": "refinement", "ko": "정교하게 다듬음"}];
-const sentenceList=[{"full": "Working around the whole painting, rather than concentrating on one area at a time, will mean you can stop at any point and the painting can be considered “finished.”", "koFull": "한 번에 한 부분에 집중하기보다 그림 전체를 두루 작업하면, 어느 시점에서든 멈출 수 있고 그 그림은 ‘완성된’ 것으로 여겨질 수 있다.", "parts": [{"en": "Working around the whole painting rather than concentrating on one area at a time", "ko": "한 번에 한 부분에 집중하기보다 그림 전체를 두루 작업하면"}, {"en": "will mean you can stop at any point and the painting can be considered finished", "ko": "어느 시점에서든 멈출 수 있고 그림은 완성된 것으로 여겨질 수 있다"}]}, {"full": "Artists often find it difficult to know when to stop painting, and it can be tempting to keep on adding more to your work.", "koFull": "화가들은 언제 그림을 그만 그려야 할지 알기 어려워하는 경우가 많고, 작품에 계속 더 많은 것을 덧붙이고 싶은 유혹을 받을 수 있다.", "parts": [{"en": "Artists often find it difficult to know when to stop painting", "ko": "화가들은 언제 그림을 그만 그려야 할지 알기 어려워한다"}, {"en": "and it can be tempting to keep on adding more to your work", "ko": "그리고 작품에 계속 더 많은 것을 덧붙이고 싶은 유혹을 받을 수 있다"}]}, {"full": "It is important to take a few steps back from the painting from time to time to assess your progress.", "koFull": "진행 상황을 평가하기 위해 때때로 그림에서 몇 걸음 물러나는 것이 중요하다.", "parts": [{"en": "It is important to take a few steps back from the painting", "ko": "그림에서 몇 걸음 물러나는 것이 중요하다"}, {"en": "from time to time to assess your progress", "ko": "진행 상황을 평가하기 위해 때때로"}]}, {"full": "Putting too much into a painting can spoil its impact and leave it looking overworked.", "koFull": "그림에 너무 많은 것을 넣으면 그 효과를 망치고 지나치게 손댄 것처럼 보이게 할 수 있다.", "parts": [{"en": "Putting too much into a painting can spoil its impact", "ko": "그림에 너무 많은 것을 넣으면 그 효과를 망칠 수 있다"}, {"en": "and leave it looking overworked", "ko": "그리고 지나치게 손댄 것처럼 보이게 할 수 있다"}]}, {"full": "If you find yourself struggling to decide whether you have finished, take a break and come back to it later with fresh eyes.", "koFull": "완성했는지 결정하느라 애쓰고 있는 자신을 발견한다면, 잠시 쉬었다가 나중에 새로운 시각으로 다시 돌아오라.", "parts": [{"en": "If you find yourself struggling to decide whether you have finished", "ko": "완성했는지 결정하느라 애쓰고 있는 자신을 발견한다면"}, {"en": "take a break and come back to it later with fresh eyes", "ko": "잠시 쉬었다가 나중에 새로운 시각으로 다시 돌아오라"}]}, {"full": "Then you can decide whether any areas of your painting would benefit from further refinement.", "koFull": "그러면 그림의 어떤 부분이 더 정교하게 다듬어짐으로써 나아질지 결정할 수 있다.", "parts": [{"en": "Then you can decide whether any areas of your painting", "ko": "그러면 그림의 어떤 부분이"}, {"en": "would benefit from further refinement", "ko": "더 정교하게 다듬어짐으로써 나아질지 결정할 수 있다"}]}];
-const grammarList=[{"sentence": "[Working / Worked] around the whole painting will mean you can stop at any point.", "answer": "Working", "explain": "문장의 주어 역할을 하는 동명사구가 필요하므로 Working이 맞습니다."}, {"sentence": "Working around the whole painting, rather than [concentrating / concentrate] on one area at a time, will mean ...", "answer": "concentrating", "explain": "rather than 뒤에서 앞의 Working과 병렬을 이루므로 동명사 concentrating이 알맞습니다."}, {"sentence": "The painting can be [considered / considering] finished.", "answer": "considered", "explain": "그림이 ‘여겨지는’ 것이므로 수동태 be considered가 맞습니다."}, {"sentence": "Artists often find [it / them] difficult to know when to stop painting.", "answer": "it", "explain": "find it difficult to-v에서 it은 가목적어이고 to know 이하가 진목적어입니다."}, {"sentence": "Artists often find it difficult to know when [to stop / stopping] painting.", "answer": "to stop", "explain": "의문사 when + to부정사 구조로 ‘언제 멈춰야 할지’라는 뜻입니다."}, {"sentence": "It can be tempting to keep on [adding / add] more to your work.", "answer": "adding", "explain": "keep on 뒤에는 동명사가 옵니다."}, {"sentence": "[It / That] is important to take a few steps back from the painting.", "answer": "It", "explain": "It은 가주어이고 to take 이하가 진주어입니다."}, {"sentence": "It is important to take a few steps back from the painting to [assess / assessing] your progress.", "answer": "assess", "explain": "목적을 나타내는 to부정사이므로 동사원형 assess가 옵니다."}, {"sentence": "Putting too much into a painting can [spoil / spoiled] its impact.", "answer": "spoil", "explain": "조동사 can 뒤에는 동사원형이 옵니다."}, {"sentence": "Putting too much into a painting can leave it [looking / looked] overworked.", "answer": "looking", "explain": "leave + 목적어 + 목적격 보어 구조이며, it이 보이는 상태를 나타내는 looking이 맞습니다."}, {"sentence": "If you find yourself [struggling / struggled] to decide whether you have finished, take a break.", "answer": "struggling", "explain": "find + 목적어 + 목적격 보어 구조에서 struggling이 yourself의 상태를 설명합니다."}, {"sentence": "Then you can decide [whether / that] any areas of your painting would benefit from further refinement.", "answer": "whether", "explain": "‘~인지 아닌지’를 뜻하는 whether절이 decide의 목적어로 쓰였습니다."}];
-const lineExplanations=[{"en": "Working around the whole painting, rather than concentrating on one area at a time, will mean you can stop at any point and the painting can be considered “finished.”", "ko": "한 번에 한 부분에 집중하기보다 그림 전체를 두루 작업하면 어느 시점에서든 멈출 수 있고, 그림을 완성된 것으로 볼 수 있다.", "gram": "Working around ...는 동명사구 주어입니다. rather than은 ‘~라기보다’이고, can be considered는 수동태입니다."}, {"en": "Artists often find it difficult to know when to stop painting, and it can be tempting to keep on adding more to your work.", "ko": "화가들은 언제 그림을 그만 그려야 할지 알기 어려워하는 경우가 많고, 작품에 계속 더 많은 것을 덧붙이고 싶은 유혹을 받을 수 있다.", "gram": "find it difficult to-v는 ‘~하기 어렵다고 여기다’. when to stop은 의문사 + to부정사이며, keep on -ing는 ‘계속 ~하다’입니다."}, {"en": "It is important to take a few steps back from the painting from time to time to assess your progress.", "ko": "진행 상황을 평가하기 위해 때때로 그림에서 몇 걸음 물러나는 것이 중요하다.", "gram": "It은 가주어이고 to take 이하가 진주어입니다. 뒤의 to assess는 목적을 나타냅니다."}, {"en": "Putting too much into a painting can spoil its impact and leave it looking overworked.", "ko": "그림에 너무 많은 것을 넣으면 그 효과를 망치고 지나치게 손댄 것처럼 보이게 할 수 있다.", "gram": "Putting ...은 동명사구 주어입니다. leave + 목적어 + -ing는 ‘목적어가 ~하는 상태로 두다’입니다."}, {"en": "If you find yourself struggling to decide whether you have finished, take a break and come back to it later with fresh eyes.", "ko": "완성했는지 결정하느라 애쓰고 있는 자신을 발견한다면, 잠시 쉬었다가 나중에 새로운 시각으로 다시 돌아오라.", "gram": "find yourself struggling은 find + 목적어 + 목적격 보어 구조입니다. whether절은 decide의 목적어입니다."}, {"en": "Then you can decide whether any areas of your painting would benefit from further refinement.", "ko": "그러면 그림의 어떤 부분이 더 정교하게 다듬어짐으로써 나아질지 결정할 수 있다.", "gram": "whether절은 decide의 목적어이고, benefit from은 ‘~로부터 도움을 받다’입니다."}];
-let selectedMainAnswer=null; const mainAnswer=5;
-
-let selectedEnglishVoice=null;
-function loadEnglishVoice(){ if(!('speechSynthesis' in window)) return; const voices=window.speechSynthesis.getVoices(); selectedEnglishVoice=voices.find(v=>(v.lang==='en-US'||v.lang==='en_US')&&/samantha|alex|ava|allison|nicky|english/i.test(v.name))||voices.find(v=>v.lang==='en-US'||v.lang==='en_US')||null; }
-if('speechSynthesis' in window){loadEnglishVoice();window.speechSynthesis.onvoiceschanged=loadEnglishVoice;}
-function speak(text,rate=0.78,onend=null){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); loadEnglishVoice(); const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=rate; u.pitch=1; u.volume=1; if(selectedEnglishVoice)u.voice=selectedEnglishVoice; if(onend)u.onend=onend; window.speechSynthesis.speak(u); }
-
-let audioCtx=null, comboCount=0;
-function initAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); }
-function tone(f,t,d,v=.08){ if(!audioCtx)return; const o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.type=t;o.frequency.setValueAtTime(f,audioCtx.currentTime);g.gain.setValueAtTime(v,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.01,audioCtx.currentTime+d);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d); }
-function sfxOK(){tone(600,'sine',.1);setTimeout(()=>tone(800,'sine',.15),100)} function sfxNG(){tone(280,'sawtooth',.2,.12)} function boom(){confetti({particleCount:120,spread:75,origin:{y:.62},colors:['#1a5c9a','#f5a623','#27ae60']})}
-function shuffle(a){let arr=[...a];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
-function todayKey(){const t=new Date();return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`}
-function timeNow(){return new Date().toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}
-function safeGet(k,d){try{return JSON.parse(localStorage.getItem(STORE+k)||JSON.stringify(d))}catch(e){return d}}
-function safeSet(k,v){localStorage.setItem(STORE+k,JSON.stringify(v))}
-function saveHist(key,data){let arr=safeGet('_'+key,[]); data.time=timeNow(); data.date=todayKey(); arr.unshift(data); if(arr.length>20)arr=arr.slice(0,20); safeSet('_'+key,arr)}
-function showCombo(ok){ if(ok)comboCount++; else{comboCount=0;return} if(comboCount<2)return; const el=document.getElementById('combo'); el.innerText=comboCount+' COMBO! ✨'; el.classList.remove('combo-pop'); void el.offsetWidth; el.classList.add('combo-pop') }
-function updateEvo(pre,cur,tot){const r=tot?cur/tot:0; const s=[[0,'🥚','수상한 알'],[.15,'🐮','아기 소'],[.38,'🐄','튼튼한 소'],[.68,'🐂','멋진 소'],[1,'👑🐂','전설의 소']]; let st=s[0]; for(const x of s)if(r>=x[0])st=x; const pct=Math.floor(r*100); document.getElementById(pre+'e').innerText=st[1]; document.getElementById(pre+'n').innerText=`${st[2]} (${pct}%)`; document.getElementById(pre+'b').style.width=pct+'%' }
-function showSection(id,btn){stopLoop();comboCount=0;document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active'); if(id==='dict-sec'&&!dictLoaded){loadDict();dictLoaded=true} if(id==='grammar-sec')renderGrammar();}
-
-function selectMainChoice(btn){selectedMainAnswer=Number(btn.dataset.n);document.querySelectorAll('.q-choice').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected')}
-function checkMainProblem(){initAudio(); if(!selectedMainAnswer){alert('정답을 먼저 선택하세요.');return} const ok=selectedMainAnswer===mainAnswer; document.querySelectorAll('.q-choice').forEach(b=>{b.classList.remove('correct','wrong'); const n=Number(b.dataset.n); if(n===mainAnswer)b.classList.add('correct'); if(n===selectedMainAnswer&&n!==mainAnswer)b.classList.add('wrong')}); const r=document.getElementById('main-result'); r.className='result-box '+(ok?'correct':'wrong'); r.innerHTML=ok?'<b>정답입니다! ⑤</b><br>작품에 지나치게 덧붙이지 말고 진행 상황을 점검하여 적절한 시점에 마무리하라는 내용입니다.':'<b>아쉽습니다. 정답은 ⑤입니다.</b><br>글은 그림을 미완성으로 두라고 하는 것이 아니라, 과도하게 손대어 효과를 망치지 않도록 적절한 완성 시점을 찾으라고 조언합니다.'; ok?sfxOK():sfxNG(); showCombo(ok); if(ok)boom(); renderLineExplain(); saveHist('problem',{correct:ok?1:0,total:1,answer:selectedMainAnswer})}
-function renderLineExplain(){const wrap=document.getElementById('line-explain');let out='<div class="question-box">📌 문장별 해석 · 문법 · 중요표현</div>'; lineExplanations.forEach((x,i)=>{out+=`<div class="explain-card"><div class="ex-en"><span class="pill">${i+1}</span>${x.en}</div><div class="ex-ko">${x.ko}</div><div class="ex-gram">🔎 ${x.gram}</div></div>`}); out+='<div class="question-box"><b>전체 요지</b><br>그림에 계속 덧붙이면 작품이 지나치게 손댄 것처럼 보이고 효과가 약해질 수 있으므로, 작업 중간에 물러나 점검하고 적절한 시점에 마무리해야 한다.</div>'; wrap.innerHTML=out; wrap.classList.add('show'); wrap.scrollIntoView({behavior:'smooth',block:'start'})}
-
+const wordList=[
+  {en:"data",ko:"자료, 데이터"},
+  {en:"save lives",ko:"생명을 구하다"},
+  {en:"Florence Nightingale",ko:"플로렌스 나이팅게일"},
+  {en:"nurse",ko:"간호사"},
+  {en:"be good at",ko:"~을 잘하다"},
+  {en:"count",ko:"세다"},
+  {en:"travel time",ko:"이동 시간"},
+  {en:"distance",ko:"거리"},
+  {en:"gather",ko:"모으다"},
+  {en:"record",ko:"기록하다"},
+  {en:"solve problems",ko:"문제를 해결하다"},
+  {en:"Crimean War",ko:"크림 전쟁"},
+  {en:"battlefield",ko:"전쟁터, 전장"},
+  {en:"soldier",ko:"군인"},
+  {en:"hospital",ko:"병원"},
+  {en:"messy",ko:"지저분한"},
+  {en:"bug",ko:"벌레"},
+  {en:"battle",ko:"전투"},
+  {en:"wounded",ko:"부상당한"},
+  {en:"dead",ko:"죽은"},
+  {en:"finding",ko:"조사 결과"},
+  {en:"diagram",ko:"도표, 도식"},
+  {en:"rose diagram",ko:"장미 도표"},
+  {en:"petal",ko:"꽃잎"},
+  {en:"disease",ko:"질병"},
+  {en:"battle wound",ko:"전투 부상"},
+  {en:"cause",ko:"원인"},
+  {en:"surprisingly",ko:"놀랍게도"},
+  {en:"simply",ko:"간단하게"},
+  {en:"clearly",ko:"분명하게"},
+  {en:"creative",ko:"창의적인"},
+  {en:"amazed",ko:"놀란"},
+  {en:"thanks to",ko:"~ 덕분에"},
+  {en:"respect",ko:"존경하다"}
+];
+const sentenceList=[
+  {en:"You may know Florence Nightingale as a nurse who helped sick people.",ko:"너는 플로렌스 나이팅게일을 아픈 사람들을 도운 간호사로 알고 있을지도 모른다."},
+  {en:"But did you also know that she was good at math?",ko:"하지만 그녀가 수학을 잘했다는 것도 알고 있었는가?"},
+  {en:"When she was young, Nightingale liked playing with numbers.",ko:"그녀가 어렸을 때, 나이팅게일은 숫자를 가지고 노는 것을 좋아했다."},
+  {en:"She enjoyed counting travel time and distance on family trips.",ko:"그녀는 가족 여행에서 이동 시간과 거리를 세는 것을 즐겼다."},
+  {en:"Then she gathered the numbers and recorded them as data.",ko:"그런 다음 그녀는 그 숫자들을 모아 데이터로 기록했다."},
+  {en:"Nightingale knew that data was important.",ko:"나이팅게일은 데이터가 중요하다는 것을 알았다."},
+  {en:"She used data to solve problems.",ko:"그녀는 문제를 해결하기 위해 데이터를 사용했다."},
+  {en:"During the Crimean War, Nightingale went to the battlefield to help sick soldiers.",ko:"크림 전쟁 동안, 나이팅게일은 아픈 군인들을 돕기 위해 전쟁터로 갔다."},
+  {en:"The hospital was much worse than she thought.",ko:"그 병원은 그녀가 생각했던 것보다 훨씬 더 나빴다."},
+  {en:"It was dirty, messy, and full of bugs!",ko:"그곳은 더럽고, 지저분하고, 벌레로 가득했다!"},
+  {en:"Nightingale knew that dirty hospitals could be bad for the soldiers.",ko:"나이팅게일은 더러운 병원이 군인들에게 나쁠 수 있다는 것을 알았다."},
+  {en:"More soldiers got sick and died in the dirty hospital than in battle.",ko:"전투에서보다 더 많은 군인들이 더러운 병원에서 병들고 죽었다."},
+  {en:"She wanted to change that.",ko:"그녀는 그것을 바꾸고 싶었다."},
+  {en:"She asked England to make the hospital much cleaner and safer.",ko:"그녀는 영국에 병원을 훨씬 더 깨끗하고 안전하게 만들어 달라고 요청했다."},
+  {en:"However, the leaders of England didn't understand.",ko:"그러나 영국의 지도자들은 이해하지 못했다."},
+  {en:"To help them see the problem, she collected data about the number of wounded and dead soldiers.",ko:"그들이 문제를 볼 수 있도록 돕기 위해, 그녀는 부상당하고 죽은 군인의 수에 관한 데이터를 모았다."},
+  {en:"However, showing her findings with just numbers was difficult.",ko:"그러나 그녀의 조사 결과를 숫자만으로 보여 주는 것은 어려웠다."},
+  {en:"To solve this problem, Nightingale created a simple picture.",ko:"이 문제를 해결하기 위해, 나이팅게일은 간단한 그림을 만들었다."},
+  {en:"It is called Nightingale's rose diagram.",ko:"그것은 나이팅게일의 장미 도표라고 불린다."},
+  {en:"The diagram looked like a rose with twelve petals.",ko:"그 도표는 열두 개의 꽃잎을 가진 장미처럼 보였다."},
+  {en:"Each petal showed a month, and larger petals meant more deaths.",ko:"각 꽃잎은 한 달을 나타냈고, 더 큰 꽃잎은 더 많은 사망을 의미했다."},
+  {en:"In the rose diagram, three different colors were used by Nightingale: blue, red, and black.",ko:"장미 도표에서 세 가지 다른 색, 즉 파란색, 빨간색, 검은색이 나이팅게일에 의해 사용되었다."},
+  {en:"Blue is for disease, red is for battle wounds, and black is for other causes.",ko:"파란색은 질병, 빨간색은 전투 부상, 검은색은 다른 원인을 나타낸다."},
+  {en:"Surprisingly, the blue part was the largest!",ko:"놀랍게도, 파란 부분이 가장 컸다!"},
+  {en:"Nightingale used this diagram to show her data simply and clearly.",ko:"나이팅게일은 자신의 데이터를 간단하고 명확하게 보여 주기 위해 이 도표를 사용했다."},
+  {en:"She was very smart and creative.",ko:"그녀는 매우 똑똑하고 창의적이었다."},
+  {en:"When people saw Nightingale's rose diagram, they were amazed.",ko:"사람들이 나이팅게일의 장미 도표를 보았을 때, 그들은 놀랐다."},
+  {en:"It helped them understand that clean hospitals are very important.",ko:"그것은 그들이 깨끗한 병원이 매우 중요하다는 것을 이해하도록 도왔다."},
+  {en:"Thanks to the rose diagram, hospitals became much cleaner and safer.",ko:"장미 도표 덕분에, 병원들은 훨씬 더 깨끗하고 안전해졌다."},
+  {en:"Nightingale's love for data and smart ideas saved many lives.",ko:"나이팅게일의 데이터에 대한 사랑과 똑똑한 생각들은 많은 생명을 구했다."},
+  {en:"She is still respected by people around the world today.",ko:"그녀는 오늘날에도 전 세계 사람들에게 존경받고 있다."}
+];
+const grammarList=[
+  {en:"You may know Florence Nightingale as a nurse who helped sick people.",q:"may know의 뜻으로 알맞은 것은?",opts:["알고 있을지도 모른다","반드시 알아야 한다","알고 있었다","알고 있는 중이다"],ans:0,exp:"may는 '~일지도 모른다'라는 추측을 나타내는 조동사입니다. may 뒤에는 동사원형 know가 옵니다."},
+  {en:"She enjoyed counting travel time and distance on family trips.",q:"enjoyed 뒤에 counting이 온 이유는?",opts:["enjoy는 뒤에 동명사를 잘 쓴다","과거라서 -ing를 붙인다","주어가 She라서 -ing를 붙인다","distance를 꾸미기 위해서"],ans:0,exp:"enjoy는 목적어로 동명사(-ing)를 자주 씁니다. enjoyed counting은 '세는 것을 즐겼다'입니다."},
+  {en:"Nightingale knew that data was important.",q:"that data was important의 역할은?",opts:["knew의 목적어 역할","문장의 주어 역할","data를 꾸미는 형용사 역할","important의 목적어 역할"],ans:0,exp:"know/knew 뒤의 that절은 '무엇을 알았는지'를 말해 주며 목적어 역할을 합니다."},
+  {en:"During the Crimean War, Nightingale went to the battlefield to help sick soldiers.",q:"to help sick soldiers의 의미로 알맞은 것은?",opts:["아픈 군인들을 돕기 위해","아픈 군인들을 도왔기 때문에","아픈 군인들이 돕도록","아픈 군인들을 도운 후에"],ans:0,exp:"to부정사가 목적을 나타낼 때 '~하기 위해'라고 해석합니다."},
+  {en:"The hospital was much worse than she thought.",q:"worse than의 문법으로 알맞은 것은?",opts:["비교급 표현","최상급 표현","수동태","현재완료"],ans:0,exp:"worse는 bad의 비교급입니다. than과 함께 '~보다 더 나쁜'이라는 뜻입니다."},
+  {en:"She asked England to make the hospital much cleaner and safer.",q:"asked England to make의 구조로 알맞은 것은?",opts:["ask + 목적어 + to부정사","ask + 동명사","ask + 형용사 + 명사","ask + 과거분사"],ans:0,exp:"ask A to B는 'A에게 B해 달라고 요청하다'라는 구조입니다."},
+  {en:"Showing her findings with just numbers was difficult.",q:"Showing her findings의 역할은?",opts:["주어 역할","목적어 역할","보어 역할","부사 역할"],ans:0,exp:"동명사구 Showing her findings with just numbers가 문장 맨 앞에서 주어 역할을 합니다."},
+  {en:"It is called Nightingale's rose diagram.",q:"is called가 나타내는 문법은?",opts:["수동태","진행형","명령문","비교급"],ans:0,exp:"is called는 '불린다'라는 뜻의 수동태입니다. 구조는 be동사 + 과거분사입니다."},
+  {en:"Each petal showed a month, and larger petals meant more deaths.",q:"larger petals의 larger는 무엇인가요?",opts:["large의 비교급","large의 최상급","동사","명사"],ans:0,exp:"larger는 large의 비교급으로 '더 큰'이라는 뜻입니다."},
+  {en:"Three different colors were used by Nightingale.",q:"were used by Nightingale의 뜻으로 알맞은 것은?",opts:["나이팅게일에 의해 사용되었다","나이팅게일을 사용했다","나이팅게일이 사용 중이었다","나이팅게일이 사용할 것이다"],ans:0,exp:"were used by는 수동태입니다. by 뒤에는 행위자가 와서 '~에 의해'라고 해석합니다."},
+  {en:"It helped them understand that clean hospitals are very important.",q:"helped them understand의 구조로 알맞은 것은?",opts:["help + 목적어 + 동사원형","help + 목적어 + 과거분사","help + 동명사","help + 형용사"],ans:0,exp:"help는 목적어 뒤에 동사원형을 쓸 수 있습니다. them understand는 '그들이 이해하도록'이라는 뜻입니다."},
+  {en:"She is still respected by people around the world today.",q:"is respected by people의 문법은?",opts:["수동태","현재진행형","과거완료","명령문"],ans:0,exp:"is respected는 '존경받는다'라는 수동태입니다. be동사 + 과거분사 구조입니다."}
+];
+const STORE="surinamu_data_saved_lives_v1";
+let selectedVoice=null,audioCtx=null;
+function safeLoad(key,fallback){try{const raw=localStorage.getItem(STORE+"_"+key);return raw?JSON.parse(raw):fallback;}catch(e){return fallback;}}
+function safeSave(key,val){try{localStorage.setItem(STORE+"_"+key,JSON.stringify(val));}catch(e){}}
+function todayKey(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function fmtDate(k){return k.replace(/-/g,". ");}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function norm(s){return s.toLowerCase().replace(/[^a-z0-9]/g,"");}
+function showSection(id,btn){
+  stopAudio();
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  btn.classList.add("active");
+  if(id==="dict-sec"){initAudio();loadDict(true);}
+}
+function evo(done,total,prefix){
+  const r=total?done/total:0;
+  const stages=[
+    [0,"⚽","예선 준비"],
+    [.001,"👟","첫 패스 성공"],
+    [.25,"🏃","조별리그 돌파"],
+    [.5,"🥅","골문 앞 찬스"],
+    [.75,"🔥","결승전 진출"],
+    [1,"🏆","월드컵 챔피언"]
+  ];
+  let st=stages[0];
+  stages.forEach(x=>{if(r>=x[0]) st=x;});
+  const em=document.getElementById(prefix+"evo-emoji");
+  const name=document.getElementById(prefix+"evo-name");
+  const sub=document.getElementById(prefix+"evo-sub");
+  if(!em||!name||!sub) return;
+  em.innerText=st[1];
+  name.innerText=st[2];
+  sub.innerText=`${Math.min(done,total)} / ${total} 미션`;
+  em.style.transform="scale(1.18) rotate(-5deg)";
+  setTimeout(()=>em.style.transform="scale(1) rotate(0)",240);
+}
+function initAudio(){
+  if(!audioCtx && (window.AudioContext||window.webkitAudioContext)) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx && audioCtx.state==="suspended") audioCtx.resume();
+  loadVoice();
+}
+function loadVoice(){
+  if(!("speechSynthesis" in window)) return;
+  const voices=window.speechSynthesis.getVoices();
+  selectedVoice=
+    voices.find(v=>/^en-US$/i.test(v.lang)&&/Samantha|Alex|Jenny|Aria|Zira|United States|US/i.test(v.name)) ||
+    voices.find(v=>/^en-US$/i.test(v.lang)) ||
+    voices.find(v=>/^en[-_]US/i.test(v.lang)) ||
+    null;
+}
+if("speechSynthesis" in window){loadVoice();window.speechSynthesis.onvoiceschanged=loadVoice;}
+function speak(text,rate=.78,onend=null){
+  if(!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";
+  u.rate=rate;
+  u.pitch=1;
+  if(selectedVoice) u.voice=selectedVoice;
+  if(onend) u.onend=onend;
+  window.speechSynthesis.speak(u);
+}
+function stopAudio(){
+  if("speechSynthesis" in window) window.speechSynthesis.cancel();
+  isLoop=false;
+  clearTimeout(loopTimer);
+  updatePlayBtn();
+}
+function tone(freq,type,dur,vol=.06){
+  if(!audioCtx) return;
+  const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+  o.type=type;o.frequency.value=freq;g.gain.value=vol;
+  g.gain.exponentialRampToValueAtTime(.01,audioCtx.currentTime+dur);
+  o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur);
+}
+function okSound(){tone(660,"sine",.1);setTimeout(()=>tone(880,"sine",.14),90);}
+function noSound(){tone(220,"sawtooth",.18,.08);}
+function goodPop(text="GOOD!"){
+  const pop=document.getElementById("pop");
+  pop.innerText=text;
+  pop.classList.remove("show");
+  void pop.offsetWidth;
+  pop.classList.add("show");
+  makeSparks();
+}
+function makeSparks(){
+  const app=document.getElementById("app");
+  for(let i=0;i<18;i++){
+    const s=document.createElement("span");
+    s.className="spark";
+    s.style.left="50%";
+    s.style.top="33%";
+    s.style.background=["#f59e0b","#60a5fa","#10b981","#ef4444"][i%4];
+    const ang=Math.random()*Math.PI*2,dist=60+Math.random()*90;
+    s.style.setProperty("--x",Math.cos(ang)*dist+"px");
+    s.style.setProperty("--y",Math.sin(ang)*dist+"px");
+    app.appendChild(s);
+    setTimeout(()=>s.remove(),820);
+  }
+}
+function recordWrong(w){
+  const arr=safeLoad("wrong",[]);
+  if(!arr.some(x=>x.en===w.en)){arr.push({en:w.en,ko:w.ko});safeSave("wrong",arr);}
+}
+function recordProgress(type,idx,total){
+  const all=safeLoad("progress",{});
+  const day=todayKey();
+  if(!all[day]) all[day]={word:null,dict:[],gram:[]};
+  if(type==="word") all[day].word=idx;
+  if(type==="dict"&&!all[day].dict.includes(idx)) all[day].dict.push(idx);
+  if(type==="gram"&&!all[day].gram.includes(idx)) all[day].gram.push(idx);
+  all[day].wordTotal=wordList.length;
+  all[day].dictTotal=sentenceList.length;
+  all[day].gramTotal=grammarList.length;
+  safeSave("progress",all);
+}
 let wList=[],wIdx=0,wOK=0,wBusy=false;
-function startWord(){wList=shuffle(wordList);wIdx=0;wOK=0;comboCount=0;document.getElementById('word-intro').style.display='none';document.getElementById('word-result').style.display='none';document.getElementById('word-quiz').style.display='block';loadWord()}
-function loadWord(){wBusy=false;updateEvo('wevo-',wIdx,wList.length);const q=wList[wIdx];document.getElementById('w-status').innerText=`문제 ${wIdx+1} / ${wList.length}`;document.getElementById('w-en').innerText=q.en;speak(q.en,.78);const opts=shuffle([{t:q.ko,ok:true},...shuffle(wordList.filter(w=>w.ko!==q.ko)).slice(0,3).map(w=>({t:w.ko,ok:false}))]);const div=document.getElementById('w-opts');div.innerHTML='';opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt-btn';b.innerText=`${i+1}. ${o.t}`;b.onclick=()=>handleWord(b,o.ok,div,q);div.appendChild(b)})}
-function saveWrong(w){let arr=safeGet('_wrong',[]);if(!arr.find(x=>x.en===w.en)){arr.push(w);safeSet('_wrong',arr)}}
-function handleWord(btn,ok,div,q){if(wBusy)return;wBusy=true;showCombo(ok);if(ok){sfxOK();btn.classList.add('correct');wOK++}else{sfxNG();btn.classList.add('wrong');saveWrong(q);[...div.querySelectorAll('.opt-btn')].forEach(b=>{if(b.innerText.includes(q.ko))b.classList.add('correct')})}setTimeout(()=>{wIdx++;wIdx<wList.length?loadWord():finishWord()},750)}
-function finishWord(early=false){const tot=early?wIdx:wList.length;if(!tot){resetWord();return}const sc=Math.round(wOK/tot*100);updateEvo('wevo-',wIdx,wList.length);document.getElementById('word-quiz').style.display='none';document.getElementById('word-result').style.display='block';document.getElementById('w-score').innerText=sc+'점';document.getElementById('w-detail').innerText=`정답 ${wOK} / ${tot}`;saveHist('word',{score:sc,correct:wOK,total:tot});if(sc>=90)boom()}
-function resetWord(){document.getElementById('word-result').style.display='none';document.getElementById('word-intro').style.display='block'}
-
-let dIdx=0,pIdx=0,dictLoaded=false,isLoop=false,loopTimer=null; const speeds=[.78,.62,.5],sLabels=['🇺🇸 보통','🐢 느리게','🐌 아주 느리게'];let spIdx=0;
-function cleanWords(s){return s.replace(/[“”"'.,!?;:()]/g,'').split(/\s+/).filter(Boolean)}
-function currentPart(){return sentenceList[dIdx].parts[pIdx]}
-function loopPlay(){if(!isLoop)return; const p=currentPart(); speak(p.en,speeds[spIdx],()=>{if(isLoop)loopTimer=setTimeout(loopPlay,1000)})}
-function stopLoop(){isLoop=false;if('speechSynthesis'in window)window.speechSynthesis.cancel();clearTimeout(loopTimer);updatePlayBtn()}
-function toggleAudio(){if(isLoop)stopLoop();else{isLoop=true;loopPlay()}updatePlayBtn()}
-function updatePlayBtn(){const b=document.getElementById('play-btn');if(b){b.innerHTML=isLoop?'⏸️ 일시정지':'▶️ 이어듣기';b.className='audio-btn play-btn'+(isLoop?' playing':'')}}
-function toggleSpeed(){spIdx=(spIdx+1)%speeds.length;document.getElementById('speed-btn').innerHTML=sLabels[spIdx];if(isLoop){stopLoop();isLoop=true;loopPlay()}}
-function loadDict(){stopLoop();updateEvo('devo-',completedParts(),totalParts());const s=sentenceList[dIdx],p=currentPart();document.getElementById('d-status').innerText=`문장 ${dIdx+1}/${sentenceList.length} · 의미 ${pIdx+1}/${s.parts.length}`;document.getElementById('d-ko').innerText=p.ko;const aa=document.getElementById('answer-area'),sa=document.getElementById('scramble-area');aa.innerHTML='';sa.innerHTML='';aa.style.background='var(--light)';aa.style.borderColor='var(--main)';shuffle(cleanWords(p.en)).forEach(w=>{const b=document.createElement('button');b.className='word-chip';b.innerText=w;b.onclick=function(){(this.parentElement.id==='scramble-area'?aa:sa).appendChild(this);if(sa.children.length===0)checkDict()};sa.appendChild(b)}); if(!window._sortable)window._sortable=new Sortable(aa,{animation:250,onEnd:()=>{if(sa.children.length===0)checkDict()}}); isLoop=true;loopPlay();updatePlayBtn()}
-function norm(s){return s.toLowerCase().replace(/[^a-z0-9]/g,'')}
-function checkDict(){const ans=[...document.getElementById('answer-area').children].map(x=>x.innerText).join(' ');const correct=currentPart().en;if(norm(ans)===norm(correct)){sfxOK();showCombo(true);document.getElementById('answer-area').style.background='#d4edda';recDict();stopLoop();setTimeout(nextDict,650)}else{sfxNG();showCombo(false);const aa=document.getElementById('answer-area');aa.style.background='#fde8e8';setTimeout(()=>aa.style.background='var(--light)',400)}}
-function totalParts(){return sentenceList.reduce((a,s)=>a+s.parts.length,0)} function completedParts(){let n=0;for(let i=0;i<dIdx;i++)n+=sentenceList[i].parts.length;return n+pIdx}
-function nextDict(){const s=sentenceList[dIdx]; if(pIdx+1<s.parts.length){pIdx++;loadDict()}else{dIdx++;pIdx=0;if(dIdx<sentenceList.length)loadDict();else{updateEvo('devo-',totalParts(),totalParts());boom();alert('영작 완료!')}}}
-function recDict(){
- const now=timeNow(), key=`${dIdx}-${pIdx}`;
- let items=safeGet('_dictDetail',[]);
- let item=items.find(x=>x.key===key);
- if(item){item.completed=true;item.lastTime=now;item.attempts=(item.attempts||0)+1;}
- else items.push({key:key,sentence:dIdx+1,part:pIdx+1,totalParts:sentenceList[dIdx].parts.length,completed:true,lastTime:now,attempts:1});
- items.sort((a,b)=>a.sentence-b.sentence||a.part-b.part);
- safeSet('_dictDetail',items);
- safeSet('_dictCurrent',{sentence:dIdx+1,part:pIdx+1,completedParts:completedParts()+1,totalParts:totalParts(),time:now});
- saveHist('dict',{sentence:dIdx+1,part:pIdx+1,completedParts:completedParts()+1,totalParts:totalParts()});
+function startWord(){
+  initAudio();
+  wList=shuffle(wordList);wIdx=0;wOK=0;wBusy=false;
+  document.getElementById("word-intro").style.display="none";
+  document.getElementById("word-result").style.display="none";
+  document.getElementById("word-quiz").style.display="block";
+  loadWord();
 }
-
-let gIdx=0;
-function renderGrammar(){updateEvo('gevo-',gIdx,grammarList.length);const g=grammarList[gIdx]||grammarList[0];document.getElementById('g-status').innerText=`어법 ${gIdx+1} / ${grammarList.length}`;const box=document.getElementById('grammar-box');const m=g.sentence.match(/\[(.*?)\s*\/\s*(.*?)\]/);let htmltxt=g.sentence; if(m){htmltxt=g.sentence.replace(m[0],`<span class="g-choice" onclick="pickGrammar(this,'${m[1]}')">${m[1]}</span> / <span class="g-choice" onclick="pickGrammar(this,'${m[2]}')">${m[2]}</span>`);}box.innerHTML=`<div class="grammar-sentence">${htmltxt}</div><div id="g-exp" class="g-explain"></div>`}
-function pickGrammar(el,val){const g=grammarList[gIdx],ok=val===g.answer;document.querySelectorAll('.g-choice').forEach(x=>x.classList.remove('correct','wrong'));el.classList.add(ok?'correct':'wrong');if(!ok){[...document.querySelectorAll('.g-choice')].find(x=>x.innerText===g.answer)?.classList.add('correct')} ok?sfxOK():sfxNG();showCombo(ok);const exp=document.getElementById('g-exp');exp.innerHTML=`<b>${ok?'⭕ 정답':'❌ 오답'}</b><br>${g.explain}<button class="primary-btn orange" onclick="nextGrammar()">설명 읽었어요 · 다음으로</button>`;exp.classList.add('show');saveHist('grammar',{idx:gIdx+1,correct:ok?1:0,total:1})}
-function nextGrammar(){gIdx++; if(gIdx>=grammarList.length){updateEvo('gevo-',grammarList.length,grammarList.length);boom();gIdx=0;alert('어법 훈련 완료! 다시 처음으로 이동합니다.')} renderGrammar()}
-
+function loadWord(){
+  const q=wList[wIdx];
+  wBusy=false;
+  document.getElementById("w-status").innerText=`문제 ${wIdx+1} / ${wList.length}`;
+  evo(wIdx,wList.length,"w-");
+  document.getElementById("w-en").innerText=q.en;
+  speak(q.en,.78);
+  const choices=shuffle([{t:q.ko,ok:true},...shuffle(wordList.filter(x=>x.ko!==q.ko)).slice(0,3).map(x=>({t:x.ko,ok:false}))]);
+  const box=document.getElementById("w-opts");
+  box.innerHTML="";
+  choices.forEach((c,i)=>{
+    const b=document.createElement("button");
+    b.className="opt-btn";
+    b.innerText=`${i+1}. ${c.t}`;
+    b.onclick=()=>handleWord(b,c.ok,box,q);
+    box.appendChild(b);
+  });
+}
+function handleWord(btn,ok,box,q){
+  if(wBusy) return;
+  wBusy=true;
+  initAudio();
+  if(ok){okSound();goodPop("GOOD!");btn.classList.add("correct");wOK++;}
+  else{noSound();btn.classList.add("wrong");recordWrong(q);[...box.children].forEach(b=>{if(b.innerText.includes(q.ko)) b.classList.add("correct");});}
+  setTimeout(()=>{wIdx++;if(wIdx<wList.length) loadWord();else finishWord(false);},760);
+}
+function finishWord(early){
+  const total=early?Math.max(wIdx,1):wList.length;
+  const score=Math.round(wOK/total*100);
+  recordProgress("word",early?wIdx:wList.length,wList.length);
+  const hist=safeLoad("wordHist",[]);
+  hist.unshift({date:new Date().toLocaleDateString("ko-KR"),score,correct:wOK,total});
+  safeSave("wordHist",hist.slice(0,10));
+  document.getElementById("word-quiz").style.display="none";
+  document.getElementById("word-result").style.display="block";
+  document.getElementById("w-score").innerText=score+"점";
+  document.getElementById("w-detail").innerText=`정답 ${wOK}개 / ${total}문항`;
+  if(!early) goodPop("완료!");
+}
+function resetWord(){document.getElementById("word-result").style.display="none";document.getElementById("word-intro").style.display="block";}
+let dIdx=0,isLoop=false,loopTimer=null,spIdx=0,chipSeq=0;
+const speeds=[.78,.64,.52],speedLabels=["보통 속도","느리게","아주 느리게"];
+function loadDict(autoPlay=false){
+  stopAudio();
+  const s=sentenceList[dIdx];
+  document.getElementById("d-status").innerText=`영작 문제 ${dIdx+1} / ${sentenceList.length}`;
+  evo(countDoneToday("dict"),sentenceList.length,"d-");
+  document.getElementById("d-ko").innerText=s.ko;
+  const answer=document.getElementById("answer-area");
+  const scramble=document.getElementById("scramble-area");
+  answer.innerHTML="";scramble.innerHTML="";
+  answer.style.background="#eef5ff";answer.style.borderColor="var(--main)";
+  shuffle(s.en.split(" ").filter(Boolean)).forEach((word)=>{
+    const chip=document.createElement("button");
+    chip.className="word-chip";
+    chip.type="button";
+    chip.innerText=word;
+    chip.dataset.id=`chip-${++chipSeq}`;
+    chip.dataset.word=word;
+    chip.onclick=function(){
+      if(this.parentElement.id==="scramble-area"){
+        answer.appendChild(this);
+        this.classList.add("in-answer");
+      }else{
+        scramble.appendChild(this);
+        this.classList.remove("in-answer");
+      }
+      afterChipMove();
+    };
+    scramble.appendChild(chip);
+  });
+  initDictSortables();
+  if(autoPlay) startLoop();
+}
+function initDictSortables(){
+  const answer=document.getElementById("answer-area");
+  const scramble=document.getElementById("scramble-area");
+  if(window._dictAnswerSortable) window._dictAnswerSortable.destroy();
+  if(window._dictScrambleSortable) window._dictScrambleSortable.destroy();
+  if(typeof Sortable==="undefined") return;
+  const opts={
+    group:"dict-words",
+    animation:280,
+    ghostClass:"sortable-ghost",
+    dragClass:"sortable-drag",
+    swapThreshold:.65,
+    onEnd:()=>{
+      [...answer.querySelectorAll(".word-chip")].forEach(chip=>chip.classList.add("in-answer"));
+      [...scramble.querySelectorAll(".word-chip")].forEach(chip=>chip.classList.remove("in-answer"));
+      afterChipMove();
+    }
+  };
+  window._dictAnswerSortable=new Sortable(answer,opts);
+  window._dictScrambleSortable=new Sortable(scramble,opts);
+}
+function afterChipMove(){
+  const scramble=document.getElementById("scramble-area");
+  if(scramble.children.length===0) checkDict();
+}
+function checkDict(){
+  initAudio();
+  const answer=document.getElementById("answer-area");
+  const student=[...answer.children].map(x=>x.innerText).join(" ");
+  const correct=sentenceList[dIdx].en;
+  if(norm(student)===norm(correct)){
+    okSound();goodPop("GOOD!");
+    answer.style.background="#dcfce7";answer.style.borderColor="#22c55e";
+    recordProgress("dict",dIdx,sentenceList.length);
+    evo(countDoneToday("dict"),sentenceList.length,"d-");
+    stopAudio();
+    setTimeout(()=>{
+      if(dIdx<sentenceList.length-1){dIdx++;loadDict(true);}
+      else{goodPop("완료!");alert("영작 전체 문장을 완료했습니다. 기록에서 도장을 확인하세요!");}
+    },820);
+  }else{
+    noSound();
+    answer.style.background="#ffe4e6";answer.style.borderColor="#ef4444";
+    setTimeout(()=>{answer.style.background="#eef5ff";answer.style.borderColor="var(--main)";},520);
+  }
+}
+function nextDict(){if(dIdx<sentenceList.length-1){dIdx++;loadDict(true);}else alert("마지막 문장입니다. 정답 확인을 누르면 완료 도장이 찍힙니다.");}
+function prevDict(){if(dIdx>0){dIdx--;loadDict(true);}}
+function jumpDict(){
+  const n=parseInt(prompt(`이동할 문장 번호를 입력하세요. (1-${sentenceList.length})`,String(dIdx+1)),10);
+  if(n>=1&&n<=sentenceList.length){dIdx=n-1;loadDict(true);}
+}
+function startLoop(){initAudio();isLoop=true;loopPlay();updatePlayBtn();}
+function loopPlay(){
+  if(!isLoop) return;
+  speak(sentenceList[dIdx].en,speeds[spIdx],()=>{if(isLoop) loopTimer=setTimeout(loopPlay,650);});
+}
+function toggleAudio(){initAudio();if(isLoop) stopAudio();else startLoop();updatePlayBtn();}
+function updatePlayBtn(){
+  const b=document.getElementById("play-btn");
+  if(!b) return;
+  b.innerText=isLoop?"미국식 음성 반복 중":"미국식 음성 재생";
+}
+function toggleSpeed(){
+  spIdx=(spIdx+1)%speeds.length;
+  document.getElementById("speed-btn").innerText=speedLabels[spIdx];
+  if(isLoop){stopAudio();startLoop();}
+}
+let gIdx=0,gOK=0,gAnswered=0,gLocked=false;
+function startGram(){
+  gIdx=0;gOK=0;gAnswered=0;gLocked=false;
+  document.getElementById("gram-intro").style.display="none";
+  document.getElementById("gram-result").style.display="none";
+  document.getElementById("gram-quiz").style.display="block";
+  loadGram();
+}
+function loadGram(){
+  const q=grammarList[gIdx];
+  gLocked=false;
+  document.getElementById("g-status").innerText=`문법 문제 ${gIdx+1} / ${grammarList.length}`;
+  evo(gIdx,grammarList.length,"g-");
+  document.getElementById("g-en").innerText=q.en;
+  document.getElementById("g-q").innerText=q.q;
+  document.getElementById("g-exp").classList.remove("show");
+  document.getElementById("g-exp").innerHTML="";
+  document.getElementById("g-next").style.display="none";
+  const box=document.getElementById("g-opts");
+  box.innerHTML="";
+  q.opts.forEach((op,i)=>{
+    const b=document.createElement("button");
+    b.className="opt-btn";
+    b.innerText=`${i+1}. ${op}`;
+    b.onclick=()=>pickGram(i,b,box);
+    box.appendChild(b);
+  });
+}
+function pickGram(i,btn,box){
+  if(gLocked) return;
+  gLocked=true;
+  initAudio();
+  const q=grammarList[gIdx];
+  [...box.children].forEach((b,idx)=>{b.disabled=true;if(idx===q.ans) b.classList.add("correct");});
+  if(i===q.ans){gOK++;okSound();goodPop("GOOD!");}
+  else{noSound();btn.classList.add("wrong");}
+  gAnswered++;
+  recordProgress("gram",gIdx,grammarList.length);
+  const exp=document.getElementById("g-exp");
+  exp.innerHTML=`<b>${i===q.ans?"정답입니다!":"정답 확인!"}</b><br>${q.exp}`;
+  exp.classList.add("show");
+  document.getElementById("g-next").style.display="block";
+}
+function nextGram(){gIdx++;if(gIdx<grammarList.length) loadGram();else finishGram(false);}
+function finishGram(early){
+  const total=early?Math.max(gAnswered,1):grammarList.length;
+  const score=Math.round(gOK/total*100);
+  const hist=safeLoad("gramHist",[]);
+  hist.unshift({date:new Date().toLocaleDateString("ko-KR"),score,correct:gOK,total});
+  safeSave("gramHist",hist.slice(0,10));
+  document.getElementById("gram-quiz").style.display="none";
+  document.getElementById("gram-result").style.display="block";
+  document.getElementById("g-score").innerText=score+"점";
+  document.getElementById("g-detail").innerText=`정답 ${gOK}개 / ${total}문항`;
+  if(!early) goodPop("완료!");
+}
+function resetGram(){document.getElementById("gram-result").style.display="none";document.getElementById("gram-intro").style.display="block";}
+function countDoneToday(type){
+  const all=safeLoad("progress",{});
+  const day=all[todayKey()]||{};
+  if(type==="dict") return Array.isArray(day.dict)?day.dict.length:0;
+  if(type==="gram") return Array.isArray(day.gram)?day.gram.length:0;
+  if(type==="word") return day.word||0;
+  return 0;
+}
 function renderHistory(){
- const div=document.getElementById('hist-list');div.innerHTML='';
- const p=safeGet('_problem',[]),w=safeGet('_word',[]),g=safeGet('_grammar',[]),details=safeGet('_dictDetail',[]),cur=safeGet('_dictCurrent',null);
- const completed=details.filter(x=>x.completed).length;
- div.insertAdjacentHTML('beforeend','<div class="hist-category">문제풀이</div>');
- div.insertAdjacentHTML('beforeend',p.length?`<div class="hist-card"><div class="hist-date">${p[0].time}</div><div class="hist-score">${p[0].correct?'정답':'오답'}</div></div>`:'<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
- div.insertAdjacentHTML('beforeend','<div class="hist-category">단어</div>');
- div.insertAdjacentHTML('beforeend',w.length?`<div class="hist-card"><div class="hist-date">${w[0].time}</div><div class="hist-score">${w[0].score}점 (${w[0].correct}/${w[0].total})</div></div>`:'<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
- div.insertAdjacentHTML('beforeend','<div class="hist-category">영작 상세 기록</div>');
- div.insertAdjacentHTML('beforeend',`<div class="hist-card"><div class="hist-score">${completed} / ${totalParts()} 완료</div><div class="hist-date">현재 위치: ${cur?`문장 ${cur.sentence} · 의미 ${cur.part}`:'기록 없음'}</div></div>`);
- let rows='';
- for(let si=0;si<sentenceList.length;si++){
-   for(let pi=0;pi<sentenceList[si].parts.length;pi++){
-     const key=`${si}-${pi}`,r=details.find(x=>x.key===key);
-     rows+=`<div class="hist-card"><div style="font-weight:900;color:var(--main)">문장 ${si+1} · 의미 ${pi+1}/${sentenceList[si].parts.length}</div><div class="hist-score" style="font-size:15px">${r&&r.completed?'완료':'미완료'}</div><div class="hist-date">${r?r.lastTime:'-'}</div></div>`;
-   }
- }
- div.insertAdjacentHTML('beforeend',rows);
- div.insertAdjacentHTML('beforeend','<div class="hist-category">어법</div>');
- div.insertAdjacentHTML('beforeend',g.length?`<div class="hist-card"><div class="hist-date">${g[0].time}</div><div class="hist-score">어법 ${g[0].idx}번 ${g[0].correct?'정답':'오답'}</div></div>`:'<p style="color:#a0aec0;font-size:13px">기록 없음</p>');
+  const progress=safeLoad("progress",{});
+  const day=progress[todayKey()]||{};
+  const wordDone=(day.word||0)>=wordList.length;
+  const dictDone=Array.isArray(day.dict)&&day.dict.length>=sentenceList.length;
+  const gramDone=Array.isArray(day.gram)&&day.gram.length>=grammarList.length;
+  const board=document.getElementById("stamp-board");
+  board.innerHTML=[
+    stampHtml("단어 완료",`${Math.min(day.word||0,wordList.length)} / ${wordList.length}`,wordDone),
+    stampHtml("영작 완료",`${Array.isArray(day.dict)?day.dict.length:0} / ${sentenceList.length}`,dictDone)
+  ].join("");
+  const hist=document.getElementById("hist-list");
+  hist.innerHTML="";
+  hist.insertAdjacentHTML("beforeend",`<div class="hist-category">오늘 문법 진행</div><div class="hist-card"><div><div class="hist-date">${fmtDate(todayKey())}</div><div class="hist-score">${Array.isArray(day.gram)?day.gram.length:0} / ${grammarList.length}문제</div></div>${gramDone?'<span class="mini-stamp">문법 완료</span>':""}</div>`);
+  hist.insertAdjacentHTML("beforeend",'<div class="hist-category">단어 테스트 성적</div>');
+  const wh=safeLoad("wordHist",[]);
+  if(!wh.length) hist.insertAdjacentHTML("beforeend",'<div class="empty">아직 단어 기록이 없습니다.</div>');
+  else wh.slice(0,4).forEach(r=>hist.insertAdjacentHTML("beforeend",`<div class="hist-card"><div><div class="hist-date">${r.date}</div><div class="hist-score">${r.score}점 <span style="font-size:12px;color:#64748b">(${r.correct}/${r.total})</span></div></div>${r.total>=wordList.length?'<span class="mini-stamp">완료</span>':""}</div>`));
+  hist.insertAdjacentHTML("beforeend",'<div class="hist-category">문법 테스트 성적</div>');
+  const gh=safeLoad("gramHist",[]);
+  if(!gh.length) hist.insertAdjacentHTML("beforeend",'<div class="empty">아직 문법 기록이 없습니다.</div>');
+  else gh.slice(0,4).forEach(r=>hist.insertAdjacentHTML("beforeend",`<div class="hist-card"><div><div class="hist-date">${r.date}</div><div class="hist-score">${r.score}점 <span style="font-size:12px;color:#64748b">(${r.correct}/${r.total})</span></div></div>${r.total>=grammarList.length?'<span class="mini-stamp">완료</span>':""}</div>`));
 }
-function renderReview(){const div=document.getElementById('rev-list');div.innerHTML='';const arr=safeGet('_wrong',[]);if(!arr.length){div.innerHTML='<div class="card" style="color:var(--green);font-weight:900;text-align:center">오답이 없습니다!</div>';return}arr.forEach((w,i)=>div.insertAdjacentHTML('beforeend',`<div class="wrong-item"><div><div class="wrong-en">${w.en}</div><div class="wrong-ko">${w.ko}</div></div><button class="del-btn" onclick="delWrong(${i})">삭제</button></div>`))}
-function delWrong(i){let arr=safeGet('_wrong',[]);arr.splice(i,1);safeSet('_wrong',arr);renderReview()} function clearWrong(){if(confirm('전체 삭제할까요?')){safeSet('_wrong',[]);renderReview()}}
+function stampHtml(title,sub,done){
+  return `<div class="big-stamp ${done?"done":""}"><div class="stamp-main">${done?"도장 완료":"진행 중"}</div><div class="stamp-sub">${title}<br>${sub}</div></div>`;
+}
+function renderReview(){
+  const div=document.getElementById("rev-list");
+  const arr=safeLoad("wrong",[]);
+  div.innerHTML="";
+  if(!arr.length){div.innerHTML='<div class="empty" style="color:#059669;background:#ecfdf5">오답 단어가 없습니다. 깔끔해요!</div>';return;}
+  arr.forEach((w,i)=>div.insertAdjacentHTML("beforeend",`<div class="wrong-item"><div><div class="wrong-en">${w.en}</div><div class="wrong-ko">${w.ko}</div></div><button class="small-btn gray" onclick="delWrong(${i})">외웠음</button></div>`));
+}
+function delWrong(i){const arr=safeLoad("wrong",[]);arr.splice(i,1);safeSave("wrong",arr);renderReview();}
+function clearWrong(){if(confirm("오답 단어장을 전부 비울까요?")){safeSave("wrong",[]);renderReview();}}
+loadDict(false);
 </script>
 </body>
 </html>
