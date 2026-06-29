@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수리나무학원 고등독해 36번 - 어린이 스포츠 순서</title>
+<title>수리나무학원 고등독해 - 동물의 치유 반응</title>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
-
 :root{--main:#1a5c9a;--accent:#f5a623;--light:#eef7ff;--bg:#f3f8ff;--text:#102033;--green:#27ae60;--red:#e74c3c;--shadow:0 8px 32px rgba(26,92,154,.16)}
 *{box-sizing:border-box} body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);margin:0;padding:16px;color:var(--text)} #app{max-width:480px;margin:0 auto;background:white;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;padding-bottom:30px;position:relative}
 .header{background:linear-gradient(135deg,#1a5c9a 0%,#0f355a 100%);color:white;padding:26px 20px 18px;text-align:center} .header-badge{background:var(--accent);color:#3b2600;font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px} .header h1{margin:0;font-size:20px;font-weight:900} .header p{margin:5px 0 0;font-size:13px;opacity:.86}
@@ -36,88 +35,230 @@
 .spark{position:absolute;font-size:1.5rem;animation:sparkFly .85s ease-out forwards}.spark:nth-child(2n){font-size:1.1rem}.spark:nth-child(3n){font-size:1.8rem}
 @keyframes sparkFly{0%{opacity:0;transform:translate(0,0) scale(.4) rotate(0)}20%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(180deg)}}
 .simple-summary{display:grid;grid-template-columns:1fr;gap:10px}.simple-card{background:#fff;border:2px solid #cfe4f8;border-radius:16px;padding:14px}.simple-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.simple-title{font-weight:1000;color:var(--main)}.simple-count{font-size:1.5rem;font-weight:1000;color:var(--green)}.mini-bar{height:11px;border-radius:999px;background:#edf2f7;overflow:hidden}.mini-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:999px;transition:.35s}.finish-note{background:#fffbeb;border:1.5px solid #f6c94e;border-radius:14px;padding:12px;margin-bottom:12px;font-weight:900;color:#8a6300;line-height:1.55;text-align:center}
-
-
-
-.order-block{margin-bottom:13px}
-.order-label{display:inline-block;background:#fffbeb;color:#8a6300;border:1px solid #f6c94e;border-radius:999px;padding:2px 9px;font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;font-size:12px;font-weight:900;margin-right:5px}
-.flow-mini{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#f6fbff;border:1px solid #cfe4f8;border-radius:12px;padding:10px 11px;margin:9px 0;line-height:1.55;font-size:13px}
-.problem-passage b.seq{color:#1a5c9a}
-.theme-line{font-size:1.45rem;margin-top:8px;letter-spacing:4px}
-
 </style>
 </head>
 <body>
 <div id="app">
 <div id="combo"></div>
-<div id="stamp-overlay" class="stamp-overlay"><div class="stamp-card"><div class="stamp-icon">🏆</div><div id="stamp-text" class="stamp-text">잘했어요!</div><button class="stamp-btn" onclick="hideStamp()">계속하기</button></div></div>
+<div id="stamp-overlay" class="stamp-overlay"><div class="stamp-card"><div class="stamp-icon">🏅</div><div id="stamp-text" class="stamp-text">잘했어요!</div><button class="stamp-btn" onclick="hideStamp()">계속하기</button></div></div>
 <div id="reward-layer"></div>
-<div class="header"><div class="header-badge">고등독해 · 글의 순서</div><h1>수리나무학원 고등독해</h1><p>36번 어린이 스포츠 환경 조정 · 글의 순서</p><div class="theme-line">⚾ 🏈 ⚽ 🎾 🏆</div></div>
+
+<div class="header">
+  <div class="header-badge">고등독해 · 문장 삽입</div>
+  <h1>수리나무학원 고등독해</h1>
+  <p>동물의 치유 반응 · 문장 삽입</p>
+</div>
+
 <div class="nav">
-<button class="nav-btn active" onclick="showSection('problem-sec',this)">문제</button>
-<button class="nav-btn" onclick="showSection('word-sec',this)">1.단어</button>
-<button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
-<button class="nav-btn" onclick="showSection('grammar-sec',this)">3.어법</button>
-<button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
+  <button class="nav-btn active" onclick="showSection('problem-sec',this)">문제</button>
+  <button class="nav-btn" onclick="showSection('word-sec',this)">1.단어</button>
+  <button class="nav-btn" onclick="showSection('dict-sec',this)">2.영작</button>
+  <button class="nav-btn" onclick="showSection('grammar-sec',this)">3.어법</button>
+  <button class="nav-btn" onclick="showSection('hist-sec',this);renderHistory()">4.기록</button>
 </div>
 
 <div id="problem-sec" class="section active">
-<div class="problem-card"><div class="problem-title">36. 주어진 글 다음에 이어질 글의 순서로 가장 적절한 것은?</div><div class="problem-passage"><div class="order-block"><span class="order-label">주어진 글</span>In many sports, people realized the difficulties and even impossibilities of young children participating fully in many adult sport environments.</div><div class="order-block"><span class="order-label">A</span>As examples, baseball has T-ball, football has flag football and junior soccer uses a smaller and lighter ball and sometimes a smaller field. All have junior competitive structures where children play for shorter time periods and often in smaller teams.</div><div class="order-block"><span class="order-label">B</span>In a similar way, tennis has adapted the court areas, balls and rackets to make them more appropriate for children under 10. The adaptations are progressive and relate to the age of the child.</div><div class="order-block"><span class="order-label">C</span>They found the road to success for young children is unlikely if they play on adult fields, courts or arenas with equipment that is too large, too heavy or too fast for them to handle while trying to compete in adult-style competition. Common sense has prevailed: different sports have made adaptations for children.</div></div></div>
-<div class="choice-list">
-<button class="q-choice" data-n="ACB" onclick="selectMainChoice(this)">① (A) - (C) - (B)</button>
-<button class="q-choice" data-n="BAC" onclick="selectMainChoice(this)">② (B) - (A) - (C)</button>
-<button class="q-choice" data-n="BCA" onclick="selectMainChoice(this)">③ (B) - (C) - (A)</button>
-<button class="q-choice" data-n="CAB" onclick="selectMainChoice(this)">④ (C) - (A) - (B)</button>
-<button class="q-choice" data-n="CBA" onclick="selectMainChoice(this)">⑤ (C) - (B) - (A)</button>
-</div>
-<button class="primary-btn" onclick="checkMainProblem()">정답 확인하고 해설 보기 ✅</button>
-<div id="main-result" class="result-box"></div><div id="line-explain" class="explain-wrap"></div>
+  <div class="problem-card">
+    <div class="problem-title">39. 글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.</div>
+    <div class="problem-passage">
+      <div style="border: 2px solid #cfe4f8; padding: 12px; border-radius: 8px; margin-bottom: 12px; font-weight: bold; background-color: #f6fbff;">
+        Environmental factors can also determine how the animal will respond during the treatment.
+      </div>
+      No two animals are alike. ( ① ) Animals from the same litter will display some of the same features, but will not be exactly the same as each other; therefore, they may not respond in entirely the same way during a healing session. ( ② ) For instance, a cat in a rescue center will respond very differently than a cat within a domestic home environment. ( ③ ) In addition, animals that experience healing for physical illness will react differently than those accepting healing for emotional confusion. ( ④ ) With this in mind, every healing session needs to be explored differently, and each healing treatment should be adjusted to suit the specific needs of the animal. ( ⑤ ) You will learn as you go; healing is a constant learning process.
+    </div>
+  </div>
+  <div class="choice-list">
+    <button class="q-choice" data-n="1" onclick="selectMainChoice(this)">①</button>
+    <button class="q-choice" data-n="2" onclick="selectMainChoice(this)">②</button>
+    <button class="q-choice" data-n="3" onclick="selectMainChoice(this)">③</button>
+    <button class="q-choice" data-n="4" onclick="selectMainChoice(this)">④</button>
+    <button class="q-choice" data-n="5" onclick="selectMainChoice(this)">⑤</button>
+  </div>
+  <button class="primary-btn" onclick="checkMainProblem()">정답 확인하고 문장별 해설 보기</button>
+  <div id="main-result" class="result-box"></div><div id="line-explain" class="explain-wrap"></div>
 </div>
 
 <div id="word-sec" class="section">
-<div id="word-intro" class="intro-wrap"><div class="intro-icon">🥚</div><h2>스포츠 리그 성장!</h2><p>핵심 단어를 맞히며<br>어린이 스포츠 리그를 완성해 보세요.</p><button class="primary-btn" onclick="initAudio();startWord()">테스트 시작 🚀</button></div>
-<div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">🥚</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
-<div id="word-result" style="display:none;text-align:center"><div class="intro-icon" id="w-res-e">🏆</div><h2 style="color:var(--main)">테스트 종료!</h2><div class="word-display" id="w-score">0/0</div><div class="status-badge" id="w-detail"></div><button class="primary-btn" onclick="resetWord()">다시 시작 🔄</button></div>
+  <div id="word-intro" class="intro-wrap">
+    <div class="intro-icon">🐾</div><h2>반려동물 마음 읽기</h2><p>핵심 단어를 맞히며<br>동물들이 치료에 반응하는 차이를 알아보세요.</p>
+    <button class="primary-btn" onclick="initAudio();startWord()">테스트 시작 🚀</button>
+  </div>
+  <div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">🐾</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
+  <div id="word-result" style="display:none;text-align:center"><div class="intro-icon" id="w-res-e">🏆</div><h2 style="color:var(--main)">테스트 종료!</h2><div class="word-display" id="w-score">100점</div><div class="status-badge" id="w-detail"></div><button class="primary-btn" onclick="resetWord()">다시 시작 🔄</button></div>
 </div>
 
 <div id="dict-sec" class="section">
-<div class="evo-box"><div class="evo-emoji" id="devo-e">🥚</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
-<span class="status-badge" id="d-status"></span><div class="ko-meaning" id="d-ko"></div><div class="drag-tip">내용 순서 <b>주어진 글 → C → A → B</b>로 영작합니다. 구두점은 제외됩니다. 맞으면 자동으로 다음 의미 구간으로 이동합니다.</div>
-<div id="answer-area"></div><div id="scramble-area"></div>
-<div class="audio-row"><button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🇺🇸 보통</button><button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">⏸️ 일시정지</button></div>
+  <div class="evo-box"><div class="evo-emoji" id="devo-e">🐾</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
+  <span class="status-badge" id="d-status"></span><div class="ko-meaning" id="d-ko"></div><div class="drag-tip">낱말을 눌러 순서대로 놓아 문장을 완성하세요. 구두점은 제외되며, 맞으면 바로 다음 구간으로 이동합니다. (정답이 삽입된 완성된 흐름으로 진행됩니다.)</div>
+  <div id="answer-area"></div><div id="scramble-area"></div>
+  <div class="audio-row"><button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🇺🇸 보통</button><button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">⏸️ 일시정지</button></div>
 </div>
 
 <div id="grammar-sec" class="section">
-<div class="evo-box"><div class="evo-emoji" id="gevo-e">🥚</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
-<div class="status-row"><span class="status-badge" id="g-status"></span><button class="stop-btn" onclick="renderGrammar()">처음으로</button></div>
-<div id="grammar-box"></div>
+  <div class="evo-box"><div class="evo-emoji" id="gevo-e">🐾</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
+  <div class="status-row"><span class="status-badge" id="g-status"></span><button class="stop-btn" onclick="renderGrammar()">처음으로</button></div>
+  <div id="grammar-box"></div>
 </div>
 
 <div id="hist-sec" class="section"><h3 style="color:var(--main);margin-top:0">📘 학습 기록</h3><div id="hist-list"></div></div>
 </div>
 
 <script>
+const STORE='sr_animal_healing_v1';
 
-const STORE="sr_go1_36_sports_template_v1";
-const wordList=[{"en": "realize", "ko": "깨닫다"}, {"en": "difficulty", "ko": "어려움"}, {"en": "impossibility", "ko": "불가능함"}, {"en": "participate fully in", "ko": "~에 완전히 참여하다"}, {"en": "adult sport environments", "ko": "성인 스포츠 환경"}, {"en": "the road to success", "ko": "성공으로 가는 길"}, {"en": "unlikely", "ko": "가능성이 낮은"}, {"en": "adult fields", "ko": "성인용 운동장"}, {"en": "courts or arenas", "ko": "코트나 경기장"}, {"en": "equipment", "ko": "장비"}, {"en": "too large to handle", "ko": "다루기에는 너무 큰"}, {"en": "compete", "ko": "경쟁하다"}, {"en": "adult-style competition", "ko": "성인 방식의 경기"}, {"en": "common sense", "ko": "상식"}, {"en": "prevail", "ko": "널리 퍼지다, 우세하다"}, {"en": "make adaptations for", "ko": "~을 위해 조정하다"}, {"en": "as examples", "ko": "예를 들면"}, {"en": "T-ball", "ko": "티볼"}, {"en": "flag football", "ko": "플래그 풋볼"}, {"en": "junior soccer", "ko": "유소년 축구"}, {"en": "smaller and lighter", "ko": "더 작고 더 가벼운"}, {"en": "junior competitive structures", "ko": "유소년 경기 구조"}, {"en": "shorter time periods", "ko": "더 짧은 시간"}, {"en": "in smaller teams", "ko": "더 작은 팀으로"}, {"en": "in a similar way", "ko": "비슷한 방식으로"}, {"en": "adapt", "ko": "조정하다, 맞추다"}, {"en": "appropriate for", "ko": "~에게 적절한"}, {"en": "progressive", "ko": "점진적인"}, {"en": "relate to", "ko": "~와 관련이 있다"}];
-const sentenceList=[{"full": "In many sports, people realized the difficulties and even impossibilities of young children participating fully in many adult sport environments.", "koFull": "많은 스포츠에서 사람들은 어린아이들이 많은 성인 스포츠 환경에서 완전히 참여하는 것의 어려움, 심지어 불가능함까지 깨달았다.", "parts": [{"en": "In many sports people realized the difficulties and even impossibilities", "ko": "많은 스포츠에서 사람들은 어려움과 심지어 불가능함까지 깨달았다"}, {"en": "of young children participating fully in many adult sport environments", "ko": "어린아이들이 많은 성인 스포츠 환경에서 완전히 참여하는 것의"}]}, {"full": "They found the road to success for young children is unlikely if they play on adult fields, courts or arenas with equipment that is too large, too heavy or too fast for them to handle while trying to compete in adult-style competition.", "koFull": "그들은 성인용 경기장과 아이들이 다루기 어려운 장비로 경기하면 어린아이들이 성공하기 어렵다는 것을 알게 되었다.", "parts": [{"en": "They found the road to success for young children is unlikely", "ko": "그들은 어린아이들의 성공으로 가는 길이 가능성이 낮다는 것을 알게 되었다"}, {"en": "if they play on adult fields courts or arenas", "ko": "그들이 성인용 운동장, 코트, 경기장에서 경기한다면"}, {"en": "with equipment that is too large too heavy or too fast for them to handle", "ko": "그들이 다루기에 너무 크고, 너무 무겁고, 너무 빠른 장비를 가지고"}, {"en": "while trying to compete in adult style competition", "ko": "성인 방식의 경기에서 경쟁하려고 하면서"}]}, {"full": "Common sense has prevailed: different sports have made adaptations for children.", "koFull": "상식이 우세해졌다. 즉, 여러 스포츠가 아이들을 위한 조정을 해 왔다.", "parts": [{"en": "Common sense has prevailed", "ko": "상식이 우세해졌다"}, {"en": "different sports have made adaptations for children", "ko": "여러 스포츠가 아이들을 위한 조정을 해 왔다"}]}, {"full": "As examples, baseball has T-ball, football has flag football and junior soccer uses a smaller and lighter ball and sometimes a smaller field.", "koFull": "예를 들면, 야구에는 티볼이 있고, 미식축구에는 플래그 풋볼이 있으며, 유소년 축구는 더 작고 가벼운 공과 때때로 더 작은 경기장을 사용한다.", "parts": [{"en": "As examples baseball has T ball football has flag football", "ko": "예를 들면 야구에는 티볼이 있고 미식축구에는 플래그 풋볼이 있다"}, {"en": "and junior soccer uses a smaller and lighter ball and sometimes a smaller field", "ko": "그리고 유소년 축구는 더 작고 가벼운 공과 때때로 더 작은 경기장을 사용한다"}]}, {"full": "All have junior competitive structures where children play for shorter time periods and often in smaller teams.", "koFull": "그 모든 스포츠에는 아이들이 더 짧은 시간 동안, 그리고 종종 더 작은 팀으로 경기하는 유소년 경기 구조가 있다.", "parts": [{"en": "All have junior competitive structures", "ko": "그 모든 스포츠에는 유소년 경기 구조가 있다"}, {"en": "where children play for shorter time periods and often in smaller teams", "ko": "그 안에서 아이들은 더 짧은 시간 동안 그리고 종종 더 작은 팀으로 경기한다"}]}, {"full": "In a similar way, tennis has adapted the court areas, balls and rackets to make them more appropriate for children under 10.", "koFull": "비슷한 방식으로, 테니스는 10세 미만의 아이들에게 더 적절하게 만들기 위해 코트 구역, 공, 라켓을 조정해 왔다.", "parts": [{"en": "In a similar way tennis has adapted the court areas balls and rackets", "ko": "비슷한 방식으로 테니스는 코트 구역, 공, 라켓을 조정해 왔다"}, {"en": "to make them more appropriate for children under 10", "ko": "그것들을 10세 미만의 아이들에게 더 적절하게 만들기 위해"}]}, {"full": "The adaptations are progressive and relate to the age of the child.", "koFull": "그 조정들은 점진적이며 아이의 나이와 관련이 있다.", "parts": [{"en": "The adaptations are progressive and relate to the age of the child", "ko": "그 조정들은 점진적이며 아이의 나이와 관련이 있다"}]}];
-const grammarList=[{"sentence": "People realized the [difficulties / difficult] of young children participating fully.", "answer": "difficulties", "explain": "관사 the 뒤에서 명사 역할이 필요하고, 뒤의 impossibilities와 병렬이므로 difficulties가 맞습니다."}, {"sentence": "Young children [participating / participate] fully in adult sport environments can be difficult.", "answer": "participating", "explain": "of young children participating fully에서 participating은 동명사이고, young children은 의미상 주어입니다."}, {"sentence": "They found the road to success for young children [is / are] unlikely.", "answer": "is", "explain": "주어는 the road to success이므로 단수 동사 is가 맞습니다."}, {"sentence": "Equipment that [is / are] too large is hard for children to handle.", "answer": "is", "explain": "관계절의 선행사 equipment는 단수·불가산 명사처럼 쓰이므로 is가 맞습니다."}, {"sentence": "The equipment is too heavy for them [to handle / handling].", "answer": "to handle", "explain": "too 형용사 for A to V 구조입니다."}, {"sentence": "Children try [to compete / competing] in adult-style competition.", "answer": "to compete", "explain": "try to V는 ‘~하려고 노력하다’라는 뜻입니다."}, {"sentence": "Different sports have [made / making] adaptations for children.", "answer": "made", "explain": "have + 과거분사 형태의 현재완료이므로 made가 맞습니다."}, {"sentence": "Baseball [has / have] T-ball.", "answer": "has", "explain": "주어 baseball은 단수이므로 has가 맞습니다."}, {"sentence": "Junior soccer [uses / use] a smaller and lighter ball.", "answer": "uses", "explain": "주어 junior soccer가 단수 개념이므로 uses가 맞습니다."}, {"sentence": "All have junior competitive structures [where / which] children play for shorter time periods.", "answer": "where", "explain": "structures를 ‘아이들이 경기하는 구조/상황’으로 보아 관계부사 where가 자연스럽습니다."}, {"sentence": "Tennis has [adapted / adapting] the court areas, balls and rackets.", "answer": "adapted", "explain": "has + 과거분사 현재완료 구조입니다."}, {"sentence": "Tennis adapted them to make them more [appropriate / appropriately] for children.", "answer": "appropriate", "explain": "make + 목적어 + 형용사 구조이므로 appropriate가 맞습니다."}];
-const lineExplanations=[{"en": "In many sports, people realized the difficulties and even impossibilities of young children participating fully in many adult sport environments.", "ko": "많은 스포츠에서 사람들은 어린아이들이 많은 성인 스포츠 환경에서 완전히 참여하는 것의 어려움, 심지어 불가능함까지 깨달았다.", "gram": "문제 제기입니다. 아이들이 성인 기준의 스포츠 환경에서 제대로 참여하기 어렵다는 내용입니다."}, {"en": "They found the road to success for young children is unlikely if they play on adult fields, courts or arenas with equipment that is too large, too heavy or too fast for them to handle while trying to compete in adult-style competition.", "ko": "그들은 성인용 경기장과 아이들이 다루기 어려운 장비로 경기하면 어린아이들이 성공하기 어렵다는 것을 알게 되었다.", "gram": "주어진 글의 realized를 They found가 이어 받습니다. 그래서 C가 첫 번째입니다."}, {"en": "Common sense has prevailed: different sports have made adaptations for children.", "ko": "상식이 우세해졌다. 즉, 여러 스포츠가 아이들을 위한 조정을 해 왔다.", "gram": "콜론 뒤가 앞 내용을 구체화합니다. 이 문장이 다음 예시 A로 연결됩니다."}, {"en": "As examples, baseball has T-ball, football has flag football and junior soccer uses a smaller and lighter ball and sometimes a smaller field.", "ko": "예를 들면, 야구에는 티볼이 있고, 미식축구에는 플래그 풋볼이 있으며, 유소년 축구는 더 작고 가벼운 공과 때때로 더 작은 경기장을 사용한다.", "gram": "As examples가 C의 adaptations for children을 구체적인 예로 설명합니다."}, {"en": "All have junior competitive structures where children play for shorter time periods and often in smaller teams.", "ko": "그 모든 스포츠에는 아이들이 더 짧은 시간 동안, 그리고 종종 더 작은 팀으로 경기하는 유소년 경기 구조가 있다.", "gram": "where절은 junior competitive structures를 설명합니다."}, {"en": "In a similar way, tennis has adapted the court areas, balls and rackets to make them more appropriate for children under 10.", "ko": "비슷한 방식으로, 테니스는 10세 미만의 아이들에게 더 적절하게 만들기 위해 코트 구역, 공, 라켓을 조정해 왔다.", "gram": "In a similar way가 앞의 여러 예시 A를 받아 B가 마지막에 옵니다."}, {"en": "The adaptations are progressive and relate to the age of the child.", "ko": "그 조정들은 점진적이며 아이의 나이와 관련이 있다.", "gram": "테니스 조정이 아이의 나이에 따라 단계적으로 이루어진다는 마무리입니다."}];
-const evoStages=[[0, "🥚", "연습 시작"], [0.15, "⚾", "티볼 선수"], [0.38, "🏈", "주니어 리그"], [0.68, "⚽", "팀플레이 완성"], [1, "🏆", "스포츠 마스터"]];
-let selectedMainAnswer=null; const mainAnswer="CAB";
-const mainCorrectHtml="<b>정답입니다! ④ (C) - (A) - (B)</b><br>주어진 글에서 어린아이들이 성인 스포츠 환경에서 어렵다는 문제가 제시되고, C에서 이유와 조정 필요성이 설명됩니다. A는 여러 스포츠의 예시, B는 <b>In a similar way</b>로 테니스 예시를 덧붙입니다.";
-const mainWrongHtml="<b>아쉽습니다. 정답은 ④ (C) - (A) - (B)입니다.</b><br>주어진 글의 문제 제기 다음에는 C의 이유와 해결 방향이 와야 합니다. 이어서 A의 여러 예시가 나오고, B의 <b>In a similar way</b>가 A를 받아 테니스 예시로 이어집니다.";
-const summaryHtml="<b>전체 흐름</b><br>문제 제기 → 이유와 해결 방향 → 여러 스포츠 예시 → 비슷한 방식의 테니스 예시입니다. 따라서 순서는 <b>주어진 글 → C → A → B</b>입니다.";
+const wordList = [
+  {en: "alike", ko: "비슷한, 똑같은"},
+  {en: "litter", ko: "한 번에 태어난 새끼들"},
+  {en: "display", ko: "보여주다, 나타내다"},
+  {en: "feature", ko: "특징"},
+  {en: "exactly", ko: "정확히"},
+  {en: "therefore", ko: "그러므로, 따라서"},
+  {en: "entirely", ko: "완전히"},
+  {en: "respond", ko: "반응하다"},
+  {en: "healing session", ko: "치유 시간, 치료 과정"},
+  {en: "environmental factor", ko: "환경적 요인"},
+  {en: "determine", ko: "결정하다, 좌우하다"},
+  {en: "treatment", ko: "치료"},
+  {en: "for instance", ko: "예를 들어"},
+  {en: "rescue center", ko: "구조센터"},
+  {en: "domestic", ko: "가정의, 집안의"},
+  {en: "environment", ko: "환경"},
+  {en: "in addition", ko: "게다가, 추가로"},
+  {en: "experience", ko: "경험하다"},
+  {en: "physical illness", ko: "신체적 질병"},
+  {en: "react", ko: "반응하다"},
+  {en: "emotional confusion", ko: "정서적 혼란"},
+  {en: "explore", ko: "탐색하다, 살펴보다"},
+  {en: "adjust", ko: "조정하다"},
+  {en: "suit", ko: "맞다, 적합하다"},
+  {en: "specific", ko: "구체적인, 특정한"},
+  {en: "constant", ko: "끊임없는, 지속적인"},
+  {en: "process", ko: "과정"}
+];
 
+const sentenceList = [
+  {full: "No two animals are alike.", koFull: "어떤 두 동물도 똑같지는 않다.", parts: [
+    {en: "No two animals are alike", ko: "어떤 두 동물도 똑같지는 않다"}
+  ]},
+  {full: "Animals from the same litter will display some of the same features, but will not be exactly the same as each other; therefore, they may not respond in entirely the same way during a healing session.", koFull: "같은 배에서 태어난 동물들은 몇몇 같은 특징을 보일 수는 있지만, 서로 완전히 똑같지는 않을 것이다. 그러므로 그것들은 치유 과정 중에 완전히 같은 방식으로 반응하지 않을 수도 있다.", parts: [
+    {en: "Animals from the same litter will display some of the same features", ko: "같은 배에서 태어난 동물들은 몇몇 같은 특징을 보일 수는 있지만"},
+    {en: "but will not be exactly the same as each other", ko: "서로 완전히 똑같지는 않을 것이다"},
+    {en: "therefore they may not respond in entirely the same way during a healing session", ko: "그러므로 그것들은 치유 과정 중에 완전히 같은 방식으로 반응하지 않을 수도 있다"}
+  ]},
+  {full: "Environmental factors can also determine how the animal will respond during the treatment.", koFull: "환경적 요인들 또한 그 동물이 치료 중에 어떻게 반응할지를 결정할 수 있다.", parts: [
+    {en: "Environmental factors can also determine", ko: "환경적 요인들 또한 결정할 수 있다"},
+    {en: "how the animal will respond during the treatment", ko: "그 동물이 치료 중에 어떻게 반응할지를"}
+  ]},
+  {full: "For instance, a cat in a rescue center will respond very differently than a cat within a domestic home environment.", koFull: "예를 들어, 구조센터에 있는 고양이는 가정집 환경 안에 있는 고양이와 매우 다르게 반응할 것이다.", parts: [
+    {en: "For instance a cat in a rescue center", ko: "예를 들어 구조센터에 있는 고양이는"},
+    {en: "will respond very differently", ko: "매우 다르게 반응할 것이다"},
+    {en: "than a cat within a domestic home environment", ko: "가정집 환경 안에 있는 고양이와"}
+  ]},
+  {full: "In addition, animals that experience healing for physical illness will react differently than those accepting healing for emotional confusion.", koFull: "게다가, 신체적 질병 때문에 치유를 받는 동물들은 정서적 혼란 때문에 치유를 받는 동물들과 다르게 반응할 것이다.", parts: [
+    {en: "In addition animals that experience healing for physical illness", ko: "게다가 신체적 질병 때문에 치유를 받는 동물들은"},
+    {en: "will react differently", ko: "다르게 반응할 것이다"},
+    {en: "than those accepting healing for emotional confusion", ko: "정서적 혼란 때문에 치유를 받는 동물들과"}
+  ]},
+  {full: "With this in mind, every healing session needs to be explored differently, and each healing treatment should be adjusted to suit the specific needs of the animal.", koFull: "이 점을 염두에 두고, 모든 치유 과정은 다르게 살펴보아야 하며, 각각의 치유 치료는 그 동물의 구체적인 필요에 맞도록 조정되어야 한다.", parts: [
+    {en: "With this in mind", ko: "이 점을 염두에 두고"},
+    {en: "every healing session needs to be explored differently", ko: "모든 치유 과정은 다르게 살펴보아야 하며"},
+    {en: "and each healing treatment should be adjusted", ko: "각각의 치유 치료는 조정되어야 한다"},
+    {en: "to suit the specific needs of the animal", ko: "그 동물의 구체적인 필요에 맞도록"}
+  ]},
+  {full: "You will learn as you go; healing is a constant learning process.", koFull: "당신은 해 나가면서 배우게 될 것이다. 치유는 끊임없는 배움의 과정이다.", parts: [
+    {en: "You will learn as you go", ko: "당신은 해 나가면서 배우게 될 것이다"},
+    {en: "healing is a constant learning process", ko: "치유는 끊임없는 배움의 과정이다"}
+  ]}
+];
+
+const grammarList = [
+  {sentence: "No two animals [are / is] alike.", answer: "are", explain: "주어 자리에 쓰인 animals가 복수 명사이므로 복수 동사 are가 맞습니다."},
+  {sentence: "Animals from the same litter [display / displaying] some of the same features.", answer: "display", explain: "문장의 주어(Animals)에 연결되는 본동사 자리이므로 동사원형(미래 조동사 will 뒤) 또는 현재형인 display가 적절합니다."},
+  {sentence: "They may not respond in entirely the same way [during / while] a healing session.", answer: "during", explain: "뒤에 명사구(a healing session)가 오므로 전치사인 during이 맞습니다. while은 접속사로 뒤에 주어+동사가 옵니다."},
+  {sentence: "Environmental factors can also determine [how / what] the animal will respond.", answer: "how", explain: "뒤에 완전한 절(respond는 자동사)이 오고 '어떻게 반응할지'라는 의미가 자연스러우므로 의문부사 how가 맞습니다."},
+  {sentence: "A cat in a rescue center will respond very [different / differently].", answer: "differently", explain: "앞에 있는 동사 respond(반응하다)를 수식해야 하므로 부사인 differently가 맞습니다."},
+  {sentence: "Animals [what / that] experience healing for physical illness will react differently.", answer: "that", explain: "선행사 animals를 수식하면서 뒤에 동사(experience)가 이어지는 주격 관계대명사 that이 필요합니다."},
+  {sentence: "They will react differently than [that / those] accepting healing.", answer: "those", explain: "앞에 나온 복수명사 animals를 대신받는 지시대명사이므로 복수형인 those가 맞습니다."},
+  {sentence: "Every healing session needs to be [explored / exploring] differently.", answer: "explored", explain: "치유 과정(session)은 탐색'되는' 대상이므로 수동태 형태인 be explored가 맞습니다."},
+  {sentence: "Each healing treatment should be adjusted to [suit / suiting] the specific needs.", answer: "suit", explain: "'~하기 위해'라는 목적을 나타내는 to 부정사 구문이므로 to 뒤에 동사원형 suit가 옵니다."}
+];
+
+const lineExplanations = [
+  {en: "No two animals are alike.", ko: "어떤 두 동물도 똑같지는 않다.", gram: "<b>No two A are alike.</b> (어떤 두 A도 똑같지 않다.) 여기서 <b>alike</b>는 '비슷한, 똑같은'이라는 뜻으로 쓰였습니다."},
+  {en: "Animals from the same litter will display some of the same features, but will not be exactly the same as each other; therefore, they may not respond in entirely the same way during a healing session.", ko: "같은 배에서 태어난 동물들은 몇몇 같은 특징을 보일 수는 있지만, 서로 완전히 똑같지는 않을 것이다. 그러므로 그것들은 치유 과정 중에 완전히 같은 방식으로 반응하지 않을 수도 있다.", gram: "<b>from the same litter</b>는 '같은 배에서 태어난'이라는 뜻입니다. <b>therefore</b>(그러므로)는 앞 문장의 결과를 말할 때 쓰입니다."},
+  {en: "Environmental factors can also determine how the animal will respond during the treatment.", ko: "환경적 요인들 또한 그 동물이 치료 중에 어떻게 반응할지를 결정할 수 있다.", gram: "<b>determine</b>은 '결정하다, 좌우하다'라는 뜻입니다. <b>how the animal will respond</b>는 동사 determine의 목적어로 쓰인 명사절(간접의문문)입니다."},
+  {en: "For instance, a cat in a rescue center will respond very differently than a cat within a domestic home environment.", ko: "예를 들어, 구조센터에 있는 고양이는 가정집 환경 안에 있는 고양이와 매우 다르게 반응할 것이다.", gram: "<b>For instance</b>는 '예를 들어'라는 뜻입니다. <b>respond differently than ~</b>은 '~와 다르게 반응하다'라는 표현입니다."},
+  {en: "In addition, animals that experience healing for physical illness will react differently than those accepting healing for emotional confusion.", ko: "게다가, 신체적 질병 때문에 치유를 받는 동물들은 정서적 혼란 때문에 치유를 받는 동물들과 다르게 반응할 것이다.", gram: "<b>In addition</b>은 '게다가'입니다. <b>that experience ~</b>는 animals를 수식하는 관계대명사절이며, <b>those</b>는 앞의 animals를 대신하는 대명사입니다."},
+  {en: "With this in mind, every healing session needs to be explored differently, and each healing treatment should be adjusted to suit the specific needs of the animal.", ko: "이 점을 염두에 두고, 모든 치유 과정은 다르게 살펴보아야 하며, 각각의 치유 치료는 그 동물의 구체적인 필요에 맞도록 조정되어야 한다.", gram: "<b>With this in mind</b>는 '이 점을 염두에 두고'라는 뜻입니다. <b>needs to be explored</b>와 <b>should be adjusted</b> 둘 다 수동태 형태가 쓰였습니다."},
+  {en: "You will learn as you go; healing is a constant learning process.", ko: "당신은 해 나가면서 배우게 될 것이다. 치유는 끊임없는 배움의 과정이다.", gram: "<b>learn as you go</b>는 '해 나가면서 배우다'라는 의미입니다. 세미콜론(;)은 앞뒤 내용이 밀접하게 연결될 때 쓰여 자연스러운 흐름을 만듭니다."}
+];
+
+let selectedMainAnswer=null;
+
+function selectMainChoice(btn){
+  selectedMainAnswer=Number(btn.dataset.n);
+  document.querySelectorAll('.q-choice').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function checkMainProblem(){
+  initAudio();
+  if(!selectedMainAnswer){alert('정답을 먼저 선택하세요.');return}
+  const answer=2, ok=selectedMainAnswer===answer;
+  document.querySelectorAll('.q-choice').forEach(b=>{
+    b.classList.remove('correct','wrong');
+    const n=Number(b.dataset.n);
+    if(n===answer)b.classList.add('correct');
+    if(n===selectedMainAnswer&&!ok)b.classList.add('wrong');
+  });
+  
+  const r=document.getElementById('main-result');
+  r.className='result-box '+(ok?'correct':'wrong');
+  r.innerHTML=ok?'<b>정답입니다! ②</b><br>앞에서는 “동물마다 다르다”는 개인적 차이를 말하고, 뒤에서는 “구조센터의 고양이와 가정집의 고양이”처럼 환경 차이를 예로 들기 때문에, 환경적 요인을 언급한 주어진 문장은 ②번 위치가 가장 자연스럽습니다.':'<b>아쉽습니다. 정답은 ②입니다.</b><br>주어진 문장은 "환경적 요인"이 치료 반응을 결정할 수 있다는 내용입니다. 뒤이어 나오는 내용이 "구조센터 고양이 vs 가정집 고양이"라는 환경적 요인의 구체적 예시(For instance)이므로 ②번 자리에 들어가야 논리적으로 맞습니다.';
+  
+  if(ok){
+    safeSet('_problemCorrect',true);
+    sfxOK();showCombo(true);rewardPop('정답! +10 EXP');boom();
+  }else{
+    sfxNG();showCombo(false);
+  }
+  renderLineExplain();
+  saveHist('problem',{correct:ok?1:0,total:1,answer:selectedMainAnswer});
+  checkAllDone();
+}
+
+function renderLineExplain(){
+  const wrap=document.getElementById('line-explain');
+  let out='<div class="question-box">📌 정답이 삽입된 전체 문장 해석 · 문법 · 중요표현</div>';
+  lineExplanations.forEach((x,i)=>{
+    out+=`<div class="explain-card"><div class="ex-en"><span class="pill">${i+1}</span>${x.en}</div><div class="ex-ko">${x.ko}</div><div class="ex-gram">🔎 ${x.gram}</div></div>`;
+  });
+  out+='<div class="question-box"><b>전체 요지</b><br>이 글은 동물이 치유나 치료 과정에서 모두 똑같이 반응하지 않는다고 설명합니다. 개체적 특성뿐만 아니라, 환경(구조센터 vs 가정집)이나 질병의 종류(신체적 질병 vs 정서적 혼란)에 따라서도 반응이 달라질 수 있습니다. 그래서 모든 치료 과정은 동물의 구체적인 상황과 필요에 맞게 다르게 조정되어야 한다는 내용입니다.</div>';
+  wrap.innerHTML=out;
+  wrap.classList.add('show');
+  wrap.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function updateEvo(pre,cur,tot){
+  const r=tot?cur/tot:0;
+  const s=[[0,'🐾','새끼 고양이'],[.15,'🐈','호기심 고양이'],[.38,'🐕','든든한 강아지'],[.68,'🩺','치료 준비 완료'],[1,'💖','완벽한 치유']];
+  let st=s[0]; for(const x of s)if(r>=x[0])st=x;
+  const pctVal=Math.floor(r*100);
+  document.getElementById(pre+'e').innerText=st[1];
+  document.getElementById(pre+'n').innerText=`${st[2]} (${pctVal}%)`;
+  document.getElementById(pre+'b').style.width=pctVal+'%';
+}
+
+// ==== Common Core Logic (Audio, LocalStorage, Rendering) ====
 let selectedEnglishVoice=null;
 function loadEnglishVoice(){ if(!('speechSynthesis' in window)) return; const voices=window.speechSynthesis.getVoices(); selectedEnglishVoice=voices.find(v=>(v.lang==='en-US'||v.lang==='en_US')&&/samantha|alex|ava|allison|nicky|english/i.test(v.name))||voices.find(v=>v.lang==='en-US'||v.lang==='en_US')||null; }
 if('speechSynthesis' in window){loadEnglishVoice();window.speechSynthesis.onvoiceschanged=loadEnglishVoice;}
 function speak(text,rate=0.78,onend=null){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); loadEnglishVoice(); const u=new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=rate; u.pitch=1; u.volume=1; if(selectedEnglishVoice)u.voice=selectedEnglishVoice; if(onend)u.onend=onend; window.speechSynthesis.speak(u); }
 
 let audioCtx=null, comboCount=0;
-function initAudio(){ try{ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); }catch(e){} }
+function initAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); }
 function tone(f,t,d,v=.08){ if(!audioCtx)return; const o=audioCtx.createOscillator(),g=audioCtx.createGain(); o.type=t;o.frequency.setValueAtTime(f,audioCtx.currentTime);g.gain.setValueAtTime(v,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.01,audioCtx.currentTime+d);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d); }
-function sfxOK(){tone(600,'sine',.1);setTimeout(()=>tone(800,'sine',.15),100)} function sfxNG(){tone(280,'sawtooth',.2,.12)} function boom(){ if(window.confetti) confetti({particleCount:110,spread:75,origin:{y:.62},colors:['#1a5c9a','#f5a623','#27ae60']}) }
+function sfxOK(){tone(600,'sine',.1);setTimeout(()=>tone(800,'sine',.15),100)} function sfxNG(){tone(280,'sawtooth',.2,.12)} function boom(){confetti({particleCount:120,spread:75,origin:{y:.62},colors:['#1a5c9a','#f5a623','#27ae60']})}
 function shuffle(a){let arr=[...a];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
 function todayKey(){const t=new Date();return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`}
 function timeNow(){return new Date().toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}
@@ -125,59 +266,57 @@ function safeGet(k,d){try{return JSON.parse(localStorage.getItem(STORE+k)||JSON.
 function safeSet(k,v){localStorage.setItem(STORE+k,JSON.stringify(v))}
 function saveHist(key,data){let arr=safeGet('_'+key,[]); data.time=timeNow(); data.date=todayKey(); arr.unshift(data); if(arr.length>20)arr=arr.slice(0,20); safeSet('_'+key,arr)}
 function showCombo(ok){ if(ok)comboCount++; else{comboCount=0;return} if(comboCount<2)return; const el=document.getElementById('combo'); el.innerText=comboCount+' COMBO! ✨'; el.classList.remove('combo-pop'); void el.offsetWidth; el.classList.add('combo-pop') }
-function updateEvo(pre,cur,tot){const r=tot?cur/tot:0; let st=evoStages[0]; for(const x of evoStages)if(r>=x[0])st=x; const pct=Math.floor(r*100); document.getElementById(pre+'e').innerText=st[1]; document.getElementById(pre+'n').innerText=`${st[2]} (${pct}%)`; document.getElementById(pre+'b').style.width=pct+'%' }
-function showSection(id,btn){stopLoop();comboCount=0;document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active'); if(id==='dict-sec'&&!dictLoaded){loadDict();dictLoaded=true} if(id==='grammar-sec')renderGrammar();}
 
-function selectMainChoice(btn){selectedMainAnswer=btn.dataset.n;document.querySelectorAll('.q-choice').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected')}
-function checkMainProblem(){
- initAudio(); if(!selectedMainAnswer){alert('정답을 먼저 선택하세요.');return}
- const ok=selectedMainAnswer===mainAnswer;
- document.querySelectorAll('.q-choice').forEach(b=>{b.classList.remove('correct','wrong'); const n=b.dataset.n; if(n===mainAnswer)b.classList.add('correct'); if(n===selectedMainAnswer&&n!==mainAnswer)b.classList.add('wrong')});
- const r=document.getElementById('main-result'); r.className='result-box '+(ok?'correct':'wrong'); r.innerHTML=ok?mainCorrectHtml:mainWrongHtml;
- if(ok){safeSet('_problemCorrect',true);sfxOK();showCombo(true);rewardPop('순서 정답! +10 EXP');boom()} else{sfxNG();showCombo(false)}
- renderLineExplain(); saveHist('problem',{correct:ok?1:0,total:1,answer:selectedMainAnswer}); checkAllDone();
-}
-function renderLineExplain(){const wrap=document.getElementById('line-explain');let out='<div class="question-box">📌 문장별 해석 · 흐름 포인트</div>'; lineExplanations.forEach((x,i)=>{out+=`<div class="explain-card"><div class="ex-en"><span class="pill">${i+1}</span>${x.en}</div><div class="ex-ko">${x.ko}</div><div class="ex-gram">🔎 ${x.gram}</div></div>`}); out+='<div class="question-box">'+summaryHtml+'</div>'; wrap.innerHTML=out; wrap.classList.add('show'); wrap.scrollIntoView({behavior:'smooth',block:'start'})}
+function showSection(id,btn){stopLoop();comboCount=0;document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active'); if(id==='dict-sec'&&!dictLoaded){loadDict();dictLoaded=true} if(id==='grammar-sec')renderGrammar();}
 
 let wList=[],wIdx=0,wOK=0,wBusy=false;
 function startWord(){wList=shuffle(wordList);wIdx=0;wOK=0;comboCount=0;document.getElementById('word-intro').style.display='none';document.getElementById('word-result').style.display='none';document.getElementById('word-quiz').style.display='block';loadWord()}
 function loadWord(){wBusy=false;updateEvo('wevo-',wIdx,wList.length);const q=wList[wIdx];document.getElementById('w-status').innerText=`문제 ${wIdx+1} / ${wList.length}`;document.getElementById('w-en').innerText=q.en;speak(q.en,.78);const opts=shuffle([{t:q.ko,ok:true},...shuffle(wordList.filter(w=>w.ko!==q.ko)).slice(0,3).map(w=>({t:w.ko,ok:false}))]);const div=document.getElementById('w-opts');div.innerHTML='';opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt-btn';b.innerText=`${i+1}. ${o.t}`;b.onclick=()=>handleWord(b,o.ok,div,q);div.appendChild(b)})}
-function handleWord(btn,ok,div,q){if(wBusy)return;wBusy=true;if(ok){sfxOK();btn.classList.add('correct');wOK++;markUnique('_wordCorrect',q.en);showCombo(true);rewardPop('단어 정답! +10 EXP')}else{sfxNG();showCombo(false);btn.classList.add('wrong');[...div.querySelectorAll('.opt-btn')].forEach(b=>{if(b.innerText.includes(q.ko))b.classList.add('correct')})}setTimeout(()=>{wIdx++;wIdx<wList.length?loadWord():finishWord()},650)}
-function finishWord(early=false){const tot=early?wIdx:wList.length;if(!tot){resetWord();return}const sc=Math.round(wOK/tot*100);updateEvo('wevo-',wIdx,wList.length);document.getElementById('word-quiz').style.display='none';document.getElementById('word-result').style.display='block';const c=progressCounts();document.getElementById('w-score').innerText=`${c.word}/${c.wordTotal}`;document.getElementById('w-detail').innerText=`이번 테스트 정답 ${wOK}/${tot} · 누적 단어 ${c.word}/${c.wordTotal}`;saveHist('word',{score:sc,correct:wOK,total:tot});if(!early){setTimeout(()=>showStamp('단어 잘했어요!', c.word>=c.wordTotal?'👑':'🏅'),350)}checkAllDone();}
+function handleWord(btn,ok,div,q){if(wBusy)return;wBusy=true;showCombo(ok);if(ok){sfxOK();btn.classList.add('correct');wOK++;markUnique('_wordCorrect',q.en);rewardPop('단어 정답! +10 EXP')}else{sfxNG();btn.classList.add('wrong');[...div.querySelectorAll('.opt-btn')].forEach(b=>{if(b.innerText.includes(q.ko))b.classList.add('correct')})}setTimeout(()=>{wIdx++;wIdx<wList.length?loadWord():finishWord()},650)}
+function finishWord(early=false){const tot=early?wIdx:wList.length;if(!tot){resetWord();return}const sc=Math.round(wOK/tot*100);updateEvo('wevo-',wIdx,wList.length);document.getElementById('word-quiz').style.display='none';document.getElementById('word-result').style.display='block';const c=progressCounts();document.getElementById('w-score').innerText=`${c.word}/${c.wordTotal}`;document.getElementById('w-detail').innerText=`이번 테스트 정답 ${wOK}/${tot} · 누적 단어 ${c.word}/${c.wordTotal}`;saveHist('word',{score:sc,correct:wOK,total:tot});if(!early){setTimeout(()=>showStamp('단어 잘했어요!', c.word>=c.wordTotal?'👑':'🏅'),350)}checkAllDone()}
 function resetWord(){document.getElementById('word-result').style.display='none';document.getElementById('word-intro').style.display='block'}
 
 let dIdx=0,pIdx=0,dictLoaded=false,isLoop=false,loopTimer=null; const speeds=[.78,.62,.5],sLabels=['🇺🇸 보통','🐢 느리게','🐌 아주 느리게'];let spIdx=0;
-function cleanWords(s){return s.replace(/[“”"'.,!?;:()\-–—]/g,'').split(/\s+/).filter(Boolean)}
+function cleanWords(s){return s.replace(/[“”"'.,!?;:()]/g,'').split(/\s+/).filter(Boolean)}
 function currentPart(){return sentenceList[dIdx].parts[pIdx]}
 function loopPlay(){if(!isLoop)return; const p=currentPart(); speak(p.en,speeds[spIdx],()=>{if(isLoop)loopTimer=setTimeout(loopPlay,1000)})}
 function stopLoop(){isLoop=false;if('speechSynthesis'in window)window.speechSynthesis.cancel();clearTimeout(loopTimer);updatePlayBtn()}
 function toggleAudio(){if(isLoop)stopLoop();else{isLoop=true;loopPlay()}updatePlayBtn()}
 function updatePlayBtn(){const b=document.getElementById('play-btn');if(b){b.innerHTML=isLoop?'⏸️ 일시정지':'▶️ 이어듣기';b.className='audio-btn play-btn'+(isLoop?' playing':'')}}
 function toggleSpeed(){spIdx=(spIdx+1)%speeds.length;document.getElementById('speed-btn').innerHTML=sLabels[spIdx];if(isLoop){stopLoop();isLoop=true;loopPlay()}}
-function loadDict(){stopLoop();updateEvo('devo-',completedParts(),totalParts());const s=sentenceList[dIdx],p=currentPart();document.getElementById('d-status').innerText=`문장 ${dIdx+1}/${sentenceList.length} · 의미 ${pIdx+1}/${s.parts.length}`;document.getElementById('d-ko').innerText=p.ko;const aa=document.getElementById('answer-area'),sa=document.getElementById('scramble-area');aa.innerHTML='';sa.innerHTML='';aa.style.background='var(--light)';aa.style.borderColor='var(--main)';shuffle(cleanWords(p.en)).forEach(w=>{const b=document.createElement('button');b.className='word-chip';b.innerText=w;b.onclick=function(){(this.parentElement.id==='scramble-area'?aa:sa).appendChild(this);if(sa.children.length===0)checkDict()};sa.appendChild(b)}); if(!window._sortable && window.Sortable)window._sortable=new Sortable(aa,{animation:250,onEnd:()=>{if(sa.children.length===0)checkDict()}}); isLoop=true;loopPlay();updatePlayBtn()}
+function loadDict(){stopLoop();updateEvo('devo-',completedParts(),totalParts());const s=sentenceList[dIdx],p=currentPart();document.getElementById('d-status').innerText=`문장 ${dIdx+1}/${sentenceList.length} · 의미 ${pIdx+1}/${s.parts.length}`;document.getElementById('d-ko').innerText=p.ko;const aa=document.getElementById('answer-area'),sa=document.getElementById('scramble-area');aa.innerHTML='';sa.innerHTML='';aa.style.background='var(--light)';aa.style.borderColor='var(--main)';shuffle(cleanWords(p.en)).forEach(w=>{const b=document.createElement('button');b.className='word-chip';b.innerText=w;b.onclick=function(){(this.parentElement.id==='scramble-area'?aa:sa).appendChild(this);if(sa.children.length===0)checkDict()};sa.appendChild(b)}); if(!window._sortable)window._sortable=new Sortable(aa,{animation:250,onEnd:()=>{if(sa.children.length===0)checkDict()}}); isLoop=true;loopPlay();updatePlayBtn()}
 function norm(s){return s.toLowerCase().replace(/[^a-z0-9]/g,'')}
 function checkDict(){const ans=[...document.getElementById('answer-area').children].map(x=>x.innerText).join(' ');const correct=currentPart().en;if(norm(ans)===norm(correct)){sfxOK();showCombo(true);rewardPop('영작 성공! +10 EXP');document.getElementById('answer-area').style.background='#d4edda';recDict();stopLoop();setTimeout(nextDict,600)}else{sfxNG();showCombo(false);const aa=document.getElementById('answer-area');aa.style.background='#fde8e8';setTimeout(()=>aa.style.background='var(--light)',400)}}
 function totalParts(){return sentenceList.reduce((a,s)=>a+s.parts.length,0)} function completedParts(){let n=0;for(let i=0;i<dIdx;i++)n+=sentenceList[i].parts.length;return n+pIdx}
-function recDict(){const now=timeNow(), key=`${dIdx}-${pIdx}`;markUnique('_dictDone',key);let items=safeGet('_dictDetail',[]); let item=items.find(x=>x.key===key);if(item){item.completed=true;item.lastTime=now;item.attempts=(item.attempts||0)+1;} else items.push({key:key,sentence:dIdx+1,part:pIdx+1,totalParts:sentenceList[dIdx].parts.length,completed:true,lastTime:now,attempts:1});items.sort((a,b)=>a.sentence-b.sentence||a.part-b.part); safeSet('_dictDetail',items);const c=progressCounts(); safeSet('_dictCurrent',{completedParts:c.dict,totalParts:c.dictTotal,time:now});saveHist('dict',{completedParts:c.dict,totalParts:c.dictTotal}); checkAllDone();}
-function nextDict(){const s=sentenceList[dIdx]; if(pIdx+1<s.parts.length){pIdx++;loadDict()} else{dIdx++;pIdx=0;if(dIdx<sentenceList.length)loadDict();else{updateEvo('devo-',totalParts(),totalParts());setTimeout(()=>showStamp('영작 잘했어요!', '✍️'),250);checkAllDone();}}}
+function nextDict(){const s=sentenceList[dIdx]; if(pIdx+1<s.parts.length){pIdx++;loadDict()}else{dIdx++;pIdx=0;if(dIdx<sentenceList.length)loadDict();else{updateEvo('devo-',totalParts(),totalParts());setTimeout(()=>showStamp('영작 잘했어요!', '✍️'),250);checkAllDone();}}}
+function recDict(){const now=timeNow(), key=`${dIdx}-${pIdx}`; markUnique('_dictDone',key); let items=safeGet('_dictDetail',[]); let item=items.find(x=>x.key===key); if(item){item.completed=true;item.lastTime=now;item.attempts=(item.attempts||0)+1;} else items.push({key:key,sentence:dIdx+1,part:pIdx+1,totalParts:sentenceList[dIdx].parts.length,completed:true,lastTime:now,attempts:1}); items.sort((a,b)=>a.sentence-b.sentence||a.part-b.part); safeSet('_dictDetail',items); const c=progressCounts(); safeSet('_dictCurrent',{completedParts:c.dict,totalParts:c.dictTotal,time:now}); saveHist('dict',{completedParts:c.dict,totalParts:c.dictTotal});}
 
 let gIdx=0;
-function escAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function renderGrammar(){updateEvo('gevo-',gIdx,grammarList.length);const g=grammarList[gIdx]||grammarList[0];document.getElementById('g-status').innerText=`어법 ${gIdx+1} / ${grammarList.length}`;const box=document.getElementById('grammar-box');const m=g.sentence.match(/\[(.*?)\s*\/\s*(.*?)\]/);let htmltxt=g.sentence; if(m){htmltxt=g.sentence.replace(m[0],`<span class="g-choice" data-val="${escAttr(m[1])}">${m[1]}</span> / <span class="g-choice" data-val="${escAttr(m[2])}">${m[2]}</span>`);}box.innerHTML=`<div class="grammar-sentence">${htmltxt}</div><div id="g-exp" class="g-explain"></div>`; box.querySelectorAll('.g-choice').forEach(el=>el.onclick=()=>pickGrammar(el,el.dataset.val));}
-function pickGrammar(el,val){const g=grammarList[gIdx],ok=val===g.answer;document.querySelectorAll('.g-choice').forEach(x=>x.classList.remove('correct','wrong'));el.classList.add(ok?'correct':'wrong');if(!ok){[...document.querySelectorAll('.g-choice')].find(x=>x.innerText===g.answer)?.classList.add('correct')} if(ok){sfxOK();showCombo(true);rewardPop('어법 정답! +10 EXP');markUnique('_grammarCorrect',String(gIdx));}else{sfxNG();showCombo(false)}const exp=document.getElementById('g-exp');exp.innerHTML=`<b>${ok?'⭕ 정답':'❌ 오답'}</b><br>${g.explain}<button class="primary-btn orange" onclick="nextGrammar()">설명 읽었어요 · 다음으로</button>`;exp.classList.add('show'); saveHist('grammar',{idx:gIdx+1,correct:ok?1:0,total:1}); checkAllDone();}
-function nextGrammar(){gIdx++; if(gIdx>=grammarList.length){updateEvo('gevo-',grammarList.length,grammarList.length);setTimeout(()=>showStamp('어법 잘했어요!', '📘'),250);gIdx=0;renderGrammar();checkAllDone();return} renderGrammar();}
+function renderGrammar(){updateEvo('gevo-',gIdx,grammarList.length);const g=grammarList[gIdx]||grammarList[0];document.getElementById('g-status').innerText=`어법 ${gIdx+1} / ${grammarList.length}`;const box=document.getElementById('grammar-box');const m=g.sentence.match(/\[(.*?)\s*\/\s*(.*?)\]/);let htmltxt=g.sentence; if(m){htmltxt=g.sentence.replace(m[0],`<span class="g-choice" onclick="pickGrammar(this,'${m[1]}')">${m[1]}</span> / <span class="g-choice" onclick="pickGrammar(this,'${m[2]}')">${m[2]}</span>`);}box.innerHTML=`<div class="grammar-sentence">${htmltxt}</div><div id="g-exp" class="g-explain"></div>`}
+function pickGrammar(el,val){const g=grammarList[gIdx],ok=val===g.answer;document.querySelectorAll('.g-choice').forEach(x=>x.classList.remove('correct','wrong'));el.classList.add(ok?'correct':'wrong');if(!ok){[...document.querySelectorAll('.g-choice')].find(x=>x.innerText===g.answer)?.classList.add('correct')}if(ok){sfxOK();showCombo(true);rewardPop('어법 정답! +10 EXP');markUnique('_grammarCorrect',String(gIdx));}else{sfxNG();showCombo(false)}const exp=document.getElementById('g-exp');exp.innerHTML=`<b>${ok?'⭕ 정답':'❌ 오답'}</b><br>${g.explain}<button class="primary-btn orange" onclick="nextGrammar()">설명 읽었어요 · 다음으로</button>`;exp.classList.add('show');saveHist('grammar',{idx:gIdx+1,correct:ok?1:0,total:1});checkAllDone();}
+function nextGrammar(){gIdx++; if(gIdx>=grammarList.length){updateEvo('gevo-',grammarList.length,grammarList.length);setTimeout(()=>showStamp('어법 잘했어요!', '📘'),250);gIdx=0;renderGrammar();checkAllDone();return} renderGrammar()}
 
 function uniqueArr(key){return safeGet(key,[])}
 function markUnique(key,value){let arr=uniqueArr(key); if(!arr.includes(value)){arr.push(value);safeSet(key,arr)} return arr.length;}
 function pct(n,t){return t?Math.round(n/t*100):0}
-function rewardPop(text='정답! +10 EXP', big=false){ const layer=document.getElementById('reward-layer'); if(!layer)return; const el=document.createElement('div'); el.className='reward-pop'+(big?' big':''); el.textContent=text; layer.appendChild(el); setTimeout(()=>el.remove(),1000); sparkle(); }
-function sparkle(){ const layer=document.getElementById('reward-layer'); if(!layer)return; const icons=['✨','⭐','💫','🎯','👏']; for(let i=0;i<8;i++){const sp=document.createElement('div'); sp.className='spark'; sp.textContent=icons[Math.floor(Math.random()*icons.length)]; sp.style.left=(50+(Math.random()*16-8))+'%'; sp.style.top=(39+(Math.random()*10-5))+'%'; sp.style.setProperty('--dx',(Math.random()*180-90)+'px'); sp.style.setProperty('--dy',(-70-Math.random()*80)+'px'); layer.appendChild(sp); setTimeout(()=>sp.remove(),900);} }
-function showStamp(msg='잘했어요!', icon='🏅'){ const ov=document.getElementById('stamp-overlay'); if(!ov)return; document.querySelector('#stamp-overlay .stamp-icon').textContent=icon; document.getElementById('stamp-text').textContent=msg; ov.classList.add('show'); boom(); rewardPop('완료 보너스! +50 EXP',true); sfxOK(); }
+function rewardPop(text='정답! +10 EXP', big=false){const layer=document.getElementById('reward-layer'); if(!layer)return; const el=document.createElement('div'); el.className='reward-pop'+(big?' big':''); el.textContent=text; layer.appendChild(el); setTimeout(()=>el.remove(),1000); sparkle();}
+function sparkle(){const layer=document.getElementById('reward-layer'); if(!layer)return; const icons=['✨','⭐','💫','🎯','👏']; for(let i=0;i<8;i++){const sp=document.createElement('div'); sp.className='spark'; sp.textContent=icons[Math.floor(Math.random()*icons.length)]; sp.style.left=(50+(Math.random()*16-8))+'%'; sp.style.top=(39+(Math.random()*10-5))+'%'; sp.style.setProperty('--dx',(Math.random()*180-90)+'px'); sp.style.setProperty('--dy',(-70-Math.random()*80)+'px'); layer.appendChild(sp); setTimeout(()=>sp.remove(),900);}}
+function showStamp(msg='잘했어요!', icon='🏅'){const ov=document.getElementById('stamp-overlay'); if(!ov)return; document.querySelector('#stamp-overlay .stamp-icon').textContent=icon; document.getElementById('stamp-text').textContent=msg; ov.classList.add('show'); boom(); rewardPop('완료 보너스! +50 EXP',true); sfxOK();}
 function hideStamp(){document.getElementById('stamp-overlay')?.classList.remove('show')}
 function progressCounts(){const word=uniqueArr('_wordCorrect').length; const dict=uniqueArr('_dictDone').length; const gram=uniqueArr('_grammarCorrect').length; const prob=safeGet('_problemCorrect',false)?1:0; return {word,dict,gram,prob,wordTotal:wordList.length,dictTotal:totalParts(),gramTotal:grammarList.length,probTotal:1};}
 let _allStampShown=false;
-function checkAllDone(){ const c=progressCounts(); if(!_allStampShown && c.word>=c.wordTotal && c.dict>=c.dictTotal && c.gram>=c.gramTotal){ _allStampShown=true; setTimeout(()=>showStamp('전체 학습 완료! 잘했어요!', '🌟'),650); } }
-function renderHistory(){ const div=document.getElementById('hist-list'); if(!div)return; div.innerHTML=''; const c=progressCounts(); const rows=[['문제',c.prob,c.probTotal,'순서 문제 정답'],['단어',c.word,c.wordTotal,'누적 정답 단어'],['영작',c.dict,c.dictTotal,'완성한 의미 구간'],['어법',c.gram,c.gramTotal,'누적 정답 문항']]; const totalDone=c.prob+c.word+c.dict+c.gram, totalAll=c.probTotal+c.wordTotal+c.dictTotal+c.gramTotal; let html=`<div class="finish-note">📌 기록은 단순하게 <b>완료/전체</b>로 표시됩니다.<br>예: 단어 ${c.word}/${c.wordTotal}, 영작 ${c.dict}/${c.dictTotal}</div><div class="simple-summary">`; rows.forEach(([title,done,total,desc])=>{html+=`<div class="simple-card"><div class="simple-head"><div><div class="simple-title">${title}</div><div class="hist-date">${desc}</div></div><div class="simple-count">${done}/${total}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(done,total)}%"></div></div></div>`}); html+=`<div class="simple-card" style="border-color:var(--accent)"><div class="simple-head"><div><div class="simple-title">전체 진행</div><div class="hist-date">모든 학습 합산</div></div><div class="simple-count">${totalDone}/${totalAll}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(totalDone,totalAll)}%"></div></div></div></div>`; html+=`<button class="primary-btn orange" onclick="if(confirm('기록을 초기화할까요?')){['_problemCorrect','_wordCorrect','_dictDone','_grammarCorrect','_dictDetail','_dictCurrent','_problem','_word','_dict','_grammar'].forEach(k=>localStorage.removeItem(STORE+k));renderHistory();}">기록 초기화</button>`; div.innerHTML=html; }
+function checkAllDone(){const c=progressCounts(); if(!_allStampShown && c.word>=c.wordTotal && c.dict>=c.dictTotal && c.gram>=c.gramTotal){_allStampShown=true; setTimeout(()=>showStamp('전체 학습 완료! 잘했어요!', '🌟'),650);}}
+
+function renderHistory(){
+ const div=document.getElementById('hist-list'); if(!div)return; div.innerHTML=''; const c=progressCounts();
+ const rows=[['문제',c.prob,c.probTotal,'문장 삽입 정답'],['단어',c.word,c.wordTotal,'누적 정답 단어'],['영작',c.dict,c.dictTotal,'완성한 의미 구간'],['어법',c.gram,c.gramTotal,'누적 정답 문항']];
+ const totalDone=c.prob+c.word+c.dict+c.gram, totalAll=c.probTotal+c.wordTotal+c.dictTotal+c.gramTotal;
+ let html=`<div class="finish-note">📌 학습 진행 상황이 한눈에 표시됩니다.<br>예: 단어 ${c.word}/${c.wordTotal}, 영작 ${c.dict}/${c.dictTotal}</div><div class="simple-summary">`;
+ rows.forEach(([title,done,total,desc])=>{html+=`<div class="simple-card"><div class="simple-head"><div><div class="simple-title">${title}</div><div class="hist-date">${desc}</div></div><div class="simple-count">${done}/${total}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(done,total)}%"></div></div></div>`});
+ html+=`<div class="simple-card" style="border-color:var(--accent)"><div class="simple-head"><div><div class="simple-title">전체 진행</div><div class="hist-date">모든 학습 합산</div></div><div class="simple-count">${totalDone}/${totalAll}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(totalDone,totalAll)}%"></div></div></div></div>`;
+ html+=`<button class="primary-btn orange" onclick="if(confirm('기록을 초기화할까요?')){['_problemCorrect','_wordCorrect','_dictDone','_grammarCorrect','_dictDetail','_dictCurrent','_problem','_word','_dict','_grammar'].forEach(k=>localStorage.removeItem(STORE+k));renderHistory();}">기록 초기화</button>`;
+ div.innerHTML=html;
+}
 
 </script>
 </body>
