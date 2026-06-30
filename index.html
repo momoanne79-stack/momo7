@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수리나무학원 고등독해 - 동물의 치유 반응</title>
+<title>수리나무학원 고등독해 - 수면과 지각적 이탈</title>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
@@ -44,9 +44,9 @@
 <div id="reward-layer"></div>
 
 <div class="header">
-  <div class="header-badge">고등독해 · 문장 삽입</div>
+  <div class="header-badge">고등독해 · 빈칸추론</div>
   <h1>수리나무학원 고등독해</h1>
-  <p>동물의 치유 반응 · 문장 삽입</p>
+  <p>수면과 지각적 이탈 · 33번</p>
 </div>
 
 <div class="nav">
@@ -59,20 +59,17 @@
 
 <div id="problem-sec" class="section active">
   <div class="problem-card">
-    <div class="problem-title">39. 글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.</div>
+    <div class="problem-title">33. 다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.</div>
     <div class="problem-passage">
-      <div style="border: 2px solid #cfe4f8; padding: 12px; border-radius: 8px; margin-bottom: 12px; font-weight: bold; background-color: #f6fbff;">
-        Environmental factors can also determine how the animal will respond during the treatment.
-      </div>
-      No two animals are alike. ( ① ) Animals from the same litter will display some of the same features, but will not be exactly the same as each other; therefore, they may not respond in entirely the same way during a healing session. ( ② ) For instance, a cat in a rescue center will respond very differently than a cat within a domestic home environment. ( ③ ) In addition, animals that experience healing for physical illness will react differently than those accepting healing for emotional confusion. ( ④ ) With this in mind, every healing session needs to be explored differently, and each healing treatment should be adjusted to suit the specific needs of the animal. ( ⑤ ) You will learn as you go; healing is a constant learning process.
+      One of the most striking characteristics of a sleeping animal or person is that they do not respond normally to environmental stimuli. If you open the eyelids of a sleeping mammal the eyes will not see normally—they <b>__________</b>. Some visual information apparently gets in, but it is not normally processed as it is shortened or weakened; same with the other sensing systems. Stimuli are registered but not processed normally and they fail to wake the individual. Perceptual disengagement probably serves the function of protecting sleep, so some authors do not count it as part of the definition of sleep itself. But as sleep would be impossible without it, it seems essential to its definition. Nevertheless, many animals (including humans) use the intermediate state of drowsiness to derive some benefits of sleep without total perceptual disengagement.
     </div>
   </div>
   <div class="choice-list">
-    <button class="q-choice" data-n="1" onclick="selectMainChoice(this)">①</button>
-    <button class="q-choice" data-n="2" onclick="selectMainChoice(this)">②</button>
-    <button class="q-choice" data-n="3" onclick="selectMainChoice(this)">③</button>
-    <button class="q-choice" data-n="4" onclick="selectMainChoice(this)">④</button>
-    <button class="q-choice" data-n="5" onclick="selectMainChoice(this)">⑤</button>
+    <button class="q-choice" data-n="1" onclick="selectMainChoice(this)">① get recovered easily</button>
+    <button class="q-choice" data-n="2" onclick="selectMainChoice(this)">② will see much better</button>
+    <button class="q-choice" data-n="3" onclick="selectMainChoice(this)">③ are functionally blind</button>
+    <button class="q-choice" data-n="4" onclick="selectMainChoice(this)">④ are completely activated</button>
+    <button class="q-choice" data-n="5" onclick="selectMainChoice(this)">⑤ process visual information</button>
   </div>
   <button class="primary-btn" onclick="checkMainProblem()">정답 확인하고 문장별 해설 보기</button>
   <div id="main-result" class="result-box"></div><div id="line-explain" class="explain-wrap"></div>
@@ -80,22 +77,22 @@
 
 <div id="word-sec" class="section">
   <div id="word-intro" class="intro-wrap">
-    <div class="intro-icon">🐾</div><h2>반려동물 마음 읽기</h2><p>핵심 단어를 맞히며<br>동물들이 치료에 반응하는 차이를 알아보세요.</p>
+    <div class="intro-icon">💤</div><h2>수면의 비밀 풀기</h2><p>핵심 단어를 맞히며<br>지각적 이탈과 수면의 관계를 알아보세요.</p>
     <button class="primary-btn" onclick="initAudio();startWord()">테스트 시작 🚀</button>
   </div>
-  <div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">🐾</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
+  <div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">💤</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
   <div id="word-result" style="display:none;text-align:center"><div class="intro-icon" id="w-res-e">🏆</div><h2 style="color:var(--main)">테스트 종료!</h2><div class="word-display" id="w-score">100점</div><div class="status-badge" id="w-detail"></div><button class="primary-btn" onclick="resetWord()">다시 시작 🔄</button></div>
 </div>
 
 <div id="dict-sec" class="section">
-  <div class="evo-box"><div class="evo-emoji" id="devo-e">🐾</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
-  <span class="status-badge" id="d-status"></span><div class="ko-meaning" id="d-ko"></div><div class="drag-tip">낱말을 눌러 순서대로 놓아 문장을 완성하세요. 구두점은 제외되며, 맞으면 바로 다음 구간으로 이동합니다. (정답이 삽입된 완성된 흐름으로 진행됩니다.)</div>
+  <div class="evo-box"><div class="evo-emoji" id="devo-e">💤</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
+  <span class="status-badge" id="d-status"></span><div class="ko-meaning" id="d-ko"></div><div class="drag-tip">낱말을 눌러 순서대로 놓아 문장을 완성하세요. 구두점은 제외되며, 맞으면 바로 다음 구간으로 이동합니다.</div>
   <div id="answer-area"></div><div id="scramble-area"></div>
   <div class="audio-row"><button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🇺🇸 보통</button><button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">⏸️ 일시정지</button></div>
 </div>
 
 <div id="grammar-sec" class="section">
-  <div class="evo-box"><div class="evo-emoji" id="gevo-e">🐾</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
+  <div class="evo-box"><div class="evo-emoji" id="gevo-e">💤</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
   <div class="status-row"><span class="status-badge" id="g-status"></span><button class="stop-btn" onclick="renderGrammar()">처음으로</button></div>
   <div id="grammar-box"></div>
 </div>
@@ -104,93 +101,103 @@
 </div>
 
 <script>
-const STORE='sr_animal_healing_v1';
+const STORE='sr_sleep_disengagement_v1';
 
 const wordList = [
-  {en: "alike", ko: "비슷한, 똑같은"},
-  {en: "litter", ko: "한 번에 태어난 새끼들"},
-  {en: "display", ko: "보여주다, 나타내다"},
-  {en: "feature", ko: "특징"},
-  {en: "exactly", ko: "정확히"},
-  {en: "therefore", ko: "그러므로, 따라서"},
-  {en: "entirely", ko: "완전히"},
+  {en: "striking", ko: "눈에 띄는, 두드러진"},
+  {en: "characteristic", ko: "특징"},
   {en: "respond", ko: "반응하다"},
-  {en: "healing session", ko: "치유 시간, 치료 과정"},
-  {en: "environmental factor", ko: "환경적 요인"},
-  {en: "determine", ko: "결정하다, 좌우하다"},
-  {en: "treatment", ko: "치료"},
-  {en: "for instance", ko: "예를 들어"},
-  {en: "rescue center", ko: "구조센터"},
-  {en: "domestic", ko: "가정의, 집안의"},
-  {en: "environment", ko: "환경"},
-  {en: "in addition", ko: "게다가, 추가로"},
-  {en: "experience", ko: "경험하다"},
-  {en: "physical illness", ko: "신체적 질병"},
-  {en: "react", ko: "반응하다"},
-  {en: "emotional confusion", ko: "정서적 혼란"},
-  {en: "explore", ko: "탐색하다, 살펴보다"},
-  {en: "adjust", ko: "조정하다"},
-  {en: "suit", ko: "맞다, 적합하다"},
-  {en: "specific", ko: "구체적인, 특정한"},
-  {en: "constant", ko: "끊임없는, 지속적인"},
-  {en: "process", ko: "과정"}
+  {en: "normally", ko: "정상적으로"},
+  {en: "environmental", ko: "환경적인"},
+  {en: "stimuli", ko: "자극 (복수형)"},
+  {en: "eyelid", ko: "눈꺼풀"},
+  {en: "mammal", ko: "포유류"},
+  {en: "functionally", ko: "기능적으로"},
+  {en: "blind", ko: "앞이 보이지 않는, 맹인의"},
+  {en: "visual", ko: "시각의"},
+  {en: "apparently", ko: "겉보기에는, 분명히"},
+  {en: "process", ko: "처리하다"},
+  {en: "shorten", ko: "짧게 하다, 축소하다"},
+  {en: "weaken", ko: "약화시키다"},
+  {en: "sensing system", ko: "감각 체계"},
+  {en: "register", ko: "인식되다, 등록되다"},
+  {en: "fail to", ko: "~하지 못하다"},
+  {en: "individual", ko: "개체, 개인"},
+  {en: "perceptual", ko: "지각의, 지각적인"},
+  {en: "disengagement", ko: "이탈, 단절"},
+  {en: "probably", ko: "아마도"},
+  {en: "serve the function of", ko: "~의 기능을 수행하다"},
+  {en: "protect", ko: "보호하다"},
+  {en: "author", ko: "저자"},
+  {en: "count A as B", ko: "A를 B로 간주하다"},
+  {en: "definition", ko: "정의"},
+  {en: "essential", ko: "필수적인"},
+  {en: "nevertheless", ko: "그럼에도 불구하고"},
+  {en: "intermediate", ko: "중간의"},
+  {en: "state", ko: "상태"},
+  {en: "drowsiness", ko: "졸음"},
+  {en: "derive", ko: "얻다, 끌어내다"},
+  {en: "benefit", ko: "이점, 혜택"},
+  {en: "total", ko: "완전한, 전적인"}
 ];
 
 const sentenceList = [
-  {full: "No two animals are alike.", koFull: "어떤 두 동물도 똑같지는 않다.", parts: [
-    {en: "No two animals are alike", ko: "어떤 두 동물도 똑같지는 않다"}
+  {full: "One of the most striking characteristics of a sleeping animal or person is that they do not respond normally to environmental stimuli.", koFull: "수면 중인 동물이나 사람의 가장 눈에 띄는 특징 중 하나는 그들이 환경적 자극에 정상적으로 반응하지 않는다는 것이다.", parts: [
+    {en: "One of the most striking characteristics of a sleeping animal or person", ko: "수면 중인 동물이나 사람의 가장 눈에 띄는 특징 중 하나는"},
+    {en: "is that they do not respond normally to environmental stimuli", ko: "그들이 환경적 자극에 정상적으로 반응하지 않는다는 것이다"}
   ]},
-  {full: "Animals from the same litter will display some of the same features, but will not be exactly the same as each other; therefore, they may not respond in entirely the same way during a healing session.", koFull: "같은 배에서 태어난 동물들은 몇몇 같은 특징을 보일 수는 있지만, 서로 완전히 똑같지는 않을 것이다. 그러므로 그것들은 치유 과정 중에 완전히 같은 방식으로 반응하지 않을 수도 있다.", parts: [
-    {en: "Animals from the same litter will display some of the same features", ko: "같은 배에서 태어난 동물들은 몇몇 같은 특징을 보일 수는 있지만"},
-    {en: "but will not be exactly the same as each other", ko: "서로 완전히 똑같지는 않을 것이다"},
-    {en: "therefore they may not respond in entirely the same way during a healing session", ko: "그러므로 그것들은 치유 과정 중에 완전히 같은 방식으로 반응하지 않을 수도 있다"}
+  {full: "If you open the eyelids of a sleeping mammal the eyes will not see normally—they are functionally blind.", koFull: "만약 당신이 수면 중인 포유류의 눈꺼풀을 연다 하더라도, 그 눈은 정상적으로 보지 못할 것이다. 즉, 그들은 기능적으로 시력이 없는(맹인) 상태이다.", parts: [
+    {en: "If you open the eyelids of a sleeping mammal", ko: "만약 당신이 수면 중인 포유류의 눈꺼풀을 연다 하더라도"},
+    {en: "the eyes will not see normally", ko: "그 눈은 정상적으로 보지 못할 것이다"},
+    {en: "they are functionally blind", ko: "그들은 기능적으로 시력이 없는 상태이다"}
   ]},
-  {full: "Environmental factors can also determine how the animal will respond during the treatment.", koFull: "환경적 요인들 또한 그 동물이 치료 중에 어떻게 반응할지를 결정할 수 있다.", parts: [
-    {en: "Environmental factors can also determine", ko: "환경적 요인들 또한 결정할 수 있다"},
-    {en: "how the animal will respond during the treatment", ko: "그 동물이 치료 중에 어떻게 반응할지를"}
+  {full: "Some visual information apparently gets in, but it is not normally processed as it is shortened or weakened; same with the other sensing systems.", koFull: "약간의 시각 정보가 겉보기에는 들어오는 것 같지만, 그것이 짧아지거나 약해지기 때문에 정상적으로 처리되지 않는다. 다른 감각 체계들의 경우도 마찬가지다.", parts: [
+    {en: "Some visual information apparently gets in", ko: "약간의 시각 정보가 겉보기에는 들어오는 것 같지만"},
+    {en: "but it is not normally processed", ko: "정상적으로 처리되지 않는다"},
+    {en: "as it is shortened or weakened", ko: "그것이 짧아지거나 약해지기 때문에"},
+    {en: "same with the other sensing systems", ko: "다른 감각 체계들의 경우도 마찬가지다"}
   ]},
-  {full: "For instance, a cat in a rescue center will respond very differently than a cat within a domestic home environment.", koFull: "예를 들어, 구조센터에 있는 고양이는 가정집 환경 안에 있는 고양이와 매우 다르게 반응할 것이다.", parts: [
-    {en: "For instance a cat in a rescue center", ko: "예를 들어 구조센터에 있는 고양이는"},
-    {en: "will respond very differently", ko: "매우 다르게 반응할 것이다"},
-    {en: "than a cat within a domestic home environment", ko: "가정집 환경 안에 있는 고양이와"}
+  {full: "Stimuli are registered but not processed normally and they fail to wake the individual.", koFull: "자극은 인식되지만 정상적으로 처리되지 않으며, 그것들은 그 개체를 깨우지 못한다.", parts: [
+    {en: "Stimuli are registered but not processed normally", ko: "자극은 인식되지만 정상적으로 처리되지 않으며"},
+    {en: "and they fail to wake the individual", ko: "그것들은 그 개체를 깨우지 못한다"}
   ]},
-  {full: "In addition, animals that experience healing for physical illness will react differently than those accepting healing for emotional confusion.", koFull: "게다가, 신체적 질병 때문에 치유를 받는 동물들은 정서적 혼란 때문에 치유를 받는 동물들과 다르게 반응할 것이다.", parts: [
-    {en: "In addition animals that experience healing for physical illness", ko: "게다가 신체적 질병 때문에 치유를 받는 동물들은"},
-    {en: "will react differently", ko: "다르게 반응할 것이다"},
-    {en: "than those accepting healing for emotional confusion", ko: "정서적 혼란 때문에 치유를 받는 동물들과"}
+  {full: "Perceptual disengagement probably serves the function of protecting sleep, so some authors do not count it as part of the definition of sleep itself.", koFull: "지각적 이탈은 아마도 수면을 보호하는 기능을 수행할 것이고, 그래서 일부 저자들은 그것을 수면 자체의 정의의 일부로 간주하지 않는다.", parts: [
+    {en: "Perceptual disengagement probably serves the function of protecting sleep", ko: "지각적 이탈은 아마도 수면을 보호하는 기능을 수행할 것이고"},
+    {en: "so some authors do not count it", ko: "그래서 일부 저자들은 그것을 간주하지 않는다"},
+    {en: "as part of the definition of sleep itself", ko: "수면 자체의 정의의 일부로"}
   ]},
-  {full: "With this in mind, every healing session needs to be explored differently, and each healing treatment should be adjusted to suit the specific needs of the animal.", koFull: "이 점을 염두에 두고, 모든 치유 과정은 다르게 살펴보아야 하며, 각각의 치유 치료는 그 동물의 구체적인 필요에 맞도록 조정되어야 한다.", parts: [
-    {en: "With this in mind", ko: "이 점을 염두에 두고"},
-    {en: "every healing session needs to be explored differently", ko: "모든 치유 과정은 다르게 살펴보아야 하며"},
-    {en: "and each healing treatment should be adjusted", ko: "각각의 치유 치료는 조정되어야 한다"},
-    {en: "to suit the specific needs of the animal", ko: "그 동물의 구체적인 필요에 맞도록"}
+  {full: "But as sleep would be impossible without it, it seems essential to its definition.", koFull: "하지만 그것(지각적 이탈) 없이는 수면이 불가능할 것이기 때문에, 그것은 수면의 정의에 필수적인 것으로 보인다.", parts: [
+    {en: "But as sleep would be impossible without it", ko: "하지만 그것 없이는 수면이 불가능할 것이기 때문에"},
+    {en: "it seems essential to its definition", ko: "그것은 수면의 정의에 필수적인 것으로 보인다"}
   ]},
-  {full: "You will learn as you go; healing is a constant learning process.", koFull: "당신은 해 나가면서 배우게 될 것이다. 치유는 끊임없는 배움의 과정이다.", parts: [
-    {en: "You will learn as you go", ko: "당신은 해 나가면서 배우게 될 것이다"},
-    {en: "healing is a constant learning process", ko: "치유는 끊임없는 배움의 과정이다"}
+  {full: "Nevertheless, many animals (including humans) use the intermediate state of drowsiness to derive some benefits of sleep without total perceptual disengagement.", koFull: "그럼에도 불구하고, (인간을 포함한) 많은 동물들은 완전한 지각적 이탈 없이도 수면의 몇몇 이점들을 얻기 위해 졸음이라는 중간 상태를 이용한다.", parts: [
+    {en: "Nevertheless many animals including humans", ko: "그럼에도 불구하고 인간을 포함한 많은 동물들은"},
+    {en: "use the intermediate state of drowsiness", ko: "졸음이라는 중간 상태를 이용한다"},
+    {en: "to derive some benefits of sleep", ko: "수면의 몇몇 이점들을 얻기 위해"},
+    {en: "without total perceptual disengagement", ko: "완전한 지각적 이탈 없이도"}
   ]}
 ];
 
 const grammarList = [
-  {sentence: "No two animals [are / is] alike.", answer: "are", explain: "주어 자리에 쓰인 animals가 복수 명사이므로 복수 동사 are가 맞습니다."},
-  {sentence: "Animals from the same litter [display / displaying] some of the same features.", answer: "display", explain: "문장의 주어(Animals)에 연결되는 본동사 자리이므로 동사원형(미래 조동사 will 뒤) 또는 현재형인 display가 적절합니다."},
-  {sentence: "They may not respond in entirely the same way [during / while] a healing session.", answer: "during", explain: "뒤에 명사구(a healing session)가 오므로 전치사인 during이 맞습니다. while은 접속사로 뒤에 주어+동사가 옵니다."},
-  {sentence: "Environmental factors can also determine [how / what] the animal will respond.", answer: "how", explain: "뒤에 완전한 절(respond는 자동사)이 오고 '어떻게 반응할지'라는 의미가 자연스러우므로 의문부사 how가 맞습니다."},
-  {sentence: "A cat in a rescue center will respond very [different / differently].", answer: "differently", explain: "앞에 있는 동사 respond(반응하다)를 수식해야 하므로 부사인 differently가 맞습니다."},
-  {sentence: "Animals [what / that] experience healing for physical illness will react differently.", answer: "that", explain: "선행사 animals를 수식하면서 뒤에 동사(experience)가 이어지는 주격 관계대명사 that이 필요합니다."},
-  {sentence: "They will react differently than [that / those] accepting healing.", answer: "those", explain: "앞에 나온 복수명사 animals를 대신받는 지시대명사이므로 복수형인 those가 맞습니다."},
-  {sentence: "Every healing session needs to be [explored / exploring] differently.", answer: "explored", explain: "치유 과정(session)은 탐색'되는' 대상이므로 수동태 형태인 be explored가 맞습니다."},
-  {sentence: "Each healing treatment should be adjusted to [suit / suiting] the specific needs.", answer: "suit", explain: "'~하기 위해'라는 목적을 나타내는 to 부정사 구문이므로 to 뒤에 동사원형 suit가 옵니다."}
+  {sentence: "One of the most striking characteristics of a sleeping animal [is / are] that they do not respond normally.", answer: "is", explain: "주어는 One of + 복수명사에서 핵심 주어인 One이므로 단수 동사 is가 맞습니다."},
+  {sentence: "They do not respond [normal / normally] to environmental stimuli.", answer: "normally", explain: "동사 respond를 수식해야 하므로 부사인 normally가 맞습니다."},
+  {sentence: "Some visual information apparently [get / gets] in.", answer: "gets", explain: "information은 셀 수 없는 명사로 단수 취급하므로 단수 동사 gets가 맞습니다."},
+  {sentence: "Visual information is not normally [processing / processed].", answer: "processed", explain: "시각 정보는 '처리되는' 대상이므로 수동태인 is processed가 맞습니다."},
+  {sentence: "Stimuli are [registering / registered] but not processed normally.", answer: "registered", explain: "자극(Stimuli)은 감각 기관에 '인식되는' 대상이므로 수동태 registered가 맞습니다."},
+  {sentence: "They fail [to wake / waking] the individual.", answer: "to wake", explain: "fail은 목적어로 to 부정사를 취하므로 to wake가 맞습니다."},
+  {sentence: "Some authors do not count it [as / for] part of the definition.", answer: "as", explain: "count A as B는 'A를 B로 간주하다'라는 구문입니다."},
+  {sentence: "It seems [essential / essentially] to its definition.", answer: "essential", explain: "seem 뒤에는 주격 보어로 형용사가 와야 하므로 essential이 맞습니다."},
+  {sentence: "Many animals use the intermediate state [to derive / deriving] some benefits.", answer: "to derive", explain: "'~하기 위해'라는 목적을 나타내는 부사적 용법의 to 부정사(to derive)가 쓰였습니다."}
 ];
 
 const lineExplanations = [
-  {en: "No two animals are alike.", ko: "어떤 두 동물도 똑같지는 않다.", gram: "<b>No two A are alike.</b> (어떤 두 A도 똑같지 않다.) 여기서 <b>alike</b>는 '비슷한, 똑같은'이라는 뜻으로 쓰였습니다."},
-  {en: "Animals from the same litter will display some of the same features, but will not be exactly the same as each other; therefore, they may not respond in entirely the same way during a healing session.", ko: "같은 배에서 태어난 동물들은 몇몇 같은 특징을 보일 수는 있지만, 서로 완전히 똑같지는 않을 것이다. 그러므로 그것들은 치유 과정 중에 완전히 같은 방식으로 반응하지 않을 수도 있다.", gram: "<b>from the same litter</b>는 '같은 배에서 태어난'이라는 뜻입니다. <b>therefore</b>(그러므로)는 앞 문장의 결과를 말할 때 쓰입니다."},
-  {en: "Environmental factors can also determine how the animal will respond during the treatment.", ko: "환경적 요인들 또한 그 동물이 치료 중에 어떻게 반응할지를 결정할 수 있다.", gram: "<b>determine</b>은 '결정하다, 좌우하다'라는 뜻입니다. <b>how the animal will respond</b>는 동사 determine의 목적어로 쓰인 명사절(간접의문문)입니다."},
-  {en: "For instance, a cat in a rescue center will respond very differently than a cat within a domestic home environment.", ko: "예를 들어, 구조센터에 있는 고양이는 가정집 환경 안에 있는 고양이와 매우 다르게 반응할 것이다.", gram: "<b>For instance</b>는 '예를 들어'라는 뜻입니다. <b>respond differently than ~</b>은 '~와 다르게 반응하다'라는 표현입니다."},
-  {en: "In addition, animals that experience healing for physical illness will react differently than those accepting healing for emotional confusion.", ko: "게다가, 신체적 질병 때문에 치유를 받는 동물들은 정서적 혼란 때문에 치유를 받는 동물들과 다르게 반응할 것이다.", gram: "<b>In addition</b>은 '게다가'입니다. <b>that experience ~</b>는 animals를 수식하는 관계대명사절이며, <b>those</b>는 앞의 animals를 대신하는 대명사입니다."},
-  {en: "With this in mind, every healing session needs to be explored differently, and each healing treatment should be adjusted to suit the specific needs of the animal.", ko: "이 점을 염두에 두고, 모든 치유 과정은 다르게 살펴보아야 하며, 각각의 치유 치료는 그 동물의 구체적인 필요에 맞도록 조정되어야 한다.", gram: "<b>With this in mind</b>는 '이 점을 염두에 두고'라는 뜻입니다. <b>needs to be explored</b>와 <b>should be adjusted</b> 둘 다 수동태 형태가 쓰였습니다."},
-  {en: "You will learn as you go; healing is a constant learning process.", ko: "당신은 해 나가면서 배우게 될 것이다. 치유는 끊임없는 배움의 과정이다.", gram: "<b>learn as you go</b>는 '해 나가면서 배우다'라는 의미입니다. 세미콜론(;)은 앞뒤 내용이 밀접하게 연결될 때 쓰여 자연스러운 흐름을 만듭니다."}
+  {en: "One of the most striking characteristics of a sleeping animal or person is that they do not respond normally to environmental stimuli.", ko: "수면 중인 동물이나 사람의 가장 눈에 띄는 특징 중 하나는 그들이 환경적 자극에 정상적으로 반응하지 않는다는 것이다.", gram: "<b>One of the + 최상급 + 복수명사(characteristics)</b> 구문이며, 주어는 One이므로 단수동사 <b>is</b>가 쓰였습니다."},
+  {en: "If you open the eyelids of a sleeping mammal the eyes will not see normally—they are functionally blind.", ko: "만약 당신이 수면 중인 포유류의 눈꺼풀을 연다 하더라도, 그 눈은 정상적으로 보지 못할 것이다. 즉, 그들은 기능적으로 시력이 없는(맹인) 상태이다.", gram: "<b>functionally blind</b>는 눈의 구조적 문제가 아니라 뇌에서 시각 정보를 처리하지 않아 '기능적으로 보지 못하는' 상태를 의미합니다."},
+  {en: "Some visual information apparently gets in, but it is not normally processed as it is shortened or weakened; same with the other sensing systems.", ko: "약간의 시각 정보가 겉보기에는 들어오는 것 같지만, 그것이 짧아지거나 약해지기 때문에 정상적으로 처리되지 않는다. 다른 감각 체계들의 경우도 마찬가지다.", gram: "<b>is not normally processed</b>는 수동태입니다. <b>as</b>는 '~때문에'라는 뜻의 접속사로 쓰였습니다."},
+  {en: "Stimuli are registered but not processed normally and they fail to wake the individual.", ko: "자극은 인식되지만 정상적으로 처리되지 않으며, 그것들은 그 개체를 깨우지 못한다.", gram: "<b>are registered but not processed</b>로 수동태 동사 두 개가 병렬 연결되었습니다. <b>fail to-v</b>는 '~하지 못하다'라는 뜻입니다."},
+  {en: "Perceptual disengagement probably serves the function of protecting sleep, so some authors do not count it as part of the definition of sleep itself.", ko: "지각적 이탈은 아마도 수면을 보호하는 기능을 수행할 것이고, 그래서 일부 저자들은 그것을 수면 자체의 정의의 일부로 간주하지 않는다.", gram: "<b>perceptual disengagement(지각적 이탈)</b>은 핵심어입니다. <b>count A as B</b>는 'A를 B로 간주하다'라는 뜻입니다."},
+  {en: "But as sleep would be impossible without it, it seems essential to its definition.", ko: "하지만 그것(지각적 이탈) 없이는 수면이 불가능할 것이기 때문에, 그것은 수면의 정의에 필수적인 것으로 보인다.", gram: "<b>as</b>는 '~때문에'입니다. <b>seem + 형용사(essential)</b> 구문이 쓰였습니다."},
+  {en: "Nevertheless, many animals (including humans) use the intermediate state of drowsiness to derive some benefits of sleep without total perceptual disengagement.", ko: "그럼에도 불구하고, (인간을 포함한) 많은 동물들은 완전한 지각적 이탈 없이도 수면의 몇몇 이점들을 얻기 위해 졸음이라는 중간 상태를 이용한다.", gram: "<b>Nevertheless(그럼에도 불구하고)</b>가 문장 흐름을 바꿉니다. <b>to derive</b>는 목적을 나타내는 to부정사입니다."}
 ];
 
 let selectedMainAnswer=null;
@@ -204,7 +211,7 @@ function selectMainChoice(btn){
 function checkMainProblem(){
   initAudio();
   if(!selectedMainAnswer){alert('정답을 먼저 선택하세요.');return}
-  const answer=2, ok=selectedMainAnswer===answer;
+  const answer=3, ok=selectedMainAnswer===answer;
   document.querySelectorAll('.q-choice').forEach(b=>{
     b.classList.remove('correct','wrong');
     const n=Number(b.dataset.n);
@@ -214,7 +221,7 @@ function checkMainProblem(){
   
   const r=document.getElementById('main-result');
   r.className='result-box '+(ok?'correct':'wrong');
-  r.innerHTML=ok?'<b>정답입니다! ②</b><br>앞에서는 “동물마다 다르다”는 개인적 차이를 말하고, 뒤에서는 “구조센터의 고양이와 가정집의 고양이”처럼 환경 차이를 예로 들기 때문에, 환경적 요인을 언급한 주어진 문장은 ②번 위치가 가장 자연스럽습니다.':'<b>아쉽습니다. 정답은 ②입니다.</b><br>주어진 문장은 "환경적 요인"이 치료 반응을 결정할 수 있다는 내용입니다. 뒤이어 나오는 내용이 "구조센터 고양이 vs 가정집 고양이"라는 환경적 요인의 구체적 예시(For instance)이므로 ②번 자리에 들어가야 논리적으로 맞습니다.';
+  r.innerHTML=ok?'<b>정답입니다! ③ are functionally blind</b><br>앞에서 수면 중인 포유류의 눈을 강제로 떠도 정상적으로 보지 못한다고 했고, 바로 뒷문장에서 그 이유를 "시각 정보가 들어오긴 하지만 뇌에서 정상적으로 처리되지 않기 때문"이라고 설명합니다. 즉, 눈은 떠 있어도 뇌가 인식하지 못하므로 <b>기능적으로 맹인(functionally blind)</b> 상태라는 ③번이 가장 적절합니다.':'<b>아쉽습니다. 정답은 ③ are functionally blind 입니다.</b><br>빈칸 바로 다음 문장에서 "시각 정보가 들어오긴 하지만 정상적으로 처리되지 않는다"고 설명합니다. 즉, 물리적으로는 정보가 들어오지만 뇌가 처리하지 않으므로 <b>기능적으로는 앞이 보이지 않는 상태(functionally blind)</b>가 맞습니다.';
   
   if(ok){
     safeSet('_problemCorrect',true);
@@ -233,7 +240,7 @@ function renderLineExplain(){
   lineExplanations.forEach((x,i)=>{
     out+=`<div class="explain-card"><div class="ex-en"><span class="pill">${i+1}</span>${x.en}</div><div class="ex-ko">${x.ko}</div><div class="ex-gram">🔎 ${x.gram}</div></div>`;
   });
-  out+='<div class="question-box"><b>전체 요지</b><br>이 글은 동물이 치유나 치료 과정에서 모두 똑같이 반응하지 않는다고 설명합니다. 개체적 특성뿐만 아니라, 환경(구조센터 vs 가정집)이나 질병의 종류(신체적 질병 vs 정서적 혼란)에 따라서도 반응이 달라질 수 있습니다. 그래서 모든 치료 과정은 동물의 구체적인 상황과 필요에 맞게 다르게 조정되어야 한다는 내용입니다.</div>';
+  out+='<div class="question-box"><b>전체 요지</b><br>수면 중에는 눈으로 빛이 들어와도 뇌가 이를 정상적으로 처리하지 않는 <b>지각적 이탈(perceptual disengagement)</b>이 일어납니다. 이는 깊은 잠을 유지하고 보호하기 위해 필수적입니다. 하지만 야생의 위험 때문에 동물들은 완전히 감각을 차단하는 대신, 졸음이라는 중간 상태를 활용하여 선잠을 자면서도 수면의 혜택을 취하기도 합니다.</div>';
   wrap.innerHTML=out;
   wrap.classList.add('show');
   wrap.scrollIntoView({behavior:'smooth',block:'start'});
@@ -241,7 +248,7 @@ function renderLineExplain(){
 
 function updateEvo(pre,cur,tot){
   const r=tot?cur/tot:0;
-  const s=[[0,'🐾','새끼 고양이'],[.15,'🐈','호기심 고양이'],[.38,'🐕','든든한 강아지'],[.68,'🩺','치료 준비 완료'],[1,'💖','완벽한 치유']];
+  const s=[[0,'💤','피곤한 동물'],[.15,'🥱','하품하는 동물'],[.38,'😴','꾸벅꾸벅 졸음'],[.68,'🛌','기분 좋은 선잠'],[1,'✨','완벽한 피로회복']];
   let st=s[0]; for(const x of s)if(r>=x[0])st=x;
   const pctVal=Math.floor(r*100);
   document.getElementById(pre+'e').innerText=st[1];
@@ -277,7 +284,7 @@ function finishWord(early=false){const tot=early?wIdx:wList.length;if(!tot){rese
 function resetWord(){document.getElementById('word-result').style.display='none';document.getElementById('word-intro').style.display='block'}
 
 let dIdx=0,pIdx=0,dictLoaded=false,isLoop=false,loopTimer=null; const speeds=[.78,.62,.5],sLabels=['🇺🇸 보통','🐢 느리게','🐌 아주 느리게'];let spIdx=0;
-function cleanWords(s){return s.replace(/[“”"'.,!?;:()]/g,'').split(/\s+/).filter(Boolean)}
+function cleanWords(s){return s.replace(/[“”"'.,!?;:()—\-]/g,'').split(/\s+/).filter(Boolean)}
 function currentPart(){return sentenceList[dIdx].parts[pIdx]}
 function loopPlay(){if(!isLoop)return; const p=currentPart(); speak(p.en,speeds[spIdx],()=>{if(isLoop)loopTimer=setTimeout(loopPlay,1000)})}
 function stopLoop(){isLoop=false;if('speechSynthesis'in window)window.speechSynthesis.cancel();clearTimeout(loopTimer);updatePlayBtn()}
@@ -309,7 +316,7 @@ function checkAllDone(){const c=progressCounts(); if(!_allStampShown && c.word>=
 
 function renderHistory(){
  const div=document.getElementById('hist-list'); if(!div)return; div.innerHTML=''; const c=progressCounts();
- const rows=[['문제',c.prob,c.probTotal,'문장 삽입 정답'],['단어',c.word,c.wordTotal,'누적 정답 단어'],['영작',c.dict,c.dictTotal,'완성한 의미 구간'],['어법',c.gram,c.gramTotal,'누적 정답 문항']];
+ const rows=[['문제',c.prob,c.probTotal,'빈칸추론 정답'],['단어',c.word,c.wordTotal,'누적 정답 단어'],['영작',c.dict,c.dictTotal,'완성한 의미 구간'],['어법',c.gram,c.gramTotal,'누적 정답 문항']];
  const totalDone=c.prob+c.word+c.dict+c.gram, totalAll=c.probTotal+c.wordTotal+c.dictTotal+c.gramTotal;
  let html=`<div class="finish-note">📌 학습 진행 상황이 한눈에 표시됩니다.<br>예: 단어 ${c.word}/${c.wordTotal}, 영작 ${c.dict}/${c.dictTotal}</div><div class="simple-summary">`;
  rows.forEach(([title,done,total,desc])=>{html+=`<div class="simple-card"><div class="simple-head"><div><div class="simple-title">${title}</div><div class="hist-date">${desc}</div></div><div class="simple-count">${done}/${total}</div></div><div class="mini-bar"><div class="mini-fill" style="width:${pct(done,total)}%"></div></div></div>`});
