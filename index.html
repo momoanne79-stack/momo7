@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수리나무학원 고등독해 - 수면과 지각적 이탈</title>
+<title>수리나무학원 고등독해 - 지식의 저주</title>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
@@ -46,7 +46,7 @@
 <div class="header">
   <div class="header-badge">고등독해 · 빈칸추론</div>
   <h1>수리나무학원 고등독해</h1>
-  <p>수면과 지각적 이탈 · 33번</p>
+  <p>전문가와 초보자 · 34번</p>
 </div>
 
 <div class="nav">
@@ -59,17 +59,17 @@
 
 <div id="problem-sec" class="section active">
   <div class="problem-card">
-    <div class="problem-title">33. 다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.</div>
+    <div class="problem-title">34. 다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.</div>
     <div class="problem-passage">
-      One of the most striking characteristics of a sleeping animal or person is that they do not respond normally to environmental stimuli. If you open the eyelids of a sleeping mammal the eyes will not see normally—they <b>__________</b>. Some visual information apparently gets in, but it is not normally processed as it is shortened or weakened; same with the other sensing systems. Stimuli are registered but not processed normally and they fail to wake the individual. Perceptual disengagement probably serves the function of protecting sleep, so some authors do not count it as part of the definition of sleep itself. But as sleep would be impossible without it, it seems essential to its definition. Nevertheless, many animals (including humans) use the intermediate state of drowsiness to derive some benefits of sleep without total perceptual disengagement.
+      A number of research studies have shown how experts in a field often experience difficulties when introducing newcomers to that field. For example, in a genuine training situation, Dr Pamela Hinds found that people expert in using mobile phones were remarkably less accurate than novice phone users in judging how long it takes people to learn to use the phones. Experts can become insensitive to how hard a task is for the beginner, an effect referred to as the “curse of knowledge.” Dr Hinds was able to show that as people acquired the skill, they then began to underestimate the level of difficulty of that skill. Her participants even underestimated how long it had taken themselves to acquire that skill in an earlier session. Knowing that experts forget how hard it was for them to learn, we can understand the need to <b>__________</b>, rather than making assumptions about how students “should be” learning.
     </div>
   </div>
   <div class="choice-list">
-    <button class="q-choice" data-n="1" onclick="selectMainChoice(this)">① get recovered easily</button>
-    <button class="q-choice" data-n="2" onclick="selectMainChoice(this)">② will see much better</button>
-    <button class="q-choice" data-n="3" onclick="selectMainChoice(this)">③ are functionally blind</button>
-    <button class="q-choice" data-n="4" onclick="selectMainChoice(this)">④ are completely activated</button>
-    <button class="q-choice" data-n="5" onclick="selectMainChoice(this)">⑤ process visual information</button>
+    <button class="q-choice" data-n="1" onclick="selectMainChoice(this)">① focus on the new functions of digital devices</button>
+    <button class="q-choice" data-n="2" onclick="selectMainChoice(this)">② apply new learning theories recently released</button>
+    <button class="q-choice" data-n="3" onclick="selectMainChoice(this)">③ develop varieties of methods to test students</button>
+    <button class="q-choice" data-n="4" onclick="selectMainChoice(this)">④ forget the difficulties that we have had as students</button>
+    <button class="q-choice" data-n="5" onclick="selectMainChoice(this)">⑤ look at the learning process through students’ eyes</button>
   </div>
   <button class="primary-btn" onclick="checkMainProblem()">정답 확인하고 문장별 해설 보기</button>
   <div id="main-result" class="result-box"></div><div id="line-explain" class="explain-wrap"></div>
@@ -77,22 +77,22 @@
 
 <div id="word-sec" class="section">
   <div id="word-intro" class="intro-wrap">
-    <div class="intro-icon">💤</div><h2>수면의 비밀 풀기</h2><p>핵심 단어를 맞히며<br>지각적 이탈과 수면의 관계를 알아보세요.</p>
+    <div class="intro-icon">🧠</div><h2>지식의 저주 풀기</h2><p>핵심 단어를 맞히며<br>전문가와 초보자의 관점 차이를 익혀 보세요.</p>
     <button class="primary-btn" onclick="initAudio();startWord()">테스트 시작 🚀</button>
   </div>
-  <div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">💤</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
+  <div id="word-quiz" style="display:none"><div class="status-row"><span class="status-badge" id="w-status"></span><button class="stop-btn" onclick="finishWord(true)">중간 채점</button></div><div class="evo-box"><div class="evo-emoji" id="wevo-e">🧠</div><div class="evo-name" id="wevo-n"></div><div class="prog-bg"><div class="prog-bar" id="wevo-b"></div></div></div><div class="word-display" id="w-en"></div><div class="options-grid" id="w-opts"></div></div>
   <div id="word-result" style="display:none;text-align:center"><div class="intro-icon" id="w-res-e">🏆</div><h2 style="color:var(--main)">테스트 종료!</h2><div class="word-display" id="w-score">100점</div><div class="status-badge" id="w-detail"></div><button class="primary-btn" onclick="resetWord()">다시 시작 🔄</button></div>
 </div>
 
 <div id="dict-sec" class="section">
-  <div class="evo-box"><div class="evo-emoji" id="devo-e">💤</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
+  <div class="evo-box"><div class="evo-emoji" id="devo-e">🧠</div><div class="evo-name" id="devo-n"></div><div class="prog-bg"><div class="prog-bar" id="devo-b"></div></div></div>
   <span class="status-badge" id="d-status"></span><div class="ko-meaning" id="d-ko"></div><div class="drag-tip">낱말을 눌러 순서대로 놓아 문장을 완성하세요. 구두점은 제외되며, 맞으면 바로 다음 구간으로 이동합니다.</div>
   <div id="answer-area"></div><div id="scramble-area"></div>
   <div class="audio-row"><button id="speed-btn" class="audio-btn speed-btn" onclick="toggleSpeed()">🇺🇸 보통</button><button id="play-btn" class="audio-btn play-btn" onclick="toggleAudio()">⏸️ 일시정지</button></div>
 </div>
 
 <div id="grammar-sec" class="section">
-  <div class="evo-box"><div class="evo-emoji" id="gevo-e">💤</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
+  <div class="evo-box"><div class="evo-emoji" id="gevo-e">🧠</div><div class="evo-name" id="gevo-n"></div><div class="prog-bg"><div class="prog-bar" id="gevo-b"></div></div></div>
   <div class="status-row"><span class="status-badge" id="g-status"></span><button class="stop-btn" onclick="renderGrammar()">처음으로</button></div>
   <div id="grammar-box"></div>
 </div>
@@ -101,103 +101,363 @@
 </div>
 
 <script>
-const STORE='sr_sleep_disengagement_v1';
+const STORE='sr_curse_knowledge_34_v1';
 
 const wordList = [
-  {en: "striking", ko: "눈에 띄는, 두드러진"},
-  {en: "characteristic", ko: "특징"},
-  {en: "respond", ko: "반응하다"},
-  {en: "normally", ko: "정상적으로"},
-  {en: "environmental", ko: "환경적인"},
-  {en: "stimuli", ko: "자극 (복수형)"},
-  {en: "eyelid", ko: "눈꺼풀"},
-  {en: "mammal", ko: "포유류"},
-  {en: "functionally", ko: "기능적으로"},
-  {en: "blind", ko: "앞이 보이지 않는, 맹인의"},
-  {en: "visual", ko: "시각의"},
-  {en: "apparently", ko: "겉보기에는, 분명히"},
-  {en: "process", ko: "처리하다"},
-  {en: "shorten", ko: "짧게 하다, 축소하다"},
-  {en: "weaken", ko: "약화시키다"},
-  {en: "sensing system", ko: "감각 체계"},
-  {en: "register", ko: "인식되다, 등록되다"},
-  {en: "fail to", ko: "~하지 못하다"},
-  {en: "individual", ko: "개체, 개인"},
-  {en: "perceptual", ko: "지각의, 지각적인"},
-  {en: "disengagement", ko: "이탈, 단절"},
-  {en: "probably", ko: "아마도"},
-  {en: "serve the function of", ko: "~의 기능을 수행하다"},
-  {en: "protect", ko: "보호하다"},
-  {en: "author", ko: "저자"},
-  {en: "count A as B", ko: "A를 B로 간주하다"},
-  {en: "definition", ko: "정의"},
-  {en: "essential", ko: "필수적인"},
-  {en: "nevertheless", ko: "그럼에도 불구하고"},
-  {en: "intermediate", ko: "중간의"},
-  {en: "state", ko: "상태"},
-  {en: "drowsiness", ko: "졸음"},
-  {en: "derive", ko: "얻다, 끌어내다"},
-  {en: "benefit", ko: "이점, 혜택"},
-  {en: "total", ko: "완전한, 전적인"}
+  {
+    "en": "research study",
+    "ko": "연구"
+  },
+  {
+    "en": "expert",
+    "ko": "전문가"
+  },
+  {
+    "en": "field",
+    "ko": "분야"
+  },
+  {
+    "en": "experience difficulties",
+    "ko": "어려움을 겪다"
+  },
+  {
+    "en": "introduce A to B",
+    "ko": "A를 B에 입문시키다 / 소개하다"
+  },
+  {
+    "en": "newcomer",
+    "ko": "초보자, 새로 온 사람"
+  },
+  {
+    "en": "genuine",
+    "ko": "진짜의, 실제의"
+  },
+  {
+    "en": "training situation",
+    "ko": "훈련 상황"
+  },
+  {
+    "en": "remarkably",
+    "ko": "현저하게, 눈에 띄게"
+  },
+  {
+    "en": "accurate",
+    "ko": "정확한"
+  },
+  {
+    "en": "novice",
+    "ko": "초보자"
+  },
+  {
+    "en": "judge",
+    "ko": "판단하다"
+  },
+  {
+    "en": "it takes A time to V",
+    "ko": "A가 V하는 데 시간이 걸리다"
+  },
+  {
+    "en": "insensitive",
+    "ko": "둔감한"
+  },
+  {
+    "en": "task",
+    "ko": "과제, 일"
+  },
+  {
+    "en": "beginner",
+    "ko": "초보자"
+  },
+  {
+    "en": "effect",
+    "ko": "효과, 영향"
+  },
+  {
+    "en": "be referred to as",
+    "ko": "~라고 불리다"
+  },
+  {
+    "en": "curse of knowledge",
+    "ko": "지식의 저주"
+  },
+  {
+    "en": "acquire",
+    "ko": "습득하다, 얻다"
+  },
+  {
+    "en": "skill",
+    "ko": "기술, 능력"
+  },
+  {
+    "en": "underestimate",
+    "ko": "과소평가하다"
+  },
+  {
+    "en": "level of difficulty",
+    "ko": "난이도, 어려움의 수준"
+  },
+  {
+    "en": "participant",
+    "ko": "참가자"
+  },
+  {
+    "en": "earlier session",
+    "ko": "이전 회기, 이전 시간"
+  },
+  {
+    "en": "assumption",
+    "ko": "추측, 가정"
+  },
+  {
+    "en": "learning process",
+    "ko": "학습 과정"
+  },
+  {
+    "en": "through students' eyes",
+    "ko": "학생들의 눈으로, 학생 입장에서"
+  },
+  {
+    "en": "rather than",
+    "ko": "~하기보다는"
+  },
+  {
+    "en": "should be learning",
+    "ko": "배우고 있어야 한다고 여겨지는"
+  }
 ];
 
 const sentenceList = [
-  {full: "One of the most striking characteristics of a sleeping animal or person is that they do not respond normally to environmental stimuli.", koFull: "수면 중인 동물이나 사람의 가장 눈에 띄는 특징 중 하나는 그들이 환경적 자극에 정상적으로 반응하지 않는다는 것이다.", parts: [
-    {en: "One of the most striking characteristics of a sleeping animal or person", ko: "수면 중인 동물이나 사람의 가장 눈에 띄는 특징 중 하나는"},
-    {en: "is that they do not respond normally to environmental stimuli", ko: "그들이 환경적 자극에 정상적으로 반응하지 않는다는 것이다"}
-  ]},
-  {full: "If you open the eyelids of a sleeping mammal the eyes will not see normally—they are functionally blind.", koFull: "만약 당신이 수면 중인 포유류의 눈꺼풀을 연다 하더라도, 그 눈은 정상적으로 보지 못할 것이다. 즉, 그들은 기능적으로 시력이 없는(맹인) 상태이다.", parts: [
-    {en: "If you open the eyelids of a sleeping mammal", ko: "만약 당신이 수면 중인 포유류의 눈꺼풀을 연다 하더라도"},
-    {en: "the eyes will not see normally", ko: "그 눈은 정상적으로 보지 못할 것이다"},
-    {en: "they are functionally blind", ko: "그들은 기능적으로 시력이 없는 상태이다"}
-  ]},
-  {full: "Some visual information apparently gets in, but it is not normally processed as it is shortened or weakened; same with the other sensing systems.", koFull: "약간의 시각 정보가 겉보기에는 들어오는 것 같지만, 그것이 짧아지거나 약해지기 때문에 정상적으로 처리되지 않는다. 다른 감각 체계들의 경우도 마찬가지다.", parts: [
-    {en: "Some visual information apparently gets in", ko: "약간의 시각 정보가 겉보기에는 들어오는 것 같지만"},
-    {en: "but it is not normally processed", ko: "정상적으로 처리되지 않는다"},
-    {en: "as it is shortened or weakened", ko: "그것이 짧아지거나 약해지기 때문에"},
-    {en: "same with the other sensing systems", ko: "다른 감각 체계들의 경우도 마찬가지다"}
-  ]},
-  {full: "Stimuli are registered but not processed normally and they fail to wake the individual.", koFull: "자극은 인식되지만 정상적으로 처리되지 않으며, 그것들은 그 개체를 깨우지 못한다.", parts: [
-    {en: "Stimuli are registered but not processed normally", ko: "자극은 인식되지만 정상적으로 처리되지 않으며"},
-    {en: "and they fail to wake the individual", ko: "그것들은 그 개체를 깨우지 못한다"}
-  ]},
-  {full: "Perceptual disengagement probably serves the function of protecting sleep, so some authors do not count it as part of the definition of sleep itself.", koFull: "지각적 이탈은 아마도 수면을 보호하는 기능을 수행할 것이고, 그래서 일부 저자들은 그것을 수면 자체의 정의의 일부로 간주하지 않는다.", parts: [
-    {en: "Perceptual disengagement probably serves the function of protecting sleep", ko: "지각적 이탈은 아마도 수면을 보호하는 기능을 수행할 것이고"},
-    {en: "so some authors do not count it", ko: "그래서 일부 저자들은 그것을 간주하지 않는다"},
-    {en: "as part of the definition of sleep itself", ko: "수면 자체의 정의의 일부로"}
-  ]},
-  {full: "But as sleep would be impossible without it, it seems essential to its definition.", koFull: "하지만 그것(지각적 이탈) 없이는 수면이 불가능할 것이기 때문에, 그것은 수면의 정의에 필수적인 것으로 보인다.", parts: [
-    {en: "But as sleep would be impossible without it", ko: "하지만 그것 없이는 수면이 불가능할 것이기 때문에"},
-    {en: "it seems essential to its definition", ko: "그것은 수면의 정의에 필수적인 것으로 보인다"}
-  ]},
-  {full: "Nevertheless, many animals (including humans) use the intermediate state of drowsiness to derive some benefits of sleep without total perceptual disengagement.", koFull: "그럼에도 불구하고, (인간을 포함한) 많은 동물들은 완전한 지각적 이탈 없이도 수면의 몇몇 이점들을 얻기 위해 졸음이라는 중간 상태를 이용한다.", parts: [
-    {en: "Nevertheless many animals including humans", ko: "그럼에도 불구하고 인간을 포함한 많은 동물들은"},
-    {en: "use the intermediate state of drowsiness", ko: "졸음이라는 중간 상태를 이용한다"},
-    {en: "to derive some benefits of sleep", ko: "수면의 몇몇 이점들을 얻기 위해"},
-    {en: "without total perceptual disengagement", ko: "완전한 지각적 이탈 없이도"}
-  ]}
+  {
+    "full": "A number of research studies have shown how experts in a field often experience difficulties when introducing newcomers to that field.",
+    "koFull": "많은 연구들은 한 분야의 전문가들이 그 분야에 초보자들을 입문시킬 때 자주 어려움을 겪는다는 것을 보여 주었다.",
+    "parts": [
+      {
+        "en": "A number of research studies have shown",
+        "ko": "많은 연구들은 보여 주었다"
+      },
+      {
+        "en": "how experts in a field often experience difficulties",
+        "ko": "한 분야의 전문가들이 자주 어려움을 겪는다는 것을"
+      },
+      {
+        "en": "when introducing newcomers to that field",
+        "ko": "초보자들을 그 분야에 입문시킬 때"
+      }
+    ]
+  },
+  {
+    "full": "For example, in a genuine training situation, Dr Pamela Hinds found that people expert in using mobile phones were remarkably less accurate than novice phone users in judging how long it takes people to learn to use the phones.",
+    "koFull": "예를 들어, 실제 훈련 상황에서 Pamela Hinds 박사는 휴대전화를 사용하는 데 능숙한 사람들이 초보 휴대전화 사용자들보다 사람들이 그 전화기를 사용하는 법을 배우는 데 얼마나 오래 걸리는지를 판단하는 데 훨씬 덜 정확하다는 것을 발견했다.",
+    "parts": [
+      {
+        "en": "For example in a genuine training situation",
+        "ko": "예를 들어 실제 훈련 상황에서"
+      },
+      {
+        "en": "Dr Pamela Hinds found",
+        "ko": "Pamela Hinds 박사는 발견했다"
+      },
+      {
+        "en": "that people expert in using mobile phones",
+        "ko": "휴대전화 사용에 능숙한 사람들이"
+      },
+      {
+        "en": "were remarkably less accurate than novice phone users",
+        "ko": "초보 휴대전화 사용자들보다 현저하게 덜 정확했다는 것을"
+      },
+      {
+        "en": "in judging how long it takes people",
+        "ko": "사람들에게 얼마나 오래 걸리는지를 판단하는 데 있어서"
+      },
+      {
+        "en": "to learn to use the phones",
+        "ko": "그 전화기를 사용하는 법을 배우는 데"
+      }
+    ]
+  },
+  {
+    "full": "Experts can become insensitive to how hard a task is for the beginner, an effect referred to as the curse of knowledge.",
+    "koFull": "전문가들은 초보자에게 어떤 과제가 얼마나 어려운지에 대해 둔감해질 수 있는데, 이것은 ‘지식의 저주’라고 불리는 효과이다.",
+    "parts": [
+      {
+        "en": "Experts can become insensitive",
+        "ko": "전문가들은 둔감해질 수 있다"
+      },
+      {
+        "en": "to how hard a task is for the beginner",
+        "ko": "초보자에게 어떤 과제가 얼마나 어려운지에 대해"
+      },
+      {
+        "en": "an effect referred to as the curse of knowledge",
+        "ko": "지식의 저주라고 불리는 효과이다"
+      }
+    ]
+  },
+  {
+    "full": "Dr Hinds was able to show that as people acquired the skill, they then began to underestimate the level of difficulty of that skill.",
+    "koFull": "Hinds 박사는 사람들이 그 기술을 습득함에 따라, 그들이 그 기술의 난이도를 과소평가하기 시작했다는 것을 보여 줄 수 있었다.",
+    "parts": [
+      {
+        "en": "Dr Hinds was able to show",
+        "ko": "Hinds 박사는 보여 줄 수 있었다"
+      },
+      {
+        "en": "that as people acquired the skill",
+        "ko": "사람들이 그 기술을 습득함에 따라"
+      },
+      {
+        "en": "they then began to underestimate",
+        "ko": "그들은 그때 과소평가하기 시작했다는 것을"
+      },
+      {
+        "en": "the level of difficulty of that skill",
+        "ko": "그 기술의 난이도를"
+      }
+    ]
+  },
+  {
+    "full": "Her participants even underestimated how long it had taken themselves to acquire that skill in an earlier session.",
+    "koFull": "그녀의 참가자들은 심지어 이전 회기에서 자신들이 그 기술을 습득하는 데 얼마나 오래 걸렸는지도 과소평가했다.",
+    "parts": [
+      {
+        "en": "Her participants even underestimated",
+        "ko": "그녀의 참가자들은 심지어 과소평가했다"
+      },
+      {
+        "en": "how long it had taken themselves",
+        "ko": "자신들에게 얼마나 오래 걸렸는지를"
+      },
+      {
+        "en": "to acquire that skill",
+        "ko": "그 기술을 습득하는 데"
+      },
+      {
+        "en": "in an earlier session",
+        "ko": "이전 회기에서"
+      }
+    ]
+  },
+  {
+    "full": "Knowing that experts forget how hard it was for them to learn, we can understand the need to look at the learning process through students' eyes, rather than making assumptions about how students should be learning.",
+    "koFull": "전문가들이 자신들이 배우는 것이 얼마나 어려웠는지를 잊어버린다는 것을 알면, 우리는 학생들이 어떻게 배우고 있어야 하는지에 대해 추측하기보다는 학생들의 눈으로 학습 과정을 바라볼 필요성을 이해할 수 있다.",
+    "parts": [
+      {
+        "en": "Knowing that experts forget",
+        "ko": "전문가들이 잊어버린다는 것을 알면"
+      },
+      {
+        "en": "how hard it was for them to learn",
+        "ko": "그들에게 배우는 것이 얼마나 어려웠는지를"
+      },
+      {
+        "en": "we can understand the need",
+        "ko": "우리는 필요성을 이해할 수 있다"
+      },
+      {
+        "en": "to look at the learning process through students eyes",
+        "ko": "학생들의 눈으로 학습 과정을 바라볼"
+      },
+      {
+        "en": "rather than making assumptions",
+        "ko": "추측하기보다는"
+      },
+      {
+        "en": "about how students should be learning",
+        "ko": "학생들이 어떻게 배우고 있어야 하는지에 대해"
+      }
+    ]
+  }
 ];
 
 const grammarList = [
-  {sentence: "One of the most striking characteristics of a sleeping animal [is / are] that they do not respond normally.", answer: "is", explain: "주어는 One of + 복수명사에서 핵심 주어인 One이므로 단수 동사 is가 맞습니다."},
-  {sentence: "They do not respond [normal / normally] to environmental stimuli.", answer: "normally", explain: "동사 respond를 수식해야 하므로 부사인 normally가 맞습니다."},
-  {sentence: "Some visual information apparently [get / gets] in.", answer: "gets", explain: "information은 셀 수 없는 명사로 단수 취급하므로 단수 동사 gets가 맞습니다."},
-  {sentence: "Visual information is not normally [processing / processed].", answer: "processed", explain: "시각 정보는 '처리되는' 대상이므로 수동태인 is processed가 맞습니다."},
-  {sentence: "Stimuli are [registering / registered] but not processed normally.", answer: "registered", explain: "자극(Stimuli)은 감각 기관에 '인식되는' 대상이므로 수동태 registered가 맞습니다."},
-  {sentence: "They fail [to wake / waking] the individual.", answer: "to wake", explain: "fail은 목적어로 to 부정사를 취하므로 to wake가 맞습니다."},
-  {sentence: "Some authors do not count it [as / for] part of the definition.", answer: "as", explain: "count A as B는 'A를 B로 간주하다'라는 구문입니다."},
-  {sentence: "It seems [essential / essentially] to its definition.", answer: "essential", explain: "seem 뒤에는 주격 보어로 형용사가 와야 하므로 essential이 맞습니다."},
-  {sentence: "Many animals use the intermediate state [to derive / deriving] some benefits.", answer: "to derive", explain: "'~하기 위해'라는 목적을 나타내는 부사적 용법의 to 부정사(to derive)가 쓰였습니다."}
+  {
+    "sentence": "A number of research studies [has shown / have shown] how experts experience difficulties.",
+    "answer": "have shown",
+    "explain": "A number of + 복수명사는 '많은 ~'이라는 뜻이며 복수 취급합니다. 따라서 have shown이 맞습니다."
+  },
+  {
+    "sentence": "Experts often experience difficulties when [introducing / introduced] newcomers to that field.",
+    "answer": "introducing",
+    "explain": "when introducing은 when they introduce가 줄어든 표현입니다. 능동 의미이므로 introducing이 맞습니다."
+  },
+  {
+    "sentence": "People expert in [using / use] mobile phones were less accurate.",
+    "answer": "using",
+    "explain": "expert in 뒤에는 명사나 동명사가 옵니다. 따라서 using이 맞습니다."
+  },
+  {
+    "sentence": "They were less accurate [than / as] novice phone users.",
+    "answer": "than",
+    "explain": "less + 형용사 + than은 '~보다 덜 ...한'이라는 비교급 표현입니다."
+  },
+  {
+    "sentence": "It takes people time [to learn / learning] to use the phones.",
+    "answer": "to learn",
+    "explain": "it takes + 사람 + 시간 + to부정사 구문입니다. '~하는 데 시간이 걸리다'라는 뜻입니다."
+  },
+  {
+    "sentence": "Experts can become [insensitive / insensitively] to how hard a task is.",
+    "answer": "insensitive",
+    "explain": "become 뒤에는 보어로 형용사가 옵니다. 따라서 insensitive가 맞습니다."
+  },
+  {
+    "sentence": "This is an effect [referred / referring] to as the curse of knowledge.",
+    "answer": "referred",
+    "explain": "an effect which is referred to as가 줄어든 과거분사 표현입니다. '불리는 효과'라는 수동 의미입니다."
+  },
+  {
+    "sentence": "As people [acquired / acquiring] the skill, they began to underestimate it.",
+    "answer": "acquired",
+    "explain": "as는 접속사이므로 뒤에 주어 people과 동사 acquired가 필요합니다."
+  },
+  {
+    "sentence": "They began [to underestimate / underestimating] the level of difficulty.",
+    "answer": "to underestimate",
+    "explain": "begin은 to부정사와 동명사를 모두 받을 수 있지만, 이 문장에서는 원문 표현인 began to underestimate가 쓰였습니다."
+  },
+  {
+    "sentence": "They underestimated how long it [had taken / has taken] themselves.",
+    "answer": "had taken",
+    "explain": "이전 회기에서 이미 걸렸던 시간을 말하므로 과거보다 앞선 일을 나타내는 과거완료 had taken이 자연스럽습니다."
+  },
+  {
+    "sentence": "We should look through students' eyes rather than [making / make] assumptions.",
+    "answer": "making",
+    "explain": "rather than 뒤에는 앞의 look과 병렬로 동사원형이 올 수도 있지만, 원문에서는 rather than making으로 '-하기보다는'의 의미를 나타냅니다."
+  }
 ];
 
 const lineExplanations = [
-  {en: "One of the most striking characteristics of a sleeping animal or person is that they do not respond normally to environmental stimuli.", ko: "수면 중인 동물이나 사람의 가장 눈에 띄는 특징 중 하나는 그들이 환경적 자극에 정상적으로 반응하지 않는다는 것이다.", gram: "<b>One of the + 최상급 + 복수명사(characteristics)</b> 구문이며, 주어는 One이므로 단수동사 <b>is</b>가 쓰였습니다."},
-  {en: "If you open the eyelids of a sleeping mammal the eyes will not see normally—they are functionally blind.", ko: "만약 당신이 수면 중인 포유류의 눈꺼풀을 연다 하더라도, 그 눈은 정상적으로 보지 못할 것이다. 즉, 그들은 기능적으로 시력이 없는(맹인) 상태이다.", gram: "<b>functionally blind</b>는 눈의 구조적 문제가 아니라 뇌에서 시각 정보를 처리하지 않아 '기능적으로 보지 못하는' 상태를 의미합니다."},
-  {en: "Some visual information apparently gets in, but it is not normally processed as it is shortened or weakened; same with the other sensing systems.", ko: "약간의 시각 정보가 겉보기에는 들어오는 것 같지만, 그것이 짧아지거나 약해지기 때문에 정상적으로 처리되지 않는다. 다른 감각 체계들의 경우도 마찬가지다.", gram: "<b>is not normally processed</b>는 수동태입니다. <b>as</b>는 '~때문에'라는 뜻의 접속사로 쓰였습니다."},
-  {en: "Stimuli are registered but not processed normally and they fail to wake the individual.", ko: "자극은 인식되지만 정상적으로 처리되지 않으며, 그것들은 그 개체를 깨우지 못한다.", gram: "<b>are registered but not processed</b>로 수동태 동사 두 개가 병렬 연결되었습니다. <b>fail to-v</b>는 '~하지 못하다'라는 뜻입니다."},
-  {en: "Perceptual disengagement probably serves the function of protecting sleep, so some authors do not count it as part of the definition of sleep itself.", ko: "지각적 이탈은 아마도 수면을 보호하는 기능을 수행할 것이고, 그래서 일부 저자들은 그것을 수면 자체의 정의의 일부로 간주하지 않는다.", gram: "<b>perceptual disengagement(지각적 이탈)</b>은 핵심어입니다. <b>count A as B</b>는 'A를 B로 간주하다'라는 뜻입니다."},
-  {en: "But as sleep would be impossible without it, it seems essential to its definition.", ko: "하지만 그것(지각적 이탈) 없이는 수면이 불가능할 것이기 때문에, 그것은 수면의 정의에 필수적인 것으로 보인다.", gram: "<b>as</b>는 '~때문에'입니다. <b>seem + 형용사(essential)</b> 구문이 쓰였습니다."},
-  {en: "Nevertheless, many animals (including humans) use the intermediate state of drowsiness to derive some benefits of sleep without total perceptual disengagement.", ko: "그럼에도 불구하고, (인간을 포함한) 많은 동물들은 완전한 지각적 이탈 없이도 수면의 몇몇 이점들을 얻기 위해 졸음이라는 중간 상태를 이용한다.", gram: "<b>Nevertheless(그럼에도 불구하고)</b>가 문장 흐름을 바꿉니다. <b>to derive</b>는 목적을 나타내는 to부정사입니다."}
+  {
+    "en": "A number of research studies have shown how experts in a field often experience difficulties when introducing newcomers to that field.",
+    "ko": "많은 연구들은 한 분야의 전문가들이 그 분야에 초보자들을 입문시킬 때 자주 어려움을 겪는다는 것을 보여 주었다.",
+    "gram": "<b>A number of + 복수명사 + 복수동사</b> 구문입니다. <b>when introducing</b>은 when they introduce가 줄어든 표현이고, <b>introduce A to B</b>는 'A를 B에 입문시키다'입니다."
+  },
+  {
+    "en": "For example, in a genuine training situation, Dr Pamela Hinds found that people expert in using mobile phones were remarkably less accurate than novice phone users in judging how long it takes people to learn to use the phones.",
+    "ko": "예를 들어, 실제 훈련 상황에서 Pamela Hinds 박사는 휴대전화를 사용하는 데 능숙한 사람들이 초보 휴대전화 사용자들보다 사람들이 그 전화기를 사용하는 법을 배우는 데 얼마나 오래 걸리는지를 판단하는 데 훨씬 덜 정확하다는 것을 발견했다.",
+    "gram": "<b>people expert in using mobile phones</b>는 '휴대전화 사용에 능숙한 사람들'입니다. <b>less accurate than</b>은 '~보다 덜 정확한', <b>it takes + 사람 + 시간 + to-v</b>는 '~하는 데 시간이 걸리다'입니다."
+  },
+  {
+    "en": "Experts can become insensitive to how hard a task is for the beginner, an effect referred to as the 'curse of knowledge'.",
+    "ko": "전문가들은 초보자에게 어떤 과제가 얼마나 어려운지에 대해 둔감해질 수 있는데, 이것은 ‘지식의 저주’라고 불리는 효과이다.",
+    "gram": "<b>become insensitive to</b>는 '~에 둔감해지다'입니다. <b>referred to as</b>는 '~라고 불리는'이고, <b>curse of knowledge</b>는 이미 아는 사람이 모르는 사람의 어려움을 잊는 현상입니다."
+  },
+  {
+    "en": "Dr Hinds was able to show that as people acquired the skill, they then began to underestimate the level of difficulty of that skill.",
+    "ko": "Hinds 박사는 사람들이 그 기술을 습득함에 따라, 그들이 그 기술의 난이도를 과소평가하기 시작했다는 것을 보여 줄 수 있었다.",
+    "gram": "<b>as S V</b>는 여기서 '~함에 따라'입니다. <b>acquire</b>는 '습득하다', <b>underestimate</b>는 '과소평가하다'입니다."
+  },
+  {
+    "en": "Her participants even underestimated how long it had taken themselves to acquire that skill in an earlier session.",
+    "ko": "그녀의 참가자들은 심지어 이전 회기에서 자신들이 그 기술을 습득하는 데 얼마나 오래 걸렸는지도 과소평가했다.",
+    "gram": "<b>even</b>은 '심지어'입니다. <b>had taken</b>은 과거완료로, 이전 회기에서 이미 걸렸던 시간을 말합니다. <b>earlier session</b>은 '이전 회기'입니다."
+  },
+  {
+    "en": "Knowing that experts forget how hard it was for them to learn, we can understand the need to look at the learning process through students' eyes, rather than making assumptions about how students 'should be' learning.",
+    "ko": "전문가들이 자신들이 배우는 것이 얼마나 어려웠는지를 잊어버린다는 것을 알면, 우리는 학생들이 어떻게 배우고 있어야 하는지에 대해 추측하기보다는 학생들의 눈으로 학습 과정을 바라볼 필요성을 이해할 수 있다.",
+    "gram": "<b>Knowing that</b>은 분사구문으로 '~라는 것을 알면'입니다. <b>the need to-v</b>는 '~할 필요성', <b>rather than -ing</b>은 '~하기보다는', <b>through students' eyes</b>는 '학생 입장에서'라는 뜻입니다."
+  }
 ];
 
 let selectedMainAnswer=null;
@@ -211,18 +471,18 @@ function selectMainChoice(btn){
 function checkMainProblem(){
   initAudio();
   if(!selectedMainAnswer){alert('정답을 먼저 선택하세요.');return}
-  const answer=3, ok=selectedMainAnswer===answer;
+  const answer=5, ok=selectedMainAnswer===answer;
   document.querySelectorAll('.q-choice').forEach(b=>{
     b.classList.remove('correct','wrong');
     const n=Number(b.dataset.n);
     if(n===answer)b.classList.add('correct');
     if(n===selectedMainAnswer&&!ok)b.classList.add('wrong');
   });
-  
+
   const r=document.getElementById('main-result');
   r.className='result-box '+(ok?'correct':'wrong');
-  r.innerHTML=ok?'<b>정답입니다! ③ are functionally blind</b><br>앞에서 수면 중인 포유류의 눈을 강제로 떠도 정상적으로 보지 못한다고 했고, 바로 뒷문장에서 그 이유를 "시각 정보가 들어오긴 하지만 뇌에서 정상적으로 처리되지 않기 때문"이라고 설명합니다. 즉, 눈은 떠 있어도 뇌가 인식하지 못하므로 <b>기능적으로 맹인(functionally blind)</b> 상태라는 ③번이 가장 적절합니다.':'<b>아쉽습니다. 정답은 ③ are functionally blind 입니다.</b><br>빈칸 바로 다음 문장에서 "시각 정보가 들어오긴 하지만 정상적으로 처리되지 않는다"고 설명합니다. 즉, 물리적으로는 정보가 들어오지만 뇌가 처리하지 않으므로 <b>기능적으로는 앞이 보이지 않는 상태(functionally blind)</b>가 맞습니다.';
-  
+  r.innerHTML=ok?'<b>정답입니다! ⑤ look at the learning process through students’ eyes</b><br>글은 전문가가 자신이 배울 때 겪었던 어려움을 잊어버려 초보자의 어려움에 둔감해지는 현상, 즉 <b>지식의 저주</b>를 설명합니다. 따라서 학생들이 어떻게 배워야 한다고 추측하기보다 <b>학생의 눈으로 학습 과정을 바라보아야 한다</b>는 ⑤번이 가장 적절합니다.':'<b>아쉽습니다. 정답은 ⑤ look at the learning process through students’ eyes 입니다.</b><br>핵심은 전문가가 초보자의 어려움을 잊어버린다는 점입니다. 그래서 학생들이 당연히 이렇게 배워야 한다고 가정하기보다, <b>학생 입장에서 학습 과정을 바라보는 것</b>이 필요합니다.';
+
   if(ok){
     safeSet('_problemCorrect',true);
     sfxOK();showCombo(true);rewardPop('정답! +10 EXP');boom();
@@ -240,7 +500,7 @@ function renderLineExplain(){
   lineExplanations.forEach((x,i)=>{
     out+=`<div class="explain-card"><div class="ex-en"><span class="pill">${i+1}</span>${x.en}</div><div class="ex-ko">${x.ko}</div><div class="ex-gram">🔎 ${x.gram}</div></div>`;
   });
-  out+='<div class="question-box"><b>전체 요지</b><br>수면 중에는 눈으로 빛이 들어와도 뇌가 이를 정상적으로 처리하지 않는 <b>지각적 이탈(perceptual disengagement)</b>이 일어납니다. 이는 깊은 잠을 유지하고 보호하기 위해 필수적입니다. 하지만 야생의 위험 때문에 동물들은 완전히 감각을 차단하는 대신, 졸음이라는 중간 상태를 활용하여 선잠을 자면서도 수면의 혜택을 취하기도 합니다.</div>';
+  out+='<div class="question-box"><b>전체 요지</b><br>전문가들은 자신이 이미 알고 있는 지식 때문에 초보자가 무엇을 어려워하는지 잊어버리기 쉽습니다. 이것을 <b>curse of knowledge</b>라고 하며, 교육에서는 학생들이 어떻게 배워야 한다고 단정하기보다 <b>학생의 입장과 눈높이에서 학습 과정을 바라보는 태도</b>가 필요합니다.</div>';
   wrap.innerHTML=out;
   wrap.classList.add('show');
   wrap.scrollIntoView({behavior:'smooth',block:'start'});
@@ -248,7 +508,7 @@ function renderLineExplain(){
 
 function updateEvo(pre,cur,tot){
   const r=tot?cur/tot:0;
-  const s=[[0,'💤','피곤한 동물'],[.15,'🥱','하품하는 동물'],[.38,'😴','꾸벅꾸벅 졸음'],[.68,'🛌','기분 좋은 선잠'],[1,'✨','완벽한 피로회복']];
+  const s=[[0,'🧠','지식의 씨앗'],[.15,'🔍','초보자의 눈'],[.38,'📘','이해가 자라는 중'],[.68,'👀','학생 입장 보기'],[1,'🏆','학습 코치 완성']];
   let st=s[0]; for(const x of s)if(r>=x[0])st=x;
   const pctVal=Math.floor(r*100);
   document.getElementById(pre+'e').innerText=st[1];
